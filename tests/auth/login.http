@@ -1,0 +1,21 @@
+### Login Exitoso (Gerente)
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin_pablo",
+  "password": "tecda2026"
+}
+
+### Extraer Token del Login
+@authToken = {{login.response.body.token}}
+
+### Login Fallido (Credenciales Erróneas)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "user_inexistente",
+  "password": "000"
+}

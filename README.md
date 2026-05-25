@@ -12,8 +12,17 @@ Siguiendo las mejores prácticas de la industria, el repositorio se organiza as�
 *   **/tests**: Carpeta de validación.
     *   `api_tests.http`: Suite de pruebas interactivas para REST Client.
 *   **/docs**: Centro de conocimiento.
-    *   `TESTING_GUIDE.md`: 🎓 **Guía didáctica sobre cómo probar antes de programar.**
-    *   `README.md`: Mapa detallado de la documentación.
+    *   `TESTING_GUIDE.md`: 🎓 Guía didáctica sobre pruebas.
+    *   `SECURITY_GUIDE.md`: 🛡️ Guía de arquitectura de seguridad (JWT + RBAC).
+    *   `README.md`: Mapa detallado.
+
+---
+
+## 🎓 Objetivos de Aprendizaje (Teaching-Learning)
+
+1.  **Capa de Datos:** SQL avanzado (Triggers, SP, UDF).
+2.  **Capa de Seguridad:** Implementación de tabla de usuarios, hasheo de contraseñas y autenticación JWT.
+3.  **Capa de Contrato:** OpenAPI 3.0 con escenarios de error.
 
 ---
 

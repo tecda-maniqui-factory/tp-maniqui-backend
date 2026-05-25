@@ -1,0 +1,18 @@
+### Listar todos los maniquíes
+GET {{baseUrl}}/maniquies
+Authorization: Bearer {{authToken}}
+
+### Ensamblar nuevo Maniquí (SP EnsamblarManiqui)
+POST {{baseUrl}}/maniquies
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "modelo_id": 1,
+  "numero_serie": "MQ-TEST-{{$timestamp}}",
+  "numero_lote": "LOTE-001"
+}
+
+### Ver detalle de un Maniquí
+GET {{baseUrl}}/maniquies/MQ-TEST-123
+Authorization: Bearer {{authToken}}
