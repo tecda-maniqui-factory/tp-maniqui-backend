@@ -73,16 +73,20 @@ Content-Type: application/json
 *   Luego van los Headers (`Content-Type`).
 *   Dejas una línea en blanco, y abajo pones el cuerpo (JSON) que quieres enviar.
 
+### 🤖 4. El Robot de Pruebas (Smoke Test con CURL)
+
+Si no quieres ir probando uno por uno, hemos creado un script que automatiza varios comandos `curl` a la vez.
+
+**¿Cómo usarlo?**
+Desde la raíz del proyecto, simplemente ejecuta:
+```bash
+pnpm test
+```
+Este comando recorrerá los endpoints más importantes y te confirmará en la consola si el servidor (Mock o Real) responde con los códigos de estado correctos (200 OK, 201 Created, etc.).
+
 ---
 
-## 🤖 4. El Futuro: Automatización (`npm run test`)
-
-Jugar con el botón "Send Request" es divertido, pero un humano se cansa de hacer clic 50 veces cada vez que cambiamos una línea de código. 
-
-Aquí es donde entran las **Pruebas Automatizadas** (Automated Testing). Una vez que empecemos a escribir el código en Node.js, crearemos scripts que harán estas peticiones a la velocidad de la luz.
-
-**¿Qué pasa cuando escribamos `npm run test`?**
-Usaremos librerías como **Jest** y **Supertest**. Nuestro código hará algo como esto internamente:
+## 🤖 5. El Futuro: Automatización con Jest y Supertest
 
 1.  *Levanta el servidor real en memoria.*
 2.  *Envía un POST simulando la creación de un Maniquí Frankenstein.*
