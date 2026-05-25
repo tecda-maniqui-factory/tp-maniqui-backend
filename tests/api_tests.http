@@ -13,7 +13,7 @@
 
 ### ⚙️ Variables Globales de Entorno
 # (Configura el puerto 8080 u 8081 según tu entorno local)
-@baseUrl = http://localhost:8081/api/v1
+@baseUrl = http://localhost:8081
 @contentType = application/json
 
 

@@ -2,30 +2,33 @@
 
 Este repositorio contiene la implementación de la **API Express (Backend)** para el sistema de gestión de producción e inventario de la fábrica de maniquíes **Tecda**. 
 
-Este proyecto forma parte de la currícula de la materia **Prácticas Profesionalizantes - TERCER AÑO**.
+---
+
+## 📂 Estructura del Repositorio (Senior Mode)
+
+Siguiendo las mejores prácticas de la industria, el repositorio se organiza así:
+
+*   **`openapi.yaml`**: El **Contrato** de la API en la raíz para máxima visibilidad.
+*   **/tests**: Carpeta de validación.
+    *   `api_tests.http`: Suite de pruebas interactivas para REST Client.
+*   **/docs**: Centro de conocimiento.
+    *   `TESTING_GUIDE.md`: 🎓 **Guía didáctica sobre cómo probar antes de programar.**
+    *   `README.md`: Mapa detallado de la documentación.
 
 ---
 
-## 📂 Estructura de Carpetas Sincrónica
+## 🚀 ¿Cómo empezar? (Testing First)
 
-Este repositorio sigue una estructura simétrica de carpetas corporativa:
+Antes de escribir código, debemos validar nuestro diseño:
 
-*   **/docs**: Centro de documentación técnica.
-    *   `README.md`: Guía de navegación del backend.
-    *   `openapi.yaml`: Contrato de interfaz OpenAPI 3.0 (Swagger).
-    *   `api_tests.http`: Casos de prueba interactivos para REST Client.
-*   `package.json`: Definición de scripts, dependencias y engines Node gestionados con **pnpm**.
-
----
-
-## 🚀 Guía de Inicio Rápido
-
-Para explorar y entender el diseño del servidor antes de comenzar la codificación:
-
-1.  Navega al centro de documentación:
-    👉 **[docs/README.md](docs/README.md)**
-2.  Explora la definición formal de los endpoints e invoca las peticiones interactivas en tu editor con:
-    👉 **[docs/api_tests.http](docs/api_tests.http)**
+1.  **Simula la API con Prism:**
+    ```bash
+    npx @stoplight/prism-cli mock openapi.yaml -p 8081 -d
+    ```
+2.  **Aprende a realizar las pruebas:**
+    Consulta nuestra 🎓 **[Guía de Pruebas (TESTING_GUIDE.md)](docs/TESTING_GUIDE.md)** para entender el flujo de trabajo profesional.
+3.  **Ejecuta las pruebas interactivas:**
+    Usa el archivo **[tests/api_tests.http](tests/api_tests.http)** con la extensión REST Client.
 
 ---
-*Desarrollado de forma modular e independiente bajo la organización @tecda-maniqui-factory.*
+*Desarrollado para la materia Prácticas Profesionalizantes - @tecda-maniqui-factory.*
