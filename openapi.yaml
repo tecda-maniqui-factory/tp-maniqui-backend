@@ -1,0 +1,513 @@
+openapi: 3.0.0
+info:
+  title: Tecda Maniquí API
+  description: |
+    API REST para la gestión de inventario y producción de la fábrica de maniquíes **Tecda**.
+    Este servicio expone y automatiza la lógica de negocio de la base de datos relacional `tecda_maniqui`,
+    mapeando de forma directa las tablas, vistas analíticas, funciones y procedimientos almacenados (Stored Procedures).
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Servidor de desarrollo local
+
+paths:
+  # ===========================================================================
+  # RECURSOS DE PRODUCCIÓN (MANIQUÍES)
+  # ===========================================================================
+  /maniquies:
+    get:
+      summary: Listar maniquíes físicos
+      description: Recupera la lista de unidades de maniquíes ensamblados o en producción, con filtros.
+      parameters:
+        - name: status
+          in: query
+          description: Filtrar por estado físico del maniquí
+          required: false
+          schema:
+            type: string
+            enum: [En Producción, Disponible, Vendido, Dañado]
+        - name: modelo_id
+          in: query
+          description: Filtrar por el identificador del diseño técnico (Modelo)
+          required: false
+          schema:
+            type: integer
+        - name: numero_lote
+          in: query
+          description: Filtrar por número de lote de producción
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Listado de maniquíes recuperado con éxito.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Maniqui'
+        '500':
+          description: Error interno del servidor.
+
+    post:
+      summary: Ensamblar nuevo maniquí (Llama al Stored Procedure)
+      description: |
+        Registra y ensambla un nuevo maniquí. Este endpoint ejecuta internamente el procedimiento almacenado 
+        `CALL EnsamblarManiqui(modelo_id, numero_serie)`. 
+        
+        **Lógica del SP:**
+        1. Crea el registro en la tabla `Maniquies` con fecha y estado 'Disponible'.
+        2. Busca todas las piezas disponibles en stock que pertenezcan a ese modelo e incrementa la trazabilidad asociándolas automáticamente a este maniquí.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - modelo_id
+                - numero_serie
+              properties:
+                modelo_id:
+                  type: integer
+                  description: ID del modelo de diseño técnico a ensamblar
+                  example: 1
+                numero_serie:
+                  type: string
+                  description: Identificador de serie único a asignar
+                  example: "MQ-HR-0005"
+      responses:
+        '201':
+          description: Maniquí ensamblado exitosamente por el motor de base de datos.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaEnsamblaje'
+        '400':
+          description: Parámetros inválidos (ej. el número de serie ya existe).
+        '500':
+          description: Error de ejecución de la rutina almacenada.
+
+  /maniquies/{numero_serie}:
+    get:
+      summary: Obtener detalle del maniquí
+      description: Obtiene las características y la estructura completa de piezas físicas de un maniquí específico.
+      parameters:
+        - name: numero_serie
+          in: path
+          description: Número de serie del maniquí
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalle del maniquí recuperado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetalleManiqui'
+        '404':
+          description: Maniquí no encontrado.
+
+  # ===========================================================================
+  # RECURSOS DE COMPONENTES (PIEZAS)
+  # ===========================================================================
+  /piezas:
+    get:
+      summary: Listar piezas físicas en inventario
+      description: Recupera el stock de piezas registradas, permitiendo ver las piezas que están en stock (libres) o asociadas a maniquíes.
+      parameters:
+        - name: disponible
+          in: query
+          description: Si es true, retorna solo piezas libres en stock (donde `maniqui_id IS NULL`)
+          required: false
+          schema:
+            type: boolean
+        - name: modelo_id
+          in: query
+          description: Filtrar piezas compatibles con un modelo
+          required: false
+          schema:
+            type: integer
+        - name: tipo_parte_id
+          in: query
+          description: Filtrar por tipo anatómico (Cabeza, Torso, etc.)
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Listado de piezas recuperado.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pieza'
+
+    post:
+      summary: Registrar pieza nueva (Activa Generador de Seriales)
+      description: |
+        Registra una pieza física en el sistema.
+        
+        **Lógica Automática en Base de Datos (Trigger `tg_generar_serial_pieza`):**
+        Al insertar, el motor de base de datos lee los catálogos y autogenera de forma atómica el serial único de la pieza sin intervención del cliente (Ej: `PZ-CAB-INT-0001` -> Cabeza, Fabricación Interna, Secuencia 1), garantizando la no colisión en entornos distribuidos.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tipo_parte_id
+                - modelo_id
+                - origen_id
+                - tono_acabado_id
+              properties:
+                tipo_parte_id:
+                  type: integer
+                  description: ID del catálogo de tipos de pieza (Cabeza, Torso, etc.)
+                  example: 1
+                modelo_id:
+                  type: integer
+                  description: ID del modelo con el que es físicamente compatible
+                  example: 2
+                origen_id:
+                  type: integer
+                  description: ID de Origen (Producción Interna / Importada)
+                  example: 1
+                tono_acabado_id:
+                  type: integer
+                  description: ID del tono de pintura y tipo de acabado
+                  example: 3
+      responses:
+        '201':
+          description: Pieza registrada y serial inteligente autogenerado por el Trigger.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pieza'
+
+  /piezas/{serial_parte}/ensamblar:
+    put:
+      summary: Ensamblar pieza a un maniquí (Activa Trigger Anti-Frankenstein)
+      description: |
+        Asigna una pieza física al cuerpo de un maniquí.
+        
+        **Lógica Automática en Base de Datos (Trigger `tg_validar_modelo_ensamblaje`):**
+        Antes de realizar la actualización, el motor de base de datos ejecuta una validación estricta para garantizar que el modelo de la pieza coincida exactamente con el modelo del maniquí.
+        Si hay discrepancia, se lanza un error SQL (SQLSTATE 45000) y se cancela la transacción para evitar un "maniquí Frankenstein" de partes incompatibles.
+      parameters:
+        - name: serial_parte
+          in: path
+          description: Código único de serie de la pieza (Ej. PZ-CAB-INT-0001)
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - maniqui_id
+              properties:
+                maniqui_id:
+                  type: integer
+                  description: ID del maniquí receptor
+                  example: 5
+      responses:
+        '200':
+          description: Pieza ensamblada con éxito. La transacción se completó correctamente.
+        '409':
+          description: |
+            Error de incompatibilidad de modelo (Trigger abortó la operación).
+            **Mensaje:** "ERROR: Incompatibilidad. La pieza no pertenece al mismo modelo que el maniquí."
+        '404':
+          description: Pieza o Maniquí no encontrado.
+
+  # ===========================================================================
+  # ESPECIFICACIONES Y CÁLCULOS (MODELOS)
+  # ===========================================================================
+  /modelos:
+    get:
+      summary: Listar catálogo de modelos
+      description: Recupera el listado de especificaciones técnicas del catálogo de modelos.
+      responses:
+        '200':
+          description: Catálogo de modelos recuperado.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Modelo'
+
+  /modelos/{id}/descuento:
+    get:
+      summary: Calcular precio con descuento (Llama a UDF SQL)
+      description: |
+        Calcula de forma dinámica el precio del modelo aplicando un descuento promocional. 
+        Este endpoint ejecuta directamente en la base de datos la función definida por el usuario (UDF) `CalcularDescuento(precio_venta, porcentaje_descuento)`.
+      parameters:
+        - name: id
+          in: path
+          description: ID del modelo a cotizar
+          required: true
+          schema:
+            type: integer
+        - name: porcentaje
+          in: query
+          description: Porcentaje de descuento a aplicar (0 a 100)
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 100
+            example: 15
+      responses:
+        '200':
+          description: Descuento calculado mediante la función SQL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescuentoCalculado'
+        '404':
+          description: Modelo no encontrado.
+
+  # ===========================================================================
+  # ANALÍTICA Y REPORTES (VISTAS SQL)
+  # ===========================================================================
+  /reportes/produccion:
+    get:
+      summary: Reporte consolidado de producción (Consume Vista SQL)
+      description: |
+        Consulta la vista SQL analítica `Vista_Produccion_Maniquies`. 
+        Esta vista calcula automáticamente los costos agregados de las piezas asignadas a cada maniquí físico y proyecta márgenes de ganancias reales cruzando datos de los catálogos en tiempo real.
+      parameters:
+        - name: estado
+          in: query
+          description: Filtrar el reporte por el estado del maniquí (Ej. Disponible, Vendido)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reporte consolidado obtenido desde la Vista SQL.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReporteProduccion'
+
+components:
+  schemas:
+    # -------------------------------------------------------------------------
+    # ESQUEMA: MANIQUÍ
+    # -------------------------------------------------------------------------
+    Maniqui:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Identificador autonumérico (Clave Primaria)
+          example: 1
+        numero_serie:
+          type: string
+          description: Número de serie único
+          example: "MQ-HR-0001"
+        modelo_id:
+          type: integer
+          description: Referencia al diseño técnico
+          example: 1
+        fecha_ensamblaje:
+          type: string
+          format: date-time
+          description: Fecha y hora de finalización del ensamblaje
+          example: "2026-05-23T10:00:00Z"
+        numero_lote:
+          type: string
+          description: Código del lote de producción
+          example: "L-2026-05"
+        status:
+          type: string
+          enum: [En Producción, Disponible, Vendido, Dañado]
+          example: "Disponible"
+
+    # -------------------------------------------------------------------------
+    # ESQUEMA: PIEZA
+    # -------------------------------------------------------------------------
+    Pieza:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 12
+        serial_parte:
+          type: string
+          description: Serial autogenerado por el trigger (PZ-[TIPO]-[ORIGEN]-[SECUENCIA])
+          example: "PZ-CAB-INT-0024"
+        tipo_parte_id:
+          type: integer
+          description: Referencia al tipo anatómico de pieza
+          example: 1
+        modelo_id:
+          type: integer
+          description: Referencia al modelo de diseño técnico compatible
+          example: 2
+        origen_id:
+          type: integer
+          description: Referencia al origen (Interno/Externo)
+          example: 1
+        tono_acabado_id:
+          type: integer
+          description: Referencia al acabado de pintura
+          example: 3
+        maniqui_id:
+          type: integer
+          nullable: true
+          description: ID del maniquí ensamblado. NULL si la pieza está en stock (libre)
+          example: null
+        fecha_registro:
+          type: string
+          format: date-time
+          example: "2026-05-23T08:30:00Z"
+
+    # -------------------------------------------------------------------------
+    # ESQUEMA: MODELO
+    # -------------------------------------------------------------------------
+    Modelo:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        nombre:
+          type: string
+          example: "Hércules Realista"
+        sexo_id:
+          type: integer
+          example: 1
+        altura_cm:
+          type: number
+          format: decimal
+          example: 185.50
+        ancho_cm:
+          type: number
+          format: decimal
+          example: 48.00
+        costo_unitario:
+          type: number
+          format: decimal
+          description: Costo de fabricación estimado del molde base
+          example: 120.00
+        precio_venta:
+          type: number
+          format: decimal
+          example: 350.00
+        es_articulado:
+          type: boolean
+          example: true
+
+    # -------------------------------------------------------------------------
+    # ESQUEMA: RESPUESTA DE SP ENSAMBLAJE
+    # -------------------------------------------------------------------------
+    RespuestaEnsamblaje:
+      type: object
+      properties:
+        Resultado:
+          type: string
+          description: Mensaje de confirmación retornado por la ejecución de la rutina almacenada
+          example: "Maniquí MQ-HR-0005 ensamblado correctamente con ID 5"
+
+    # -------------------------------------------------------------------------
+    # ESQUEMA: DETALLE COMPLETO MANIQUÍ
+    # -------------------------------------------------------------------------
+    DetalleManiqui:
+      allOf:
+        - $ref: '#/components/schemas/Maniqui'
+        - type: object
+          properties:
+            modelo:
+              $ref: '#/components/schemas/Modelo'
+            piezas:
+              type: array
+              description: Piezas físicas asociadas que estructuran este maniquí
+              items:
+                $ref: '#/components/schemas/Pieza'
+
+    # -------------------------------------------------------------------------
+    # ESQUEMA: CÁLCULO DE DESCUENTO (UDF)
+    # -------------------------------------------------------------------------
+    DescuentoCalculado:
+      type: object
+      properties:
+        modelo_id:
+          type: integer
+          example: 2
+        nombre:
+          type: string
+          example: "Hércules Realista"
+        precio_original:
+          type: number
+          format: decimal
+          example: 350.00
+        porcentaje_descuento:
+          type: integer
+          example: 15
+        precio_final:
+          type: number
+          format: decimal
+          description: Valor de retorno directo de la función UDF CalcularDescuento
+          example: 297.50
+
+    # -------------------------------------------------------------------------
+    # ESQUEMA: REPORTE DE PRODUCCIÓN (VISTA SQL)
+    # -------------------------------------------------------------------------
+    ReporteProduccion:
+      type: object
+      properties:
+        Serial_Maniqui:
+          type: string
+          example: "MQ-HR-0001"
+        Modelo:
+          type: string
+          example: "Hércules Realista"
+        Sexo:
+          type: string
+          example: "Masculino"
+        Estilo:
+          type: string
+          example: "Realista"
+        Tipo_Cuerpo:
+          type: string
+          example: "Entero"
+        Estado:
+          type: string
+          example: "Disponible"
+        Costo_Base_Modelo:
+          type: number
+          format: decimal
+          example: 120.00
+        Costo_Total_Piezas:
+          type: number
+          format: decimal
+          description: Suma de costos de piezas calculada dinámicamente por la Vista
+          example: 85.50
+        Costo_Final_Produccion:
+          type: number
+          format: decimal
+          description: Costo_Base_Modelo + Costo_Total_Piezas
+          example: 205.50
+        Precio_Venta:
+          type: number
+          format: decimal
+          example: 350.00
+        Margen_Ganancia:
+          type: number
+          format: decimal
+          description: Precio_Venta - Costo_Final_Produccion
+          example: 144.50

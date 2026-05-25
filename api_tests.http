@@ -1,0 +1,154 @@
+# =============================================================================
+# 🔌 Tecda Maniquí - Suite de Pruebas de API REST (.http)
+# =============================================================================
+# Esta suite está diseñada para ser ejecutada con la extensión "REST Client" 
+# de VS Code / Cursor (humao.rest-client). Permite probar de forma interactiva 
+# todos los endpoints de la API, incluyendo la ejecución de Stored Procedures, 
+# Triggers y Vistas de la base de datos `gestion_bbdd`.
+#
+# ⚙️ INSTRUCCIONES:
+# 1. Asegúrate de tener levantado el servidor backend.
+# 2. Haz clic en "Send Request" arriba de cada petición para ejecutarla.
+# =============================================================================
+
+### ⚙️ Variables Globales de Entorno
+# (Configura el puerto 8080 u 8081 según tu entorno local)
+@baseUrl = http://localhost:8081/api/v1
+@contentType = application/json
+
+
+# =============================================================================
+# 📺 1. RECURSOS DE PRODUCCIÓN (MANIQUÍES)
+# =============================================================================
+
+### 1.1 Listar todos los maniquíes físicos
+# Recupera el listado completo de unidades ensambladas o en producción
+GET {{baseUrl}}/maniquies
+Accept: application/json
+
+###
+
+### 1.2 Filtrar maniquíes por estado
+# Filtra las unidades para ver únicamente las que están "Disponible"
+GET {{baseUrl}}/maniquies?status=Disponible
+Accept: application/json
+
+###
+
+### 1.3 Filtrar maniquíes por modelo
+# Recupera los maniquíes del modelo con ID 1 (ej. Hércules Realista)
+GET {{baseUrl}}/maniquies?modelo_id=1
+Accept: application/json
+
+###
+
+### 1.4 Obtener detalle completo de un maniquí específico
+# Recupera la ficha técnica y la lista de piezas asociadas estructuradas en él
+GET {{baseUrl}}/maniquies/MQ-HR-0001
+Accept: application/json
+
+###
+
+### 1.5 Ensamblar nuevo maniquí (Llama al Stored Procedure)
+# Ejecuta el SP `CALL EnsamblarManiqui(modelo_id, numero_serie)` en modo transaccional ACID
+# NOTA: Reemplazar "MQ-HR-9999" por un número de serie único si se ejecuta varias veces
+POST {{baseUrl}}/maniquies
+Content-Type: {{contentType}}
+
+{
+  "modelo_id": 1,
+  "numero_serie": "MQ-HR-9999"
+}
+
+
+# =============================================================================
+# 📦 2. RECURSOS DE COMPONENTES (PIEZAS EN INVENTARIO)
+# =============================================================================
+
+### 2.1 Listar todo el inventario de piezas
+# Retorna la lista total de piezas registradas en el sistema (libres y ensambladas)
+GET {{baseUrl}}/piezas
+Accept: application/json
+
+###
+
+### 2.2 Listar piezas libres en stock (Disponibles para ensamblar)
+# Filtra donde `maniqui_id IS NULL` para identificar piezas sueltas
+GET {{baseUrl}}/piezas?disponible=true
+Accept: application/json
+
+###
+
+### 2.3 Filtrar piezas sueltas compatibles con un modelo específico
+# Busca piezas libres que sirvan únicamente para el modelo con ID 2
+GET {{baseUrl}}/piezas?disponible=true&modelo_id=2
+Accept: application/json
+
+###
+
+### 2.4 Registrar pieza nueva (Dispara Trigger Autogenerador de Seriales)
+# Inserta una pieza. El trigger `tg_generar_serial_pieza` calculará el consecutivo
+# de forma atómica y generará un serial del estilo: `PZ-CAB-INT-XXXX`
+POST {{baseUrl}}/piezas
+Content-Type: {{contentType}}
+
+{
+  "tipo_parte_id": 1, 
+  "modelo_id": 2,
+  "origen_id": 1,
+  "tono_acabado_id": 3
+}
+
+###
+
+### 2.5 Ensamblar pieza a un maniquí compatible (Caso Exitoso)
+# Asigna una pieza en stock al cuerpo de un maniquí del mismo modelo técnico
+# (Asegúrate de pasar un serial de pieza válido y libre, y un ID de maniquí compatible)
+PUT {{baseUrl}}/piezas/PZ-CAB-INT-0024/ensamblar
+Content-Type: {{contentType}}
+
+{
+  "maniqui_id": 5
+}
+
+###
+
+### 2.6 Probar validador "Anti-Frankenstein" (Caso Fallido - 409 Conflict)
+# Intenta ensamblar una pieza compatible con el "Modelo A" en un maniquí del "Modelo B"
+# El trigger `tg_validar_modelo_ensamblaje` abortará la operación atómicamente arrojando 
+# una excepción SQL (SQLSTATE 45000) y la API devolverá una respuesta de Conflicto.
+PUT {{baseUrl}}/piezas/PZ-CAB-INT-0024/ensamblar
+Content-Type: {{contentType}}
+
+{
+  "maniqui_id": 2
+}
+
+
+# =============================================================================
+# 📐 3. ESPECIFICACIONES Y CÁLCULOS (MODELOS)
+# =============================================================================
+
+### 3.1 Listar catálogo base de modelos de diseño técnico
+# Retorna la especificación técnica, dimensiones, precios y costos base de los modelos
+GET {{baseUrl}}/modelos
+Accept: application/json
+
+###
+
+### 3.2 Calcular precio con descuento promocional (Invocación a UDF SQL)
+# Llama directamente a la función SQL de base de datos `SELECT CalcularDescuento(precio_venta, porcentaje)`
+# Calcula el precio final de venta para el modelo ID 2 aplicando un 15% de descuento
+GET {{baseUrl}}/modelos/2/descuento?porcentaje=15
+Accept: application/json
+
+
+# =============================================================================
+# 📈 4. ANALÍTICA Y REPORTES (VISTAS SQL)
+# =============================================================================
+
+### 4.1 Reporte Consolidado de Producción (Consulta Vista SQL Analítica)
+# Lee la vista analítica estructurada `Vista_Produccion_Maniquies`, que cruza 
+# dinámicamente costos reales de piezas asociadas, costos base y calcula los márgenes de ganancia.
+GET {{baseUrl}}/reportes/produccion
+Accept: application/json
