@@ -1,0 +1,20 @@
+@baseUrl = http://localhost:8081
+@token = eyJhbGciOiJIUzI1NiIsInR...
+
+### Consultar Logs de Auditoría
+GET {{baseUrl}}/audit/logs
+Authorization: Bearer {{token}}
+
+### Cambio de Contraseña (Seguridad)
+PUT {{baseUrl}}/usuarios/password
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "old_password": "tecda2026",
+  "new_password": "new_secure_pass_2026"
+}
+
+### Probar Paginación en Maniquíes
+GET {{baseUrl}}/maniquies?page=2&limit=5&sort=fecha_ensamblaje
+Authorization: Bearer {{token}}

@@ -1,43 +1,51 @@
-# 🔌 Tecda Maniquí - Servidor API (Backend)
+# 🔌 Tecda Maniquí - Servidor API (Backend) v2.1
 
-Este repositorio contiene la implementación de la **API Express (Backend)** para el sistema de gestión de producción e inventario de la fábrica de maniquíes **Tecda**. 
-
----
-
-## 📂 Estructura del Repositorio (Senior Mode)
-
-Siguiendo las mejores prácticas de la industria, el repositorio se organiza así:
-
-*   **`openapi.yaml`**: El **Contrato** de la API en la raíz para máxima visibilidad.
-*   **/tests**: Carpeta de validación.
-    *   `api_tests.http`: Suite de pruebas interactivas para REST Client.
-*   **/docs**: Centro de conocimiento.
-    *   `TESTING_GUIDE.md`: 🎓 Guía didáctica sobre pruebas.
-    *   `SECURITY_GUIDE.md`: 🛡️ Guía de arquitectura de seguridad (JWT + RBAC).
-    *   `README.md`: Mapa detallado.
+Este repositorio contiene la implementación profesional de la **API Express** para la fábrica de maniquíes Tecda. 
 
 ---
 
-## 🎓 Objetivos de Aprendizaje (Teaching-Learning)
+## 🚀 Tecnologías y Arquitectura
 
-1.  **Capa de Datos:** SQL avanzado (Triggers, SP, UDF).
-2.  **Capa de Seguridad:** Implementación de tabla de usuarios, hasheo de contraseñas y autenticación JWT.
-3.  **Capa de Contrato:** OpenAPI 3.0 con escenarios de error.
+*   **Framework:** Express.js (Node.js 22+)
+*   **ORM:** Sequelize (Gestión de Modelos y Transacciones)
+*   **Base de Datos:** MySQL 8.0 (Docker) con lógica avanzada (SP, Triggers, Vistas)
+*   **Seguridad:** JWT + Roles (RBAC) + Bcrypt
+*   **Documentación:** OpenAPI 3.0 + Swagger UI
+*   **Testing:** Suite dual (Unitarios con `node:test` e Integración con `Bash/Curl`)
 
 ---
 
-## 🚀 ¿Cómo empezar? (Testing First)
+## 🛠️ Instalación y Uso
 
-Antes de escribir código, debemos validar nuestro diseño:
-
-1.  **Simula la API con Prism:**
+1.  **Instalar dependencias:**
     ```bash
-    npx @stoplight/prism-cli mock openapi.yaml -p 8081 -d
+    pnpm install
     ```
-2.  **Aprende a realizar las pruebas:**
-    Consulta nuestra 🎓 **[Guía de Pruebas (TESTING_GUIDE.md)](docs/TESTING_GUIDE.md)** para entender el flujo de trabajo profesional.
-3.  **Ejecuta las pruebas interactivas:**
-    Usa el archivo **[tests/api_tests.http](tests/api_tests.http)** con la extensión REST Client.
+2.  **Configurar Entorno:**
+    Asegúrate de tener un archivo `.env` (ver `.env.example`).
+3.  **Iniciar Servidor:**
+    ```bash
+    pnpm dev
+    ```
+4.  **Ver Documentación Interactiva:**
+    Abre: `http://localhost:8081/api-docs`
+
+---
+
+## 🧪 Estrategia de Pruebas
+
+El proyecto utiliza una estructura de pruebas profesional:
+*   **Pruebas Unitarias:** `pnpm test:unit` (Valida lógica aislada, middlewares y validadores).
+*   **Pruebas de Integración:** `pnpm test:integration` (Valida el flujo completo API-DB).
+*   **Pruebas Totales:** `pnpm test`
+
+---
+
+## 📂 Herramientas de Mantenimiento
+
+*   `node run_db_reform.js`: Aplica reformas integrales a la DB (Borrado lógico, SP robustos).
+*   `node reset_db_users.js`: Limpia y recrea el entorno de pruebas.
+*   `node setup_admin.js`: Crea el administrador inicial.
 
 ---
 *Desarrollado para la materia Prácticas Profesionalizantes - @tecda-maniqui-factory.*

@@ -1,0 +1,14 @@
+@baseUrl = http://localhost:8081
+@token = eyJhbGciOiJIUzI1NiIsInR...
+
+### Dashboard Producción (Vista)
+GET {{baseUrl}}/reportes/produccion
+Authorization: Bearer {{token}}
+
+### Resumen de Stock (Piezas Faltantes/Disponibles)
+GET {{baseUrl}}/reportes/stock
+Authorization: Bearer {{token}}
+
+### Cálculo de Descuento (UDF)
+GET {{baseUrl}}/modelos/1/descuento?porcentaje=15
+Authorization: Bearer {{token}}

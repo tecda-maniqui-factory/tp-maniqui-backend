@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:8081
+@contentType = application/json
+@token = eyJhbGciOiJIUzI1NiIsInR...
+
+### Listar todas las piezas
+GET {{baseUrl}}/piezas
+Authorization: Bearer {{token}}
+
+### Registrar Pieza (Trigger Serial Auto-gen)
+POST {{baseUrl}}/piezas
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "tipo_parte_id": 1,
+  "modelo_id": 1,
+  "origen_id": 1,
+  "tono_acabado_id": 1,
+  "costo": 120.50
+}
+
+### Trazabilidad de Pieza (GET por Serial)
+GET {{baseUrl}}/piezas/PZ-CAB-INT-0001
+Authorization: Bearer {{token}}
+
+### Ensamblar Pieza en Maniquí
+PUT {{baseUrl}}/piezas/PZ-CAB-INT-0001/ensamblar
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "maniqui_id": 1
+}
+
+### Validar Incompatibilidad (Trigger Anti-Frankenstein)
+# Forzamos un error 409 para validar la protección del motor DB
+PUT {{baseUrl}}/piezas/PZ-CAB-INT-0001/ensamblar
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+Prefer: code=409
+
+{
+  "maniqui_id": 99
+}

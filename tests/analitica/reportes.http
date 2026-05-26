@@ -1,7 +1,0 @@
-### Cálculo dinámico de descuento (UDF CalcularDescuento)
-GET {{baseUrl}}/modelos/1/descuento?porcentaje=15
-Authorization: Bearer {{authToken}}
-
-### Dashboard de Producción (Vista Vista_Produccion)
-GET {{baseUrl}}/reportes/produccion
-Authorization: Bearer {{authToken}}

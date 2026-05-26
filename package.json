@@ -3,18 +3,39 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "packageManager": "pnpm@11.2.2",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=11.2.2"
+  },
   "scripts": {
-    "test": "bash tests/test_all.sh"
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "mock": "npx @stoplight/prism-cli mock openapi.yaml -p 8081 -d",
+    "preinstall": "npx only-allow pnpm",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "node --test tests/unit/*.test.js",
+    "test:integration": "bash tests/integration/test_all.sh"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.2.2",
-      "onFail": "download"
-    }
+  "type": "module",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.22.3",
+    "sequelize": "^6.37.8",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
   },
-  "type": "module"
+  "devDependencies": {
+    "@stoplight/prism-cli": "^5.15.10"
+  }
 }

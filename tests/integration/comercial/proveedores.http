@@ -1,0 +1,17 @@
+@baseUrl = http://localhost:8081
+@token = eyJhbGciOiJIUzI1NiIsInR...
+
+### Listar Proveedores
+GET {{baseUrl}}/proveedores
+Authorization: Bearer {{token}}
+
+### Registrar Nuevo Proveedor
+POST {{baseUrl}}/proveedores
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Cueros y Plásticos del Sur",
+  "codigo": "CPS-01",
+  "tipo": "Proveedor Externo"
+}

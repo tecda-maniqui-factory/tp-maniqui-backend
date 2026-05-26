@@ -1,0 +1,7 @@
+@baseUrl = http://localhost:8081
+
+### Health Check (Público)
+GET {{baseUrl}}/sistema/health
+
+### System Info (Público)
+GET {{baseUrl}}/sistema/info

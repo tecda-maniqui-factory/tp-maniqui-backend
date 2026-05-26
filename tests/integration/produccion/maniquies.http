@@ -1,11 +1,15 @@
+@baseUrl = http://localhost:8081
+@contentType = application/json
+@token = eyJhbGciOiJIUzI1NiIsInR...
+
 ### Listar todos los maniquíes
 GET {{baseUrl}}/maniquies
-Authorization: Bearer {{authToken}}
+Authorization: Bearer {{token}}
 
 ### Ensamblar nuevo Maniquí (SP EnsamblarManiqui)
 POST {{baseUrl}}/maniquies
-Authorization: Bearer {{authToken}}
-Content-Type: application/json
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
 
 {
   "modelo_id": 1,
@@ -14,5 +18,5 @@ Content-Type: application/json
 }
 
 ### Ver detalle de un Maniquí
-GET {{baseUrl}}/maniquies/MQ-TEST-123
-Authorization: Bearer {{authToken}}
+GET {{baseUrl}}/maniquies/S-1
+Authorization: Bearer {{token}}

@@ -1,0 +1,25 @@
+@baseUrl = http://localhost:8081
+@token = eyJhbGciOiJIUzI1NiIsInR...
+
+### Listar Maniquíes Disponibles
+GET {{baseUrl}}/maniquies?status=Disponible
+Authorization: Bearer {{token}}
+
+### Marcar Maniquí como Dañado (Control de Calidad)
+PATCH {{baseUrl}}/maniquies/S-1/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "status": "Dañado"
+}
+
+### Intentar cambiar a estado inválido (Vendido no permitido vía PATCH)
+PATCH {{baseUrl}}/maniquies/S-1/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "status": "Vendido"
+}
+# Expect: 400 o Validation Error

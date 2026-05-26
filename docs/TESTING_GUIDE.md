@@ -1,23 +1,19 @@
-# 🎓 Guía del Profesor: Pruebas de API Antes de Escribir el Código (API-First)
+# 📘 Guía de Pruebas de API (API-First)
 
-¡Hola! Bienvenido a la clase de **Pruebas de API**. Hoy vamos a aprender una metodología profesional que cambia la forma tradicional de programar: **Contract-First** o **API-First**. 
-
-Tradicionalmente, uno escribe el código del servidor (Node.js, Python, Java) y luego lo prueba a ver si funciona. Aquí haremos lo opuesto: primero diseñamos el "contrato" (nuestro archivo `openapi.yaml`), luego simulamos que el servidor existe para probarlo, y *solo al final* escribiremos el código.
+Esta guía describe una metodología profesional de pruebas **Contract-First / API-First**. En lugar de escribir el servidor y probar después, primero se define el contrato (`openapi.yaml`), luego se simula el servidor para validar el diseño y, finalmente, se implementa el backend.
 
 ---
 
 ## 🧐 1. ¿Por qué probar antes de programar?
 
-Imagina que eres un arquitecto. No empiezas a pegar ladrillos sin un plano aprobado, ¿verdad? 
-
-El archivo `openapi.yaml` es nuestro plano. Al usar herramientas para simular este plano, logramos:
+El archivo `openapi.yaml` funciona como plano del sistema. Al simular ese plano se logra:
 1. **Desbloquear al equipo de Frontend:** Ellos pueden empezar a programar las pantallas consumiendo datos falsos (pero con la estructura correcta) sin esperar a que terminemos la base de datos.
 2. **Validar el Diseño:** Nos damos cuenta temprano si nos falta un parámetro o si una respuesta no tiene sentido.
 3. **Evitar Retrabajo:** Es más barato cambiar un archivo YAML que refactorizar cientos de líneas de código JavaScript.
 
 ---
 
-## 🎭 2. Prism: Nuestro Servidor Falso (Mock Server)
+## 🎭 2. Prism: Servidor Mock
 
 **¿Qué es Prism?**
 Prism (creado por Stoplight) es una herramienta de línea de comandos que lee tu archivo OpenAPI y automáticamente levanta un servidor web de mentira.
@@ -41,7 +37,7 @@ npx @stoplight/prism-cli mock openapi.yaml -p 8081
 
 ## ⚡ 3. El archivo `.http` y la extensión REST Client
 
-Ya tenemos el servidor falso corriendo, ahora necesitamos un cliente para hacerle preguntas (Peticiones HTTP). En lugar de usar interfaces pesadas como Postman, los programadores modernos a menudo prefieren archivos de texto plano.
+Con el mock corriendo, se usa un cliente para enviar peticiones HTTP. En lugar de interfaces pesadas como Postman, se pueden usar archivos de texto plano.
 
 **¿Qué es un archivo `.http` o `.rest`?**
 Es un archivo de texto que la extensión **REST Client** de VS Code (o Cursor) sabe interpretar. Te permite escribir peticiones HTTP como si estuvieras redactando un documento.
@@ -51,12 +47,12 @@ Es un archivo de texto que la extensión **REST Client** de VS Code (o Cursor) s
 1.  Asegúrate de instalar la extensión "REST Client" (ID: `humao.rest-client`).
 2.  Abre el archivo `tests/api_tests.http`.
 3.  Verás que definimos variables arriba, como `@baseUrl = http://localhost:8081`.
-4.  Arriba de cada bloque que empieza con un verbo (`GET`, `POST`), aparecerá un pequeño botón interactivo que dice **"Send Request"**.
-5.  ¡Haz clic en él! Al lado se abrirá una ventana mostrándote exactamente lo que respondió Prism.
+4.  Arriba de cada bloque que empieza con un verbo (`GET`, `POST`), aparecerá un botón interactivo **"Send Request"**.
+5.  Haz clic para ejecutar la petición y ver la respuesta de Prism.
 
 ### ✍️ Cómo escribir una petición de prueba:
 
-Es muy sencillo. Fíjate en la sintaxis:
+Sintaxis básica:
 
 ```http
 ### Mi título explicativo
@@ -84,6 +80,38 @@ pnpm test
 ```
 Este comando recorrerá los endpoints más importantes y te confirmará en la consola si el servidor (Mock o Real) responde con los códigos de estado correctos (200 OK, 201 Created, etc.).
 
+### 🧩 4.1 Pruebas por archivo (sin correr `pnpm test`)
+
+Puedes ejecutar **scripts individuales** o **módulos específicos** sin pasar por `pnpm test`:
+
+```bash
+# Full coverage directo
+bash tests/test_all.sh
+
+# Suite modular por área
+bash tests/run_all.sh auth
+bash tests/run_all.sh prod
+bash tests/run_all.sh inv
+bash tests/run_all.sh ana
+
+# Auditoría final (escenarios seleccionados)
+bash tests/test_senior.sh
+```
+
+Y si quieres probar **un archivo puntual** con REST Client:
+*   `tests/auth/login.http`
+*   `tests/produccion/maniquies.http`
+*   `tests/inventario/piezas.http`
+*   `tests/analitica/reportes.http`
+
+**Cobertura actual del smoke test:**
+*   **Positivos:** valida todos los endpoints definidos en `openapi.yaml`.
+*   **Negativos:** cubre autenticación (401), validaciones de parámetros/cuerpo (422) y conflictos (409) donde aplica.
+
+**Notas prácticas:**
+*   Los endpoints públicos (`GET /modelos` y `GET /modelos/{id}/descuento`) se prueban sin token.
+*   En Prism, algunos errores se fuerzan con el header `Prefer: code=409` para simular conflictos.
+
 ---
 
 ## 🤖 5. El Futuro: Automatización con Jest y Supertest
@@ -99,6 +127,6 @@ Este comando recorrerá los endpoints más importantes y te confirmará en la co
 2. Levantas **Prism** y juegas con el archivo `.http` para validar la idea.
 3. Escribes las pruebas automatizadas (que fallarán porque no hay código).
 4. Escribes el código de tu servidor en Node.js.
-5. Ejecutas `npm run test` hasta que todo esté verde.
+5. Ejecutas `pnpm test` hasta que todo esté verde.
 
 ¡Y así es como se construye software de nivel profesional! Manten este documento cerca como referencia.

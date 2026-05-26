@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:8081
+@token = eyJhbGciOiJIUzI1NiIsInR...
+
+### Listar Usuarios
+GET {{baseUrl}}/usuarios
+Authorization: Bearer {{token}}
+
+### Crear Nuevo Usuario
+POST {{baseUrl}}/usuarios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "username": "tester_2026",
+  "password": "password123",
+  "rol": "vendedor"
+}
+
+### Desactivar Usuario (Soft Delete)
+DELETE {{baseUrl}}/usuarios/2
+Authorization: Bearer {{token}}
+
+### Crear Nuevo Modelo
+POST {{baseUrl}}/modelos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Modelo Invierno 2026",
+  "sexo_id": 1,
+  "estilo_id": 1,
+  "cuerpo_id": 1,
+  "precio_venta": 45000.00
+}
+
+### Eliminar Modelo
+DELETE {{baseUrl}}/modelos/5
+Authorization: Bearer {{token}}

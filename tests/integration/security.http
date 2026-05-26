@@ -1,0 +1,17 @@
+### PRUEBAS DE SEGURIDAD (RBAC)
+
+@baseUrl = http://localhost:8081
+@vendedorToken = ... (obtener después de login de ana)
+
+### 1. Intentar registrar maniquí como Vendedor (Debe fallar 403)
+POST {{baseUrl}}/maniquies
+Authorization: Bearer {{vendedorToken}}
+Content-Type: application/json
+
+{
+  "modelo_id": 1,
+  "numero_serie": "ROBO-001"
+}
+
+### 2. Acceso sin Token (Debe fallar 401)
+GET {{baseUrl}}/maniquies

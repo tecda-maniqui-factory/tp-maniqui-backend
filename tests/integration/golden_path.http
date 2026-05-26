@@ -1,0 +1,88 @@
+# =============================================================================
+# 🏆 Golden Path - Lifecycle: Pieza -> Maniquí -> Venta
+# =============================================================================
+@baseUrl = http://localhost:8081
+@contentType = application/json
+
+### 1. LOGIN (Gerente de Producción)
+# @name loginGerente
+POST {{baseUrl}}/auth/login
+Content-Type: {{contentType}}
+
+{
+  "username": "admin_pablo",
+  "password": "tecda2026"
+}
+
+@tokenGerente = {{loginGerente.response.body.token}}
+
+### 2. REGISTRAR PIEZAS (Stock inicial)
+# @name registrarPieza
+POST {{baseUrl}}/piezas
+Authorization: Bearer {{tokenGerente}}
+Content-Type: {{contentType}}
+
+{
+  "tipo_parte_id": 1,
+  "modelo_id": 1,
+  "origen_id": 1,
+  "tono_acabado_id": 1,
+  "costo": 500.00
+}
+
+### 3. ENSAMBLAR MANIQUÍ (Vía SP)
+# @name ensamblarManiqui
+POST {{baseUrl}}/maniquies
+Authorization: Bearer {{tokenGerente}}
+Content-Type: {{contentType}}
+
+{
+  "modelo_id": 1,
+  "numero_serie": "GOLDEN-MQ-{{$timestamp}}",
+  "numero_lote": "GP-2026"
+}
+
+### 4. LOGIN (Vendedor)
+# @name loginVendedor
+POST {{baseUrl}}/auth/login
+Content-Type: {{contentType}}
+
+{
+  "username": "ventas_ana",
+  "password": "tecda2026"
+}
+
+@tokenVendedor = {{loginVendedor.response.body.token}}
+
+### 5. REGISTRAR CLIENTE
+# @name registrarCliente
+POST {{baseUrl}}/clientes
+Authorization: Bearer {{tokenVendedor}}
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Inversora Textil S.A.",
+  "cuit_cuil": "30-99887766-5",
+  "email": "ventas@inversora.com"
+}
+
+### 6. REGISTRAR VENTA
+# @name registrarVenta
+POST {{baseUrl}}/ventas
+Authorization: Bearer {{tokenVendedor}}
+Content-Type: {{contentType}}
+
+{
+  "cliente_id": 1,
+  "metodo_pago": "Mercado Pago",
+  "maniquies": [
+    {
+      "maniqui_id": 1,
+      "precio_final": 25000.00
+    }
+  ]
+}
+
+### 7. VERIFICAR ANALÍTICA (Dashboard)
+GET {{baseUrl}}/reportes/produccion
+Authorization: Bearer {{tokenGerente}}

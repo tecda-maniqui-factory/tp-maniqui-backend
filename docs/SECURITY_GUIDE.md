@@ -4,11 +4,11 @@ Este documento explica la evolución del sistema de seguridad de **Tecda Maniqu�
 
 ---
 
-## 🏗️ 1. El Modelo Evolucionado (Híbrido)
+## 🏗️ 1. Modelo actual (Híbrido)
 
-Hemos pasado de usar usuarios de base de datos (DB Users) a **Usuarios de Aplicación**.
+Se utiliza un esquema de **Usuarios de Aplicación** en lugar de usuarios de base de datos (DB Users).
 
-### ¿Por qué este cambio?
+### Motivo del cambio
 1.  **Flexibilidad:** Ahora podemos guardar el email del usuario, su nombre completo y si la cuenta está activa.
 2.  **Seguridad JWT:** El servidor ya no abre una conexión a la DB por cada usuario que se loguea. En su lugar, usa un **Token JWT** firmado.
 3.  **Abstracción:** El usuario final no sabe que existe una base de datos MySQL; solo interactúa con la API.
@@ -26,7 +26,7 @@ En la tabla `Usuarios`, cada registro tiene un `rol`:
 *   **Gerente de Producción:** Puede ejecutar el Stored Procedure de ensamblaje.
 
 ### Nivel 3: Hasheo de Contraseñas
-Nunca guardamos "123456". Usamos **bcrypt** para generar un hash único. Así, incluso si alguien roba la base de datos, no podrá conocer las contraseñas de los usuarios.
+Las contraseñas se almacenan con **bcrypt**, lo que evita exponer credenciales aun si la base de datos es comprometida.
 
 ---
 

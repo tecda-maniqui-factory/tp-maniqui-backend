@@ -1,0 +1,46 @@
+@baseUrl = http://localhost:8081
+@contentType = application/json
+@token = eyJhbGciOiJIUzI1NiIsInR...
+
+### Listar Clientes
+GET {{baseUrl}}/clientes
+Authorization: Bearer {{token}}
+
+### Registrar Cliente
+POST {{baseUrl}}/clientes
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Cliente Nuevo S.A.",
+  "cuit_cuil": "30-11223344-5",
+  "email": "info@clientenuevo.com"
+}
+
+### Ver Detalle Cliente
+GET {{baseUrl}}/clientes/1
+Authorization: Bearer {{token}}
+
+### Listar Ventas
+GET {{baseUrl}}/ventas
+Authorization: Bearer {{token}}
+
+### Registrar Venta
+POST {{baseUrl}}/ventas
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "cliente_id": 1,
+  "metodo_pago": "Tarjeta",
+  "maniquies": [
+    {
+      "maniqui_id": 2,
+      "precio_final": 18000.00
+    }
+  ]
+}
+
+### Ver Detalle Venta
+GET {{baseUrl}}/ventas/1
+Authorization: Bearer {{token}}

@@ -1,9 +1,11 @@
 openapi: 3.0.0
 info:
   title: Tecda Maniquí API
-  version: 1.5.0
+  version: 2.1.0
+  description: Gestión integral con soporte para Borrado Lógico, Facturación Electrónica y SP de Ensamblaje.
 servers:
   - url: http://localhost:8081
+    description: Servidor de Desarrollo
 
 security:
   - bearerAuth: []
@@ -11,150 +13,80 @@ security:
 paths:
   /auth/login:
     post:
-      summary: Login
+      summary: Iniciar sesión
       tags: [Auth]
       security: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [username, password]
-              properties:
-                username: { type: string, example: "admin_pablo" }
-                password: { type: string, example: "tecda2026" }
       responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  token: { type: string, example: "mock-token" }
-                  user: { type: object, properties: { id: { type: integer }, username: { type: string }, rol: { type: string } } }
-        '401': { description: "Unauthorized" }
+        '200': { description: OK }
+        '401': { description: Credenciales inválidas }
 
   /maniquies:
     get:
-      summary: Listar
-      tags: [Producción]
-      responses:
-        '200': { description: OK }
-    post:
-      summary: Crear
-      tags: [Producción]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [modelo_id, numero_serie]
-              properties:
-                modelo_id: { type: integer, example: 1 }
-                numero_serie: { type: string, example: "S-1" }
-      responses:
-        '201': { description: Created }
-        '409': { $ref: '#/components/responses/409Conflict' }
-
-  /maniquies/{numero_serie}:
-    get:
-      summary: Detalle
+      summary: Listar maniquíes
       tags: [Producción]
       parameters:
-        - name: numero_serie
-          in: path
-          required: true
-          schema: { type: string }
-      responses:
-        '200': { description: OK }
-
-  /piezas:
-    post:
-      summary: Registrar
-      tags: [Inventario]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [tipo_parte_id, modelo_id, origen_id, tono_acabado_id]
-              properties:
-                tipo_parte_id: { type: integer, example: 1 }
-                modelo_id: { type: integer, example: 1 }
-                origen_id: { type: integer, example: 1 }
-                tono_acabado_id: { type: integer, example: 1 }
-      responses:
-        '201': { description: Created }
-
-  /piezas/{serial_parte}/ensamblar:
-    put:
-      summary: Ensamblar
-      tags: [Inventario]
-      parameters:
-        - name: serial_parte
-          in: path
-          required: true
-          schema: { type: string }
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [maniqui_id]
-              properties:
-                maniqui_id: { type: integer, example: 1 }
-      responses:
-        '200': { description: OK }
-        '409': { $ref: '#/components/responses/409Conflict' }
-
-  /modelos:
-    get:
-      summary: Catálogo
-      tags: [Catálogos]
-      responses:
-        '200': { description: OK }
-
-  /modelos/{id}/descuento:
-    get:
-      summary: Descuento
-      tags: [Analítica]
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema: { type: integer }
-        - name: porcentaje
+        - name: status
           in: query
-          required: true
-          schema: { type: integer }
+          schema: { type: string, enum: ['En Producción', 'Disponible', 'Vendido', 'Dañado'] }
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Ensamblar maniquí (vía SP EnsamblarManiqui)
+      tags: [Producción]
+      responses:
+        '201': { description: Creado }
+        '400': { description: Error de stock o modelo }
+
+  /clientes:
+    get:
+      summary: Listar clientes activos
+      tags: [Comercial]
+      parameters:
+        - name: activo
+          in: query
+          schema: { type: boolean, default: true }
       responses:
         '200': { description: OK }
 
-  /reportes/produccion:
+  /ventas:
+    post:
+      summary: Registrar venta con facturación
+      tags: [Comercial]
+      responses:
+        '201': { description: Venta y Factura generada }
+
+  /reportes/rentabilidad:
     get:
-      summary: Reporte
+      summary: Vista de rentabilidad (Vistas SQL)
       tags: [Analítica]
       responses:
         '200': { description: OK }
 
 components:
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-  responses:
-    409Conflict:
-      description: "Conflict"
-      content:
-        application/json:
-          schema: { $ref: '#/components/schemas/Error' }
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }
+  
   schemas:
-    Error:
+    Modelo:
       type: object
       properties:
-        message: { type: string }
+        id: { type: integer }
+        nombre: { type: string }
+        activo: { type: boolean }
+
+    Cliente:
+      type: object
+      properties:
+        id: { type: integer }
+        nombre: { type: string }
+        cuit_cuil: { type: string }
+        activo: { type: boolean }
+
+    Venta:
+      type: object
+      properties:
+        id: { type: integer }
+        total: { type: number }
+        nro_factura: { type: string }
+        cae: { type: string }
+        moneda: { type: string, enum: ['ARS', 'USD'] }
