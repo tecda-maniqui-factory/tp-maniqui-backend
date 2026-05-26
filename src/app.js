@@ -11,6 +11,8 @@ import sistemaRoutes from './routes/sistemaRoutes.js';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 
+import { errorHandler } from './middleware/errorMiddleware.js';
+
 const swaggerDocument = YAML.load('./openapi.yaml');
 const app = express();
 
@@ -54,11 +56,8 @@ app.get('/sistema/info', (req, res) => {
   });
 });
 
-// Manejo de errores global
-app.use((err, req, res, next) => {
-  console.error('❌ Error no controlado:', err);
-  res.status(500).json({ error: err.message || 'Error interno del servidor' });
-});
+// Manejo de errores global estandarizado
+app.use(errorHandler);
 
 // Manejo de errores 404
 app.use((req, res) => {

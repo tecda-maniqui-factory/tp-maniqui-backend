@@ -1,128 +1,79 @@
-import { Modelo, Maniqui } from '../models/index.js';
-import sequelize from '../db.js';
+import SistemaRepository from '../repositories/SistemaRepository.js';
+import { asyncHandler } from '../middleware/errorMiddleware.js';
+
+/**
+ * Controladores de Sistema refactorizados.
+ */
 
 // --- CATALOGOS ---
 
-export const listarModelos = async (req, res) => {
-  try {
-    const modelos = await Modelo.findAll();
-    res.json(modelos);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+export const listarModelos = asyncHandler(async (req, res) => {
+  const modelos = await SistemaRepository.findAllModelos();
+  res.json(modelos);
+});
 
-export const listarSexos = async (req, res) => {
-  try {
-    const [rows] = await sequelize.query('SELECT * FROM Cat_Sexos');
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+export const listarSexos = asyncHandler(async (req, res) => {
+  const rows = await SistemaRepository.rawQuery('SELECT * FROM Cat_Sexos');
+  res.json(rows);
+});
 
-export const listarTiposParte = async (req, res) => {
-  try {
-    const [rows] = await sequelize.query('SELECT * FROM Cat_TiposParte');
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+export const listarTiposParte = asyncHandler(async (req, res) => {
+  const rows = await SistemaRepository.rawQuery('SELECT * FROM Cat_TiposParte');
+  res.json(rows);
+});
 
-export const listarTonosAcabado = async (req, res) => {
-  try {
-    const [rows] = await sequelize.query('SELECT * FROM Cat_TonosAcabado');
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+export const listarTonosAcabado = asyncHandler(async (req, res) => {
+  const rows = await SistemaRepository.rawQuery('SELECT * FROM Cat_TonosAcabado');
+  res.json(rows);
+});
 
-export const listarOrigenes = async (req, res) => {
-  try {
-    const [rows] = await sequelize.query('SELECT * FROM Origenes_Piezas');
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+export const listarOrigenes = asyncHandler(async (req, res) => {
+  const rows = await SistemaRepository.rawQuery('SELECT * FROM Origenes_Piezas');
+  res.json(rows);
+});
 
-// --- ANALITICA (Vistas SQL) ---
+// --- ANALITICA ---
 
-export const obtenerRentabilidad = async (req, res) => {
-  try {
-    const [rows] = await sequelize.query('SELECT * FROM Vista_Rentabilidad');
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+export const obtenerRentabilidad = asyncHandler(async (req, res) => {
+  const rows = await SistemaRepository.rawQuery('SELECT * FROM Vista_Rentabilidad');
+  res.json(rows);
+});
 
-export const obtenerStockCritico = async (req, res) => {
-  try {
-    const [rows] = await sequelize.query('SELECT * FROM Vista_Stock_Critico');
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+export const obtenerStockCritico = asyncHandler(async (req, res) => {
+  const rows = await SistemaRepository.rawQuery('SELECT * FROM Vista_Stock_Critico');
+  res.json(rows);
+});
 
-export const calcularDescuento = async (req, res) => {
+export const calcularDescuento = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { porcentaje } = req.query;
-  try {
-    // Uso de la UDF CalcularDescuento de la DB
-    const [result] = await sequelize.query(
-      'SELECT precio_venta, CalcularDescuento(precio_venta, ?) as precio_final FROM Modelos WHERE id = ?',
-      { replacements: [porcentaje, id] }
-    );
-    
-    if (result.length === 0) return res.status(404).json({ error: 'Modelo no encontrado' });
-    res.json(result[0]);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+  const result = await SistemaRepository.calcularDescuentoUDF(id, porcentaje);
+  
+  if (!result) {
+    const error = new Error('Modelo no encontrado');
+    error.statusCode = 404;
+    throw error;
   }
-};
+  res.json(result);
+});
 
-export const reporteProduccion = async (req, res) => {
-  try {
-    const resumen = await Maniqui.findAll({
-      attributes: [
-        'status',
-        [sequelize.fn('COUNT', sequelize.col('id')), 'cantidad']
-      ],
-      group: ['status']
-    });
-    res.json({
-      timestamp: new Date(),
-      resumen
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+export const reporteProduccion = asyncHandler(async (req, res) => {
+  const resumen = await SistemaRepository.getProduccionResumen();
+  res.json({
+    timestamp: new Date(),
+    resumen
+  });
+});
 
 // --- PROVEEDORES ---
 
-export const listarProveedores = async (req, res) => {
-  try {
-    const [rows] = await sequelize.query("SELECT * FROM Origenes_Piezas WHERE tipo = 'Proveedor Externo'");
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+export const listarProveedores = asyncHandler(async (req, res) => {
+  const rows = await SistemaRepository.findProveedores();
+  res.json(rows);
+});
 
-export const registrarProveedor = async (req, res) => {
+export const registrarProveedor = asyncHandler(async (req, res) => {
   const { nombre, codigo } = req.body;
-  try {
-    await sequelize.query(
-      "INSERT INTO Origenes_Piezas (nombre, codigo, tipo) VALUES (?, ?, 'Proveedor Externo')",
-      { replacements: [nombre, codigo] }
-    );
-    res.status(201).json({ message: 'Proveedor registrado' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+  await SistemaRepository.createProveedor(nombre, codigo);
+  res.status(201).json({ message: 'Proveedor registrado' });
+});

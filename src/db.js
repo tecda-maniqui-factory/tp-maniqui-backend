@@ -3,6 +3,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+/**
+ * Patrón Singleton para la conexión a la Base de Datos.
+ * Sequelize ya implementa una gestión de pool de conexiones interna.
+ * Al exportar la instancia de 'sequelize', Node.js garantiza que siempre se use la misma
+ * instancia en toda la aplicación debido al sistema de caché de módulos.
+ */
 const sequelize = new Sequelize(
   process.env.DB_NAME || 'tecda_maniqui',
   process.env.DB_USER || 'root',
