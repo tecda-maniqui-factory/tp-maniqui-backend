@@ -1,27 +1,36 @@
-# 📖 Centro de Documentación del Servidor (Backend)
+# 📖 Portal de Documentación - Tecda Backend
 
-Este documento centraliza el contrato de la API y la estrategia de validación del proyecto **Tecda Maniquí**.
-
-## 🗺️ Mapa de Navegación
-
-1. ### 📘 [Documentación Swagger (En Vivo)](http://localhost:8081/api-docs)
-   * Visor interactivo para explorar y probar la API en tiempo real.
-
-2. ### 🔌 [Especificación OpenAPI 2.1 (openapi.yaml)](../openapi.yaml)
-   * Contrato técnico oficial con soporte para facturación y borrado lógico.
-
-3. ### 🧪 [Estrategia de Testing](../tests/README.md)
-   * Detalle de pruebas unitarias (`node:test`) e integración.
+Bienvenido al centro de documentación técnica del servidor de Tecda Maniquí. Este proyecto ha sido rediseñado bajo una arquitectura de servicios desacoplada y tipada.
 
 ---
 
-## 🎨 Visualización de la API
-Para ver el archivo `openapi.yaml` de forma gráfica:
-*   **Web:** Copia el contenido en [Swagger Editor](https://editor.swagger.io/).
-*   **VS Code:** Instala la extensión "Swagger Viewer" y abre el archivo en la raíz.
-*   **Local (Redoc/Swagger UI):**
-    1. Desde la raíz del repo ejecuta: `python3 -m http.server 8082`
-    2. Abre: `http://localhost:8082/docs/api/`
+## 🗺️ Mapa de Recursos
 
-> [!TIP]
-> Recuerda que usamos el **puerto 8081** para nuestras pruebas para evitar conflictos con otros servicios locales.
+### 1. 📘 [Documentación de la API (Swagger)](http://localhost:8081/api-docs)
+*   **Enfoque:** Consumidores de la API (Frontend, Integraciones).
+*   **Contenido:** Endpoints, esquemas JSON, códigos de error y consola de pruebas interactiva.
+*   **Contrato:** Basado en la especificación [OpenAPI 3.0 (openapi.yaml)](../openapi.yaml).
+
+### 2. 🏗️ [Referencia Técnica de Código (TypeDoc)](./api-ts/index.html)
+*   **Enfoque:** Desarrolladores del Backend.
+*   **Contenido:** Diagramas de clases, interfaces de repositorios, contratos de servicios e inyección de dependencias.
+*   **Generación:** Se actualiza automáticamente ejecutando `pnpm docs`.
+
+### 3. 🛡️ [Guía de Seguridad](./SECURITY_GUIDE.md)
+*   Explicación detallada del modelo de autenticación JWT, RBAC (Roles) y cifrado de datos.
+
+### 4. 🧪 [Guía de Calidad y Testing](./TESTING_GUIDE.md)
+*   Metodología de pruebas unitarias y de integración para asegurar la integridad de la lógica de negocio.
+
+---
+
+## 🛠️ Stack Tecnológico de Documentación
+
+*   **OpenAPI 3.0:** Para definir el contrato agnóstico al lenguaje.
+*   **Swagger UI:** Publicación visual del contrato.
+*   **TypeDoc:** Generación de documentación desde el código fuente TypeScript.
+*   **Prism:** Servidor de mocks para desarrollo paralelo del Frontend.
+
+---
+> [!IMPORTANT]
+> Para cualquier cambio en la estructura de los datos, actualice primero las interfaces en `src/types/entities.ts` y luego el archivo `openapi.yaml`.

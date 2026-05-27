@@ -1,7 +1,18 @@
+/**
+ * @file reset_db_users.js
+ * @description Script de mantenimiento para limpiar y repoblar la base de datos con datos de prueba (Seed).
+ * Útil para entornos de desarrollo y testing.
+ */
+
 import bcrypt from 'bcryptjs';
 import sequelize, { conectarDB } from './src/db.js';
 import { Usuario } from './src/models/index.js';
 
+/**
+ * Ejecuta el proceso de truncado de tablas e inserción de datos semilla.
+ * @async
+ * @returns {Promise<void>}
+ */
 const resetDB = async () => {
   try {
     await conectarDB();

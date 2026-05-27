@@ -1,0 +1,20 @@
+{
+  "entryPoints": ["src/**/*.ts"],
+  "entryPointStrategy": "expand",
+  "exclude": ["**/*.test.ts"],
+  "out": "docs/api-ts",
+  "name": "Tecda Maniquí API Reference",
+  "includeVersion": true,
+  "excludeExternals": true,
+  "githubPages": false,
+  "readme": "README.md",
+  "plugin": [],
+  "modifierTags": ["@route"],
+  "disableSources": false,
+  "includeVersion": true,
+  "validation": {
+    "notExported": false,
+    "invalidLink": true,
+    "notDocumented": false
+  }
+}

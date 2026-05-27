@@ -1,7 +1,17 @@
+/**
+ * @file setup_admin.js
+ * @description Script independiente para configurar o actualizar el usuario administrador inicial.
+ */
+
 import bcrypt from 'bcryptjs';
 import { Usuario } from './src/models/index.js';
 import { conectarDB } from './src/db.js';
 
+/**
+ * Crea el usuario 'admin_pablo' si no existe, o resetea su contraseña si ya existe.
+ * @async
+ * @returns {Promise<void>}
+ */
 const crearAdminInicial = async () => {
   try {
     await conectarDB();

@@ -5,3 +5,14 @@ dist/
 build/
 coverage/
 *.log
+
+# TypeScript & Build
+dist/
+*.tsbuildinfo
+tests/unit/*.js
+tests/unit/*.map
+tests/unit/*.d.ts
+
+# Documentation
+docs/api-ts/
+

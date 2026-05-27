@@ -1,6 +1,17 @@
+/**
+ * @file run_db_reform.js
+ * @description Ejecuta los scripts SQL de migración y estructura para actualizar el esquema de la DB.
+ * Automatiza el proceso de actualización desde la carpeta de gestión de BBDD.
+ */
+
 import fs from 'fs';
 import sequelize, { conectarDB } from './src/db.js';
 
+/**
+ * Lee y ejecuta de forma secuencial los archivos .sql del proyecto de BBDD.
+ * @async
+ * @returns {Promise<void>}
+ */
 const reformarDB = async () => {
   try {
     await conectarDB();
@@ -36,8 +47,6 @@ const reformarDB = async () => {
         // Ignoramos errores de "DROP" o "DATABASE EXISTS"
         if (!sqlLimpio.includes('DROP') && !sqlLimpio.includes('EXISTS')) {
           console.error(`❌ Error en ${file}:`, error.message);
-          // Opcional: tirar el error si es crítico
-          // throw error; 
         } else {
           console.log(`⚠️ ${file} ejecutado con algunos avisos (posiblemente de limpieza previa).`);
         }
