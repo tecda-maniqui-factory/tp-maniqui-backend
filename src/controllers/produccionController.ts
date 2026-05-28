@@ -46,10 +46,11 @@ export class ProduccionController {
   });
 
   /**
-   * Endpoint para listar piezas (actualmente en desarrollo).
+   * Endpoint para listar piezas en stock (no ensambladas).
    * @route GET /piezas/stock
    */
   getPiezasStock = asyncHandler(async (req: Request, res: Response) => {
-    res.json({ message: "Listado de piezas (En desarrollo)" });
+    const piezas = await this.produccionService.obtenerStockPiezas();
+    res.json(piezas);
   });
 }

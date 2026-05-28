@@ -15,15 +15,15 @@ Content-Type: {{contentType}}
   "password": "tecda2026"
 }
 
-### 2. Registrar Maniquí (Vía SP EnsamblarManiqui)
-# Valida que el SP asigne automáticamente 6 piezas del modelo 1
-POST {{baseUrl}}/maniquies
+### 2. Registrar Ensamblaje de Maniquí (Vía SP EnsamblarManiqui)
+# Requiere que existan piezas de cada tipo (1, 2, 3, 4) para el modelo 1 en stock.
+POST {{baseUrl}}/maniquies/ensamblar
 Authorization: Bearer {{token}}
 Content-Type: {{contentType}}
 
 {
   "modelo_id": 1,
-  "numero_serie": "SQL-SP-ENSAMBLE-01"
+  "numero_serie": "SQL-SP-ENSAMBLE-{{$timestamp}}"
 }
 
 ### 3. Listar Clientes Activos (Soft Delete)
@@ -44,5 +44,5 @@ Content-Type: {{contentType}}
 }
 
 ### 5. Dashboard de Rentabilidad (Vistas SQL)
-GET {{baseUrl}}/reportes/rentabilidad
+GET {{baseUrl}}/sistema/reportes/produccion
 Authorization: Bearer {{token}}

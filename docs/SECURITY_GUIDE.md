@@ -1,12 +1,7 @@
-# 🛡️ Guía de Arquitectura de Seguridad
-
-Este documento describe las capas de seguridad implementadas en la API de Tecda Maniquí, orientadas a proteger la integridad de los datos y la privacidad de los usuarios.
-
 ---
+## 🏗️ 1. Modelo de Identidad: Aplicación 
 
-## 🏗️ 1. Modelo de Identidad: Aplicación vs. Base de Datos
-
-Hemos migrado de un esquema basado en usuarios de base de datos a un modelo de **Usuarios de Aplicación**.
+Utilizamos un modelo de **Usuarios de Aplicación**.
 
 ### Beneficios
 *   **Escalabilidad:** El servidor no mantiene conexiones persistentes por usuario.
@@ -43,4 +38,3 @@ Nunca almacenamos contraseñas en texto plano. Utilizamos **BCryptJS** con un fa
 3.  **Lógica de Negocio Protegida:** Los servicios (`src/services/`) asumen que la entrada ya ha sido sanitizada, pero validan reglas de negocio adicionales (ej. no duplicar nombres de usuario).
 
 ---
-*Diseñado bajo estándares modernos de seguridad para aplicaciones industriales.*

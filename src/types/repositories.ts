@@ -18,6 +18,7 @@ export interface IManiquiRepository {
   findBySerie(numero_serie: string): Promise<IManiqui | null>;
   assemble(modelo_id: number, numero_serie: string): Promise<unknown>;
   create(data: Partial<IManiqui>): Promise<IManiqui>;
+  findAllPiezas(filters?: Record<string, unknown>): Promise<any[]>;
 }
 
 export interface ISistemaRepository {

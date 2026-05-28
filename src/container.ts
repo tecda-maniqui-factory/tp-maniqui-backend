@@ -16,7 +16,7 @@ import { SistemaController } from './controllers/sistemaController.js';
 
 // Services
 const authService = new AuthService(UsuarioRepository);
-const comercialService = new ComercialService(ClienteRepository, VentaRepository);
+const comercialService = new ComercialService(ClienteRepository, VentaRepository, ManiquiRepository);
 const produccionService = new ProduccionService(ManiquiRepository);
 const sistemaService = new SistemaService(SistemaRepository);
 

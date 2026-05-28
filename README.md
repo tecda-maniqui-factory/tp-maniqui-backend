@@ -107,4 +107,3 @@ pnpm start
 *   `tests/unit/`: Pruebas de servicios con `node:test`.
 
 ---
-*Desarrollado profesionalmente para la fábrica de maniquíes Tecda.*

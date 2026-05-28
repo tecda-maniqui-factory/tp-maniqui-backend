@@ -3,7 +3,7 @@
  * @description Repositorio para la gestión de persistencia y ensamblaje de Maniquíes.
  */
 
-import { Maniqui, Modelo } from '../models/index.js';
+import { Maniqui, Modelo, Pieza } from '../models/index.js';
 import sequelize from '../db.js';
 import { IManiquiRepository } from '../types/repositories.js';
 import { IManiqui } from '../types/entities.js';
@@ -45,6 +45,13 @@ class ManiquiRepository implements IManiquiRepository {
    */
   async create(data: Partial<IManiqui>): Promise<IManiqui> {
     return await Maniqui.create(data as any);
+  }
+
+  /**
+   * Busca piezas con filtros opcionales (útil para stock).
+   */
+  async findAllPiezas(filters: Record<string, unknown> = {}): Promise<any[]> {
+    return await Pieza.findAll({ where: filters });
   }
 }
 

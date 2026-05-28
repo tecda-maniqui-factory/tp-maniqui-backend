@@ -1,0 +1,630 @@
+{
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/reset_db_users.js": {
+    "mtime": 1779847738.980039,
+    "hash": "8a7bd356cd88110ff994df5787bcb809"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/run_db_reform.js": {
+    "mtime": 1779847738.9895706,
+    "hash": "8e7d2effabc2b34c7e85e55c703a175a"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/setup_admin.js": {
+    "mtime": 1779847739.0056386,
+    "hash": "3b598375d083924b8074364aec6c44aa"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/produccion_service.test.d.ts": {
+    "mtime": 1779846765.3109164,
+    "hash": "1b087e8be6fa9cdccade12a37add7f6d"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/produccion_service.test.ts": {
+    "mtime": 1779846755.7108512,
+    "hash": "60f12016a03a2d52b78111a23f45200b"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/controllers.test.d.ts": {
+    "mtime": 1779846765.2999163,
+    "hash": "f86775bcde7321ca805c2b63a2669b79"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/middleware.test.d.ts": {
+    "mtime": 1779846765.3076015,
+    "hash": "2199ea77de4bb513cdf06fc2360164cf"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/auth.test.ts": {
+    "mtime": 1779847668.747067,
+    "hash": "e289531494d42fd04fabe507314aa664"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/auth.test.d.ts": {
+    "mtime": 1779846765.2969162,
+    "hash": "18bdcceb948cf2c050bf1e431d48b1a2"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/produccion_service.test.js": {
+    "mtime": 1779846765.3099165,
+    "hash": "bc596e7a2f3d13c582635aeeb8dffab3"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/validators.test.ts": {
+    "mtime": 1779847681.44397,
+    "hash": "49ae0f93bdf967f2b4dc9c38ab3c8c7a"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/middleware.test.ts": {
+    "mtime": 1779847621.1534607,
+    "hash": "6b6b1153977c289c44fb4e1c574c9e4e"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/logic.test.d.ts": {
+    "mtime": 1779846765.3029163,
+    "hash": "38ce0b6011aaa2383bf2f2b1501d7264"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/logic.test.ts": {
+    "mtime": 1779847654.573179,
+    "hash": "76f2f321a3f07f01dc5b52a0822a894b"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/validators.test.d.ts": {
+    "mtime": 1779846765.313687,
+    "hash": "984a45b89aff14e8275680ec7cf7da72"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/assets/hierarchy.js": {
+    "mtime": 1779849278.1755,
+    "hash": "714a31b21d72aa214fb5f5ec35c99575"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/assets/icons.js": {
+    "mtime": 1779849278.6974988,
+    "hash": "a7d9a4eb2e508e21e6813f61c56dbfab"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/assets/navigation.js": {
+    "mtime": 1779849278.1755,
+    "hash": "3bdb8ceb97fc35193bd07f17d550b975"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/assets/search.js": {
+    "mtime": 1779849278.1755,
+    "hash": "c1c5b1cf81006225fd63272df8bcbad7"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/assets/main.js": {
+    "mtime": 1779849278.6995142,
+    "hash": "01f4ee6f2516da994b0f074e4d211b5b"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/app.ts": {
+    "mtime": 1779849806.0339997,
+    "hash": "871272436cc0931402f5bcaaf6f9b42f"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/db.ts": {
+    "mtime": 1779849967.2610407,
+    "hash": "886807e03f1c189b080cdedbcbfcf08f"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/index.ts": {
+    "mtime": 1779849806.0357816,
+    "hash": "a6994f5adc8c7699740edaa8ccd7009f"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/container.ts": {
+    "mtime": 1779849806.0374472,
+    "hash": "cef71a992b4102a2a5e330ddb6f96f00"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/middleware/errorMiddleware.ts": {
+    "mtime": 1779849975.8423996,
+    "hash": "96e51f4bffaeee603ccc155c269cb003"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/middleware/validatorMiddleware.ts": {
+    "mtime": 1779849806.0321555,
+    "hash": "e96468ed2888109a85c5eaabef6cb982"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/middleware/authMiddleware.ts": {
+    "mtime": 1779849806.0323994,
+    "hash": "b1d57fcaa345cf9780463898abf468b4"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/controllers/sistemaController.ts": {
+    "mtime": 1779849967.2696478,
+    "hash": "6e53652dc1680ff94ef359418864c0f3"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/controllers/authController.ts": {
+    "mtime": 1779849806.032789,
+    "hash": "d9320a51ae09efddc481c01c2044f61e"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/controllers/produccionController.ts": {
+    "mtime": 1779849806.0329814,
+    "hash": "cced4e2dd901dc9d3f880e4958a91129"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/controllers/comercialController.ts": {
+    "mtime": 1779849806.0331788,
+    "hash": "de61eac5d236929432917ec223a30297"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/routes/authRoutes.ts": {
+    "mtime": 1779849806.033348,
+    "hash": "8279ee5782ffb707f44846d47e86f219"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/routes/produccionRoutes.ts": {
+    "mtime": 1779849806.0335033,
+    "hash": "5787b9e434641ff09c880234afdd8169"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/routes/comercialRoutes.ts": {
+    "mtime": 1779849806.0336607,
+    "hash": "f25f79b221fc51448177112d4a14239d"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/routes/sistemaRoutes.ts": {
+    "mtime": 1779849806.0338202,
+    "hash": "7f177fc2af83acf4f9a512a3df2f5371"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/config/env.ts": {
+    "mtime": 1779850507.4952524,
+    "hash": "f7a255130d02dbcb7650d3cfc4ec3b24"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/utils/logger.ts": {
+    "mtime": 1779849949.5573697,
+    "hash": "130398357c42b8019fc538bb02933bad"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/utils/AppError.ts": {
+    "mtime": 1779849806.0353496,
+    "hash": "0bef47221bc1e322f211260120dfe099"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/models/index.ts": {
+    "mtime": 1779849806.035554,
+    "hash": "74b5bc492030de0f9a83886673c2b13c"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/services/SistemaService.ts": {
+    "mtime": 1779849874.849294,
+    "hash": "7b8cfb905948856a3f9edbdb82db56bb"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/services/ProduccionService.ts": {
+    "mtime": 1779849862.4572828,
+    "hash": "7885f7ea2608da9d6e953a59c36c81d8"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/services/ComercialService.ts": {
+    "mtime": 1779849806.0364084,
+    "hash": "99ee1df80f24a1c22915d1efe8c2b6ba"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/services/AuthService.ts": {
+    "mtime": 1779850021.772466,
+    "hash": "b82f5bf0dcab942b253d7bbfce57e407"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/types/repositories.ts": {
+    "mtime": 1779849806.0367992,
+    "hash": "6d6e359c1f4eef4931001a5054a6e2a7"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/types/services.ts": {
+    "mtime": 1779849996.1234236,
+    "hash": "19455c37e7a355462fce7852f9fddbc1"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/types/entities.ts": {
+    "mtime": 1779849959.7943811,
+    "hash": "a58d77aaf29e5799a804e003fbfee544"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/repositories/ClienteRepository.ts": {
+    "mtime": 1779849806.0377183,
+    "hash": "c7c1eddd5d3a2483778d769516d4d459"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/repositories/ManiquiRepository.ts": {
+    "mtime": 1779849806.037948,
+    "hash": "caaab45c0925e8a2c2ee65c161491b9e"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/repositories/SistemaRepository.ts": {
+    "mtime": 1779849893.2613113,
+    "hash": "ff7b085540abe71021933c6600dafa7d"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/repositories/UsuarioRepository.ts": {
+    "mtime": 1779849806.0383554,
+    "hash": "611c50374f6007100d2e158d7b90a747"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/repositories/VentaRepository.ts": {
+    "mtime": 1779849904.9533226,
+    "hash": "a8f047bbbae560c44c44e3998836f929"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/README.md": {
+    "mtime": 1779848209.5150735,
+    "hash": "4accd92fee05ee6afeb26a80f95574b6"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/openapi.yaml": {
+    "mtime": 1779849074.615028,
+    "hash": "d1e9e9ed6b0bbe65817d2f096430c3bd"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/pnpm-workspace.yaml": {
+    "mtime": 1779849228.4473815,
+    "hash": "fda74687525401bded8c439cc00334ec"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/README.md": {
+    "mtime": 1779791411.8065524,
+    "hash": "42629383a75cecdedaaad74cfd005d52"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/SECURITY_GUIDE.md": {
+    "mtime": 1779847347.994892,
+    "hash": "99ad86ac8eeb361d88a829c7ce38f195"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/TESTING_GUIDE.md": {
+    "mtime": 1779847360.8656757,
+    "hash": "fbea0ec493c625634c385d1a76b3b96c"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/README.md": {
+    "mtime": 1779847334.0351336,
+    "hash": "420cc1200db8ab3596a6097992860690"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/hierarchy.html": {
+    "mtime": 1779849278.4344995,
+    "hash": "ac83c9657cacaf70c6f3c3655729f3e1"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/index.html": {
+    "mtime": 1779849278.4234993,
+    "hash": "410af788258f2d1cccebafd8fb95a2f3"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules.html": {
+    "mtime": 1779849278.4304996,
+    "hash": "1bede84a1dd3a5d82452ed128d78e25b"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_entities.ICliente.html": {
+    "mtime": 1779849278.656499,
+    "hash": "9b46fa616970e9ca3f7c12f08114d0c0"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_entities.IManiqui.html": {
+    "mtime": 1779849278.6604989,
+    "hash": "68dfeea7d60d6eaca6c62243d80dd3da"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_services.ISistemaService.html": {
+    "mtime": 1779849278.695499,
+    "hash": "517eb2aee25efb6f532db1d945a5cf56"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_repositories.IManiquiRepository.html": {
+    "mtime": 1779849278.678499,
+    "hash": "d5635d7274490b1ec6875a062d3b4b9e"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_services.IProduccionService.html": {
+    "mtime": 1779849278.6944988,
+    "hash": "54d286aab6f2fc22886fe43e1d934bbd"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_entities.IModelo.html": {
+    "mtime": 1779849278.662499,
+    "hash": "65d7e175199e7407cbe7b7fe15321248"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_entities.IVenta.html": {
+    "mtime": 1779849278.668499,
+    "hash": "84da991b2dfa675280e49fdf7986ecb7"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_repositories.IUsuarioRepository.html": {
+    "mtime": 1779849278.685499,
+    "hash": "d778c262dabed0dd0215b13c81b42d63"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_entities.IDetalleVenta.html": {
+    "mtime": 1779849278.658499,
+    "hash": "ec9d2b343a726fc556a11378bd5f8978"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_services.IComercialService.html": {
+    "mtime": 1779849278.692499,
+    "hash": "94f48aea36e2dc7bc5df8a9d5fee552a"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_repositories.IVentaRepository.html": {
+    "mtime": 1779849278.688499,
+    "hash": "2ba437c7d45f79ea0d35503a07a6486f"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_services.IAuthService.html": {
+    "mtime": 1779849278.6904988,
+    "hash": "e87b4bf8f15ccecfc6e2cfcafd015b95"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/middleware_authMiddleware.AuthRequest.html": {
+    "mtime": 1779849278.5344992,
+    "hash": "41347b7003f2e398a6840a1f41f00736"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_entities.IUsuario.html": {
+    "mtime": 1779849278.666499,
+    "hash": "ef737a8838c26ede72370048aa83202e"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_entities.IPieza.html": {
+    "mtime": 1779849278.664499,
+    "hash": "e05e5522d29331b53ff9612c35a65274"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_repositories.ISistemaRepository.html": {
+    "mtime": 1779849278.682499,
+    "hash": "7dd25743487133871beb8e0839eb81f3"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/interfaces/types_repositories.IClienteRepository.html": {
+    "mtime": 1779849278.676499,
+    "hash": "463d3226bc31c38263d3bed4ee5e0437"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/functions/middleware_validatorMiddleware.validarRequest.html": {
+    "mtime": 1779849278.5804992,
+    "hash": "95d319881595d69d7a94f270d290b3b6"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/functions/db.conectarDB.html": {
+    "mtime": 1779849278.5264993,
+    "hash": "3a3bd88f050d579a1c34ce988a10d09c"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/functions/middleware_authMiddleware.esVendedor.html": {
+    "mtime": 1779849278.5404992,
+    "hash": "855511941aa9cbbb130fe6e1e2528ab2"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/functions/middleware_errorMiddleware.asyncHandler.html": {
+    "mtime": 1779849278.5474992,
+    "hash": "ef5f5e21e5e920a442b4bbb35d2a5aa0"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/functions/middleware_errorMiddleware.errorHandler.html": {
+    "mtime": 1779849278.5494993,
+    "hash": "2f4bf3168da2d35dc27f6c724d527bbb"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/functions/middleware_authMiddleware.esGerente.html": {
+    "mtime": 1779849278.5374992,
+    "hash": "c172b98b27b88b4e1f5450ed29be87aa"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/services_AuthService.html": {
+    "mtime": 1779849278.639499,
+    "hash": "9216d29b03444eeb57911bb049768c9b"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/routes_produccionRoutes.html": {
+    "mtime": 1779849278.636499,
+    "hash": "31bd7bde028957c3d7251da2b26277bb"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/controllers_comercialController.html": {
+    "mtime": 1779849278.4764993,
+    "hash": "054c8dea20879d36827de26656d4983e"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/repositories_SistemaRepository.html": {
+    "mtime": 1779849278.614499,
+    "hash": "8df3bc8c3447a2629c6f6998bb398a90"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/repositories_ClienteRepository.html": {
+    "mtime": 1779849278.605499,
+    "hash": "29d447da4562d23e87228b33085de669"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/types_entities.html": {
+    "mtime": 1779849278.654499,
+    "hash": "ecdd9ab5ccbb40763e396daa70e71c44"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/routes_comercialRoutes.html": {
+    "mtime": 1779849278.634499,
+    "hash": "8f1ba2153b100861755591347786c8ad"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/repositories_ManiquiRepository.html": {
+    "mtime": 1779849278.609499,
+    "hash": "d990072437e4dee09212743604aa9e06"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/types_repositories.html": {
+    "mtime": 1779849278.6715512,
+    "hash": "d2837fb1008218e8860f2558c1588821"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/models.html": {
+    "mtime": 1779849278.582499,
+    "hash": "e930870ad26fce1ef57951de33cd0869"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/db.html": {
+    "mtime": 1779849278.5214992,
+    "hash": "bed0693b13739f249f5b4fc7a0c6277e"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/middleware_errorMiddleware.html": {
+    "mtime": 1779849278.5444992,
+    "hash": "3e698316b5896b9e351cdec468b974b2"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/services_SistemaService.html": {
+    "mtime": 1779849278.649499,
+    "hash": "4f119cb078f5965cd6a488de9fbe56ab"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/middleware_authMiddleware.html": {
+    "mtime": 1779849278.5304992,
+    "hash": "c4902515101d68b8e6fe590d8513946c"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/controllers_produccionController.html": {
+    "mtime": 1779849278.4874992,
+    "hash": "363b7ff1643eb088c61298166682493e"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/services_ProduccionService.html": {
+    "mtime": 1779849278.645499,
+    "hash": "cbcc9d0035d6532bd47a41f02fb5e0f5"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/services_ComercialService.html": {
+    "mtime": 1779849278.642499,
+    "hash": "ee1f0c3181e2333042f0644a6c29d332"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/middleware_validatorMiddleware.html": {
+    "mtime": 1779849278.5514991,
+    "hash": "642aa11262bfb60c11b84763cffc9af9"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/routes_authRoutes.html": {
+    "mtime": 1779849278.632499,
+    "hash": "96c8e567cdfe672262a536f38c56a46c"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/types_services.html": {
+    "mtime": 1779849278.689499,
+    "hash": "a14c4b50b5c92c658343963135a82741"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/index.html": {
+    "mtime": 1779849278.5274992,
+    "hash": "b4370d7d0864b74827033c75f28c9f1c"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/repositories_VentaRepository.html": {
+    "mtime": 1779849278.625499,
+    "hash": "182eb4506bedb371406af153d82dd53a"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/container.html": {
+    "mtime": 1779849278.4464993,
+    "hash": "0984a49ec118f2e33b83f0cbca0783c6"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/controllers_sistemaController.html": {
+    "mtime": 1779849278.5124993,
+    "hash": "38bc44dfa636cf4647f6b3ab4253fc31"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/routes_sistemaRoutes.html": {
+    "mtime": 1779849278.637499,
+    "hash": "90bab7c5f34eb7d7e4f07121ccaa0ef3"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/app.html": {
+    "mtime": 1779849278.4374995,
+    "hash": "618903564b18a26a23f2f8a27b3a73fa"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/repositories_UsuarioRepository.html": {
+    "mtime": 1779849278.619499,
+    "hash": "8d6b50d437fe686f134af92f1ef62dd9"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/modules/controllers_authController.html": {
+    "mtime": 1779849278.4634993,
+    "hash": "a2e751e9cc22f06ea4d83d99ad96fcc9"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/types/types_entities.MetodoPago.html": {
+    "mtime": 1779849278.6709,
+    "hash": "aa7d66f1ab39048c963733abf00c64f6"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/types/types_entities.Moneda.html": {
+    "mtime": 1779849278.6715512,
+    "hash": "9e559fa2504980cb57fb8e03042b84bb"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/types/types_entities.ManiquiStatus.html": {
+    "mtime": 1779849278.669499,
+    "hash": "8d346212aa3865e790aa9142d156bf97"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/app.default.html": {
+    "mtime": 1779849278.4424994,
+    "hash": "3ef8ced07ff82be6df40b0eb16e251ca"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/repositories_SistemaRepository.default.html": {
+    "mtime": 1779849278.618499,
+    "hash": "b099ef5a116ebd222d9ebbf0f0516776"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/repositories_ManiquiRepository.default.html": {
+    "mtime": 1779849278.6134992,
+    "hash": "2b7e7d15ece35356b4c1b5c1161718ef"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/routes_sistemaRoutes.default.html": {
+    "mtime": 1779849278.638499,
+    "hash": "2f1ad910704e74f865b4d4f7e663f71b"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/middleware_validatorMiddleware.reglasLogin.html": {
+    "mtime": 1779849278.5694993,
+    "hash": "22f356e1e7e1dcd10a7713add6ba3f68"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/routes_produccionRoutes.default.html": {
+    "mtime": 1779849278.636499,
+    "hash": "c7ecbfad04787801049913058157b0d1"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/middleware_validatorMiddleware.reglasManiqui.html": {
+    "mtime": 1779849278.572499,
+    "hash": "dfd59057452a91c2ce5a4353a6fd2ad0"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/container.sistemaController.html": {
+    "mtime": 1779849278.4604993,
+    "hash": "6eec7430f2234b623d82548de2cc6d54"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/db.default.html": {
+    "mtime": 1779849278.5234993,
+    "hash": "ed95d96e1d22b0c7a1b8d98fce37dea8"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/middleware_validatorMiddleware.reglasCliente.html": {
+    "mtime": 1779849278.555499,
+    "hash": "0b2c61cd44e729b1d38085c4b29156e7"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/container.produccionController.html": {
+    "mtime": 1779849278.4574995,
+    "hash": "1b8abdbc1bc3fdaf48eb2b5f8753bb12"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/routes_comercialRoutes.default.html": {
+    "mtime": 1779849278.635499,
+    "hash": "d5e3e5022a5ccedae9ad20f0513b1116"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/middleware_validatorMiddleware.reglasVenta.html": {
+    "mtime": 1779849278.578499,
+    "hash": "fe39b39c0ab8379181569b9877346bc5"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/repositories_ClienteRepository.default.html": {
+    "mtime": 1779849278.608499,
+    "hash": "c55294bfffdfd32a2fabd3b5fbf633c8"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/middleware_validatorMiddleware.reglasRegistro.html": {
+    "mtime": 1779849278.5764992,
+    "hash": "119e8cf72b2edb67a9ab20fb218b5cdc"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/repositories_UsuarioRepository.default.html": {
+    "mtime": 1779849278.624499,
+    "hash": "be325bcf298862af6d6cce8d3480d9b0"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/container.comercialController.html": {
+    "mtime": 1779849278.4524994,
+    "hash": "249087ca32baf80fe78a1dccf7bb5f62"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/routes_authRoutes.default.html": {
+    "mtime": 1779849278.633499,
+    "hash": "777bd3aa3613ae5737285b60881ed885"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/container.authController.html": {
+    "mtime": 1779849278.4504993,
+    "hash": "04be412e3875daea6e8979873c8f4f52"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/variables/repositories_VentaRepository.default.html": {
+    "mtime": 1779849278.631499,
+    "hash": "a80b9451283b57fb7e4e36db6dff6c7e"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/models.DetalleVenta.html": {
+    "mtime": 1779849278.589499,
+    "hash": "bfd27ab59eb998022bf41560060275a7"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/repositories_VentaRepository.VentaRepository.html": {
+    "mtime": 1779849278.6304991,
+    "hash": "66f0dff4c5366b00ab21ec171473c4b2"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/services_ProduccionService.ProduccionService.html": {
+    "mtime": 1779849278.648499,
+    "hash": "d2dd6504f04a41b9424d4527ed84546c"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/repositories_ClienteRepository.ClienteRepository.html": {
+    "mtime": 1779849278.6074991,
+    "hash": "82e3875fb85c1bd2972926b39c8aa264"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/models.Maniqui.html": {
+    "mtime": 1779849278.592499,
+    "hash": "0a6e7170b69363b5563d7ac58fda68cc"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/models.Pieza.html": {
+    "mtime": 1779849278.599499,
+    "hash": "d0cdcec26a9ca158d5b1f7c775da9017"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/controllers_produccionController.ProduccionController.html": {
+    "mtime": 1779849278.4934993,
+    "hash": "6ed9801230debd6db7ff0ce2f4d0dc86"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/repositories_ManiquiRepository.ManiquiRepository.html": {
+    "mtime": 1779849278.612499,
+    "hash": "957577397eaf33cdfb824d17e2028dac"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/models.Cliente.html": {
+    "mtime": 1779849278.585499,
+    "hash": "b024dd4ef6bc9d33ad26d04062fdf208"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/services_SistemaService.SistemaService.html": {
+    "mtime": 1779849278.653499,
+    "hash": "b116bd467fd3336c0836d859e92bf846"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/controllers_comercialController.ComercialController.html": {
+    "mtime": 1779849278.4854994,
+    "hash": "13fcf010e6d4faeb76a72dbad61e1ec6"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/controllers_authController.AuthController.html": {
+    "mtime": 1779849278.4744995,
+    "hash": "a66e389941beeb2efffb0375435b82aa"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/services_ComercialService.ComercialService.html": {
+    "mtime": 1779849278.645499,
+    "hash": "9f5feb5c0d46854fee70bda4f4c1ea9b"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/repositories_UsuarioRepository.UsuarioRepository.html": {
+    "mtime": 1779849278.622499,
+    "hash": "f4eea390b9beec4e6f27374e59715fac"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/models.Venta.html": {
+    "mtime": 1779849278.604499,
+    "hash": "338b944d727ad8fa1de9a125d09de7a1"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/repositories_SistemaRepository.SistemaRepository.html": {
+    "mtime": 1779849278.617499,
+    "hash": "82649458c5100055158eca4808db52a1"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/models.Usuario.html": {
+    "mtime": 1779849278.601499,
+    "hash": "09ecdd6e059d866e01ef4a96edcec0c6"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/controllers_sistemaController.SistemaController.html": {
+    "mtime": 1779849278.5194993,
+    "hash": "24a48c864b40a8259a778bf3fee660b1"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/services_AuthService.AuthService.html": {
+    "mtime": 1779849278.641499,
+    "hash": "5f5e3d100743b60d11bc04f4062f1fdb"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/classes/models.Modelo.html": {
+    "mtime": 1779849278.595499,
+    "hash": "4692dce98553e0a8751ccb538da2d90f"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api/redoc.html": {
+    "mtime": 1779849269.8364809,
+    "hash": "aa8ecb5e29c3e9d412aadff57d351dca"
+  },
+  "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api-ts/assets/icons.svg": {
+    "mtime": 1779849278.6974988,
+    "hash": "fe69009cf850126932b2ad1a22b0b8ad"
+  }
+}

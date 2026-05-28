@@ -54,24 +54,4 @@ bash tests/integration/test_senior.sh
 
 ---
 
-## ✍️ 4. Cómo escribir un nuevo Test Unitario
-
-Gracias a la inyección de dependencias, probar un servicio es sencillo:
-
-```typescript
-import test from 'node:test';
-import assert from 'node:assert';
-import { MiServicio } from '../../src/services/MiServicio.js';
-
-test('MiServicio', async (t) => {
-  await t.test('Debe hacer X cosa', async () => {
-    const mockRepo = { find: async () => 'dato_falso' };
-    const servicio = new MiServicio(mockRepo as any);
-    const result = await servicio.procesar();
-    assert.strictEqual(result, 'dato_esperado');
-  });
-});
-```
-
----
-*La calidad no es un acto, es un hábito. Ejecute las pruebas antes de cada commit.*
+## 

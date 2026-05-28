@@ -17,6 +17,7 @@ export interface IProduccionService {
   listarManiquies(filters?: Record<string, unknown>): Promise<IManiqui[]>;
   obtenerManiqui(serie: string): Promise<IManiqui>;
   ensamblarManiqui(modelo_id: number, numero_serie: string): Promise<unknown>;
+  obtenerStockPiezas(): Promise<any[]>;
 }
 
 export interface ISistemaService {

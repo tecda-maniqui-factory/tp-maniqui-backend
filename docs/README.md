@@ -1,8 +1,3 @@
-# 📖 Portal de Documentación - Tecda Backend
-
-Bienvenido al centro de documentación técnica del servidor de Tecda Maniquí. Este proyecto ha sido rediseñado bajo una arquitectura de servicios desacoplada y tipada.
-
----
 
 ## 🗺️ Mapa de Recursos
 

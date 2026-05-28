@@ -1,0 +1,40 @@
+{
+  "chunks": [
+    [
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/README.md",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/openapi.yaml",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/pnpm-workspace.yaml",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/reset_db_users.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/run_db_reform.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/setup_admin.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/README.md",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/SECURITY_GUIDE.md",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/TESTING_GUIDE.md",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api/index.html",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api/redoc.html",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/docs/api/swagger.html",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/app.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/db.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/index.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/controllers/authController.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/controllers/comercialController.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/controllers/produccionController.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/controllers/sistemaController.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/middleware/authMiddleware.js"
+    ],
+    [
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/middleware/validatorMiddleware.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/models/index.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/routes/authRoutes.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/routes/comercialRoutes.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/routes/produccionRoutes.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/src/routes/sistemaRoutes.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/README.md",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/auth.test.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/controllers.test.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/logic.test.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/middleware.test.js",
+      "/home/jmro/Documentos/TECDA/TERCERO/PRACTICAS_PROFESIONALIZANTES/tp-maniqui-backend/tests/unit/validators.test.js"
+    ]
+  ]
+}
