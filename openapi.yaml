@@ -1,8 +1,13 @@
 openapi: 3.0.0
 info:
   title: Tecda Maniquí API
-  version: 3.0.0
-  description: Gestión integral de fábrica de maniquíes con arquitectura SOLID (TypeScript).
+  version: 3.1.0
+  description: |
+    Gestión integral de fábrica de maniquíes con arquitectura SOLID (TypeScript).
+    
+    ### Cambios Recientes:
+    * **Validación de Stock Técnica:** El ensamblaje ahora verifica la existencia de las 6 piezas (Cabeza, Torso, Brazos y Piernas).
+    * **Captura de Errores SQL:** Errores del procedimiento almacenado se devuelven con descripción clara.
 servers:
   - url: http://localhost:8081
     description: Servidor de Desarrollo
@@ -88,6 +93,9 @@ paths:
   /maniquies/ensamblar:
     post:
       summary: Ejecutar ensamblaje técnico
+      description: |
+        Registra el ensamblaje de un nuevo maniquí. 
+        Valida automáticamente el stock de 6 tipos de piezas (Cabeza, Torso, Brazo D, Brazo I, Pierna D, Pierna I).
       tags: [Producción]
       requestBody:
         required: true
@@ -97,15 +105,23 @@ paths:
               type: object
               required: [modelo_id, numero_serie]
               properties:
-                modelo_id: { type: integer }
-                numero_serie: { type: string }
+                modelo_id: { type: integer, example: 1 }
+                numero_serie: { type: string, example: "MQ-2026-X01" }
       responses:
         '201': { description: Ensamblaje exitoso }
-        '400': { description: Datos inválidos }
+        '400': 
+          description: Error lógico (Falta stock o serie duplicada)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
 
   /piezas/stock:
     get:
       summary: Listar piezas en stock
+      description: Retorna las piezas que no han sido ensambladas (maniqui_id es null).
       tags: [Producción]
       responses:
         '200': { description: OK }

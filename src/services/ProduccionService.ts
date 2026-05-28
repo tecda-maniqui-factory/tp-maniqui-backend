@@ -55,11 +55,12 @@ export class ProduccionService implements IProduccionService {
     ];
 
     for (const piezaReq of piezasRequeridas) {
-      const stock = await Pieza.count({
+      // Usamos cast to any para evitar errores de tipado estrictos de Sequelize en el conteo simple
+      const stock = await (Pieza as any).count({
         where: {
           modelo_id,
           tipo_parte_id: piezaReq.id,
-          maniqui_id: null // Que no estén ensambladas
+          maniqui_id: null
         }
       });
 
