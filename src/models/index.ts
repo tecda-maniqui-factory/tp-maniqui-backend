@@ -5,7 +5,7 @@
 
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../db.js';
-import { IUsuario, IModelo, IManiqui, IPieza, ICliente, IVenta, IDetalleVenta, IOrdenCompra } from '../types/entities.js';
+import { IUsuario, IModelo, IManiqui, IPieza, ICliente, IVenta, IDetalleVenta, IOrdenCompra, IModeloReceta } from '../types/entities.js';
 
 // --- USUARIO ---
 interface UsuarioCreationAttributes extends Optional<IUsuario, 'id' | 'activo'> {}
@@ -37,6 +37,9 @@ interface ModeloCreationAttributes extends Optional<IModelo, 'id' | 'activo'> {}
 export class Modelo extends Model<IModelo, ModeloCreationAttributes> implements IModelo {
   declare id: number;
   declare nombre: string;
+  declare sexo_id?: number;
+  declare estilo_id?: number;
+  declare cuerpo_id?: number;
   declare costo_unitario: number;
   declare precio_venta: number;
   declare activo: boolean;
@@ -44,6 +47,9 @@ export class Modelo extends Model<IModelo, ModeloCreationAttributes> implements 
 Modelo.init({
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   nombre: { type: DataTypes.STRING, unique: true, allowNull: false },
+  sexo_id: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  estilo_id: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  cuerpo_id: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
   costo_unitario: { type: DataTypes.DECIMAL(10, 2) },
   precio_venta: { type: DataTypes.DECIMAL(10, 2) },
   activo: { type: DataTypes.BOOLEAN, defaultValue: true }
@@ -165,6 +171,25 @@ OrdenesCompra.init({
   estado: { type: DataTypes.ENUM('pendiente', 'completada'), defaultValue: 'pendiente' }
 }, { sequelize, modelName: 'Ordenes_Compra' });
 
+// --- MODELO RECETA ---
+export class ModeloReceta extends Model<IModeloReceta> implements IModeloReceta {
+  declare modelo_id: number;
+  declare tipo_parte_id: number;
+}
+ModeloReceta.init({
+  modelo_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    references: { model: 'Modelos', key: 'id' },
+    onDelete: 'CASCADE'
+  },
+  tipo_parte_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    references: { model: 'Cat_TiposParte', key: 'id' }
+  }
+}, { sequelize, modelName: 'Modelos_Recetas', tableName: 'Modelos_Recetas', timestamps: false });
+
 // --- RELACIONES ---
 Modelo.hasMany(Maniqui, { foreignKey: 'modelo_id' });
 Maniqui.belongsTo(Modelo, { foreignKey: 'modelo_id' });
@@ -174,3 +199,6 @@ Cliente.hasMany(Venta, { foreignKey: 'cliente_id' });
 Venta.belongsTo(Cliente, { foreignKey: 'cliente_id' });
 Venta.hasMany(DetalleVenta, { foreignKey: 'venta_id' });
 DetalleVenta.belongsTo(Venta, { foreignKey: 'venta_id' });
+
+Modelo.hasMany(ModeloReceta, { foreignKey: 'modelo_id', as: 'receta' });
+ModeloReceta.belongsTo(Modelo, { foreignKey: 'modelo_id' });

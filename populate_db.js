@@ -32,8 +32,8 @@ const populate = async () => {
     // 2. Modelos
     // Nota: El SP valida que el modelo exista. Usaremos IDs fijos para coincidir con el catálogo si es necesario.
     await Modelo.bulkCreate([
-      { id: 1, nombre: 'Modelo Alpha', costo_unitario: 10000, precio_venta: 30000 },
-      { id: 2, nombre: 'Modelo Beta', costo_unitario: 12000, precio_venta: 35000 }
+      { id: 1, nombre: 'Modelo Alpha', costo_unitario: 10000, precio_venta: 30000, sexo_id: 1, estilo_id: 1, cuerpo_id: 1 },
+      { id: 2, nombre: 'Modelo Beta', costo_unitario: 12000, precio_venta: 35000, sexo_id: 1, estilo_id: 1, cuerpo_id: 1 }
     ], { ignoreDuplicates: true, transaction });
     
     const modelosDB = await Modelo.findAll({ transaction });
@@ -82,26 +82,34 @@ const populate = async () => {
 
     // 6. Simular una venta
     console.log('💰 Registrando una venta de prueba...');
-    const facturaNro = `FAC-${Date.now()}`;
-    const cliente = clientesDB[0];
+    console.log('DEBUG models:', modelosDB.map(m => ({ id: m.id, nombre: m.nombre })));
     const maniquiAVender = maniquiesCreados[0];
-    const modeloManiqui = modelosDB.find(m => m.id === maniquiAVender.modelo_id);
+    console.log('DEBUG maniqui:', maniquiAVender ? { id: maniquiAVender.id, modelo_id: maniquiAVender.modelo_id } : 'null');
+    
+    if (maniquiAVender) {
+      const modeloManiqui = modelosDB.find(m => m.id === maniquiAVender.modelo_id);
+      console.log('DEBUG modeloManiqui:', modeloManiqui ? { id: modeloManiqui.id, precio: modeloManiqui.precio_venta } : 'null');
+      
+      const precio = modeloManiqui ? modeloManiqui.precio_venta : 30000;
+      const facturaNro = `FAC-${Date.now()}`;
+      const cliente = clientesDB[0];
 
-    const nuevaVenta = await Venta.create({
-      cliente_id: cliente.id,
-      total: modeloManiqui.precio_venta,
-      metodo_pago: 'Efectivo',
-      nro_factura: facturaNro,
-      moneda: 'ARS'
-    }, { transaction });
+      const nuevaVenta = await Venta.create({
+        cliente_id: cliente.id,
+        total: precio,
+        metodo_pago: 'Efectivo',
+        nro_factura: facturaNro,
+        moneda: 'ARS'
+      }, { transaction });
 
-    await DetalleVenta.create({
-      venta_id: nuevaVenta.id,
-      maniqui_id: maniquiAVender.id,
-      precio_final: modeloManiqui.precio_venta
-    }, { transaction });
+      await DetalleVenta.create({
+        venta_id: nuevaVenta.id,
+        maniqui_id: maniquiAVender.id,
+        precio_final: precio
+      }, { transaction });
 
-    await maniquiAVender.update({ status: 'Vendido' }, { transaction });
+      await maniquiAVender.update({ status: 'Vendido' }, { transaction });
+    }
 
     await transaction.commit();
     console.log('✅ Base de datos poblada con éxito. Listo para ensamblar (6 tipos de piezas).');

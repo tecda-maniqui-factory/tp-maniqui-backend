@@ -6,6 +6,8 @@
 import { ISistemaRepository } from '../types/repositories.js';
 import { ISistemaService } from '../types/services.js';
 import { AppError } from '../utils/AppError.js';
+import sequelize from '../db.js';
+import { Modelo, ModeloReceta } from '../models/index.js';
 
 /**
  * Servicio encargado de proveer catálogos técnicos y métricas de salud del sistema.
@@ -64,5 +66,43 @@ export class SistemaService implements ISistemaService {
    */
   async crearProveedor(nombre: string, codigo: string): Promise<void> {
     await this.sistemaRepo.createProveedor(nombre, codigo);
+  }
+
+  /**
+   * Registra un nuevo modelo técnico y sus piezas requeridas (receta) de manera atómica.
+   */
+  async crearModelo(data: { nombre: string; partes: string[]; sexo_id: number }): Promise<any> {
+    const { nombre, partes, sexo_id } = data;
+
+    const t = await sequelize.transaction();
+    try {
+      const nuevoModelo = await Modelo.create({
+        nombre,
+        sexo_id,
+        estilo_id: 1, // Por defecto
+        cuerpo_id: 1, // Por defecto
+        costo_unitario: 5000,
+        precio_venta: 18500
+      }, { transaction: t });
+
+      for (const codigo of partes) {
+        const [tipos]: any[] = await sequelize.query(
+          `SELECT id FROM Cat_TiposParte WHERE codigo = ?`,
+          { replacements: [codigo], transaction: t }
+        );
+        if (tipos.length > 0) {
+          await ModeloReceta.create({
+            modelo_id: nuevoModelo.id,
+            tipo_parte_id: tipos[0].id
+          }, { transaction: t });
+        }
+      }
+
+      await t.commit();
+      return nuevoModelo;
+    } catch (error) {
+      await t.rollback();
+      throw error;
+    }
   }
 }

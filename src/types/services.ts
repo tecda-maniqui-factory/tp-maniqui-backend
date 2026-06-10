@@ -23,6 +23,7 @@ export interface IProduccionService {
 
 export interface ISistemaService {
   listarModelos(): Promise<any[]>;
+  crearModelo(data: { nombre: string; partes: string[]; sexo_id: number }): Promise<any>;
   obtenerResumenProduccion(): Promise<any[]>;
   obtenerRentabilidad(): Promise<any[]>;
   obtenerStockCritico(): Promise<any[]>;

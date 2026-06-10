@@ -23,6 +23,16 @@ export class SistemaController {
   });
 
   /**
+   * Endpoint para registrar un nuevo modelo técnico.
+   * @route POST /sistema/modelos
+   */
+  createModelo = asyncHandler(async (req: Request, res: Response) => {
+    const { nombre, partes, sexo_id } = req.body;
+    const nuevo = await this.sistemaService.crearModelo({ nombre, partes, sexo_id });
+    res.status(201).json(nuevo);
+  });
+
+  /**
    * Endpoint para obtener métricas y resumenes de producción.
    * @route GET /sistema/reportes/produccion
    */

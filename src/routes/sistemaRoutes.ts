@@ -15,6 +15,7 @@ router.use(verifyToken);
  * Catálogos
  */
 router.get('/sistema/modelos', sistemaController.getModelos);
+router.post('/sistema/modelos', esGerente, sistemaController.createModelo);
 router.get('/sistema/modelos/:id/descuento', sistemaController.calcularDescuento);
 
 /**

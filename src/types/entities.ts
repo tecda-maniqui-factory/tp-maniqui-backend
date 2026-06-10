@@ -17,6 +17,9 @@ export interface IUsuario {
 export interface IModelo {
   id?: number | undefined;
   nombre: string;
+  sexo_id?: number | undefined;
+  estilo_id?: number | undefined;
+  cuerpo_id?: number | undefined;
   costo_unitario: number;
   precio_venta: number;
   activo: boolean;
@@ -80,4 +83,9 @@ export interface IOrdenCompra {
   tipo_parte: string;
   fecha?: Date | undefined;
   estado: 'pendiente' | 'completada';
+}
+
+export interface IModeloReceta {
+  modelo_id: number;
+  tipo_parte_id: number;
 }
