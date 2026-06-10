@@ -53,6 +53,13 @@ class ManiquiRepository implements IManiquiRepository {
   async findAllPiezas(filters: Record<string, unknown> = {}): Promise<any[]> {
     return await Pieza.findAll({ where: filters });
   }
+
+  /**
+   * Crea múltiples piezas en lote.
+   */
+  async createPiezas(piezas: any[]): Promise<void> {
+    await Pieza.bulkCreate(piezas);
+  }
 }
 
 /** Instancia singleton del repositorio */

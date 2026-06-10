@@ -23,6 +23,7 @@ router.post('/maniquies/ensamblar', esGerente, reglasManiqui, produccionControll
  * Rutas de Piezas
  */
 router.get('/piezas/stock', produccionController.getPiezasStock);
+router.post('/piezas/ingreso', esGerente, produccionController.ingresarPiezas);
 
 /** Router de Express para este módulo */
 export default router;

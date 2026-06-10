@@ -33,7 +33,7 @@ test('ProduccionService (Unitario)', async (t) => {
       findAllPiezas: async () => []
     };
 
-    // Simular que no hay stock de Torso (tipo_parte_id: 1)
+    // Simular que no hay stock de Cabeza (tipo_parte_id: 1)
     Pieza.count = (async (options: any) => {
       if (options.where.tipo_parte_id === 1) return 0;
       return 1;
@@ -42,7 +42,7 @@ test('ProduccionService (Unitario)', async (t) => {
     const service = new ProduccionService(mockRepo);
     await assert.rejects(
       () => service.ensamblarManiqui(1, 'SERIE-ERROR'),
-      { message: 'Falta stock de la pieza: Torso' }
+      { message: 'Stock insuficiente: No hay Cabeza disponible para este modelo.' }
     );
   });
 

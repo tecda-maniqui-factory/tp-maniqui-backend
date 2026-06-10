@@ -36,6 +36,8 @@ export const conectarDB = async (): Promise<void> => {
   try {
     await sequelize.authenticate();
     logger.info('✅ Conexión establecida con Sequelize (MySQL)');
+    await sequelize.sync();
+    logger.info('✅ Modelos sincronizados con la Base de Datos');
   } catch (error: any) {
     logger.error('❌ No se pudo conectar a la base de datos: %s', error.message);
   }

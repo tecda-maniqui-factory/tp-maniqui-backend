@@ -73,3 +73,11 @@ export interface IDetalleVenta {
   maniqui_id: number;
   precio_final: number;
 }
+
+export interface IOrdenCompra {
+  id?: number | undefined;
+  modelo_nombre: string;
+  tipo_parte: string;
+  fecha?: Date | undefined;
+  estado: 'pendiente' | 'completada';
+}

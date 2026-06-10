@@ -5,7 +5,7 @@
 
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../db.js';
-import { IUsuario, IModelo, IManiqui, IPieza, ICliente, IVenta, IDetalleVenta } from '../types/entities.js';
+import { IUsuario, IModelo, IManiqui, IPieza, ICliente, IVenta, IDetalleVenta, IOrdenCompra } from '../types/entities.js';
 
 // --- USUARIO ---
 interface UsuarioCreationAttributes extends Optional<IUsuario, 'id' | 'activo'> {}
@@ -147,6 +147,23 @@ DetalleVenta.init({
   maniqui_id: { type: DataTypes.INTEGER, unique: true, allowNull: false },
   precio_final: { type: DataTypes.DECIMAL(10, 2) }
 }, { sequelize, modelName: 'Detalle_Ventas' });
+
+// --- ORDEN COMPRA ---
+interface OrdenCompraCreationAttributes extends Optional<IOrdenCompra, 'id' | 'fecha' | 'estado'> {}
+export class OrdenesCompra extends Model<IOrdenCompra, OrdenCompraCreationAttributes> implements IOrdenCompra {
+  declare id: number;
+  declare modelo_nombre: string;
+  declare tipo_parte: string;
+  declare fecha: Date;
+  declare estado: 'pendiente' | 'completada';
+}
+OrdenesCompra.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  modelo_nombre: { type: DataTypes.STRING, allowNull: false },
+  tipo_parte: { type: DataTypes.STRING, allowNull: false },
+  fecha: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  estado: { type: DataTypes.ENUM('pendiente', 'completada'), defaultValue: 'pendiente' }
+}, { sequelize, modelName: 'Ordenes_Compra' });
 
 // --- RELACIONES ---
 Modelo.hasMany(Maniqui, { foreignKey: 'modelo_id' });

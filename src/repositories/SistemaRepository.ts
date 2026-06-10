@@ -41,6 +41,20 @@ class SistemaRepository implements ISistemaRepository {
   }
 
   /**
+   * Obtiene el reporte de rentabilidad desde la vista SQL.
+   */
+  async findRentabilidad(): Promise<unknown[]> {
+    return await this.rawQuery('SELECT * FROM Vista_Rentabilidad');
+  }
+
+  /**
+   * Obtiene el reporte de stock crítico desde la vista SQL.
+   */
+  async findStockCritico(): Promise<unknown[]> {
+    return await this.rawQuery('SELECT * FROM Vista_Stock_Critico');
+  }
+
+  /**
    * Invoca la función almacenada 'CalcularDescuento' en la DB.
    */
   async calcularDescuentoUDF(modeloId: number, porcentaje: number): Promise<unknown | null> {

@@ -19,12 +19,15 @@ export interface IManiquiRepository {
   assemble(modelo_id: number, numero_serie: string): Promise<unknown>;
   create(data: Partial<IManiqui>): Promise<IManiqui>;
   findAllPiezas(filters?: Record<string, unknown>): Promise<any[]>;
+  createPiezas(piezas: any[]): Promise<void>;
 }
 
 export interface ISistemaRepository {
   findAllModelos(): Promise<IModelo[]>;
   rawQuery(query: string, replacements?: unknown[]): Promise<unknown[]>;
   getProduccionResumen(): Promise<unknown[]>;
+  findRentabilidad(): Promise<unknown[]>;
+  findStockCritico(): Promise<unknown[]>;
   calcularDescuentoUDF(modeloId: number, porcentaje: number): Promise<unknown | null>;
   findProveedores(): Promise<unknown[]>;
   createProveedor(nombre: string, codigo: string): Promise<void>;

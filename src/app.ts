@@ -12,6 +12,7 @@ import authRoutes from './routes/authRoutes.js';
 import produccionRoutes from './routes/produccionRoutes.js';
 import comercialRoutes from './routes/comercialRoutes.js';
 import sistemaRoutes from './routes/sistemaRoutes.js';
+import notificacionesRoutes from './routes/notificacionesRoutes.js';
 
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
@@ -30,12 +31,6 @@ app.use(express.json());
 
 // --- DOCUMENTACIÓN ---
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-// --- RUTAS DE MÓDULOS ---
-app.use('/auth', authRoutes);
-app.use('/', produccionRoutes);
-app.use('/', comercialRoutes);
-app.use('/', sistemaRoutes);
 
 // --- ENDPOINTS DE SISTEMA ---
 app.get('/', (req: Request, res: Response) => {
@@ -61,6 +56,13 @@ app.get('/sistema/info', (req: Request, res: Response) => {
     entorno: process.env.NODE_ENV
   });
 });
+
+// --- RUTAS DE MÓDULOS ---
+app.use('/auth', authRoutes);
+app.use('/', produccionRoutes);
+app.use('/', comercialRoutes);
+app.use('/', sistemaRoutes);
+app.use('/notificaciones', notificacionesRoutes);
 
 // --- MANEJO DE ERRORES ---
 app.use(errorHandler);

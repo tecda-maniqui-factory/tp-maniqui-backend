@@ -28,6 +28,20 @@ export class SistemaService implements ISistemaService {
   }
 
   /**
+   * Obtiene datos analíticos de rentabilidad.
+   */
+  async obtenerRentabilidad(): Promise<any[]> {
+    return await this.sistemaRepo.findRentabilidad();
+  }
+
+  /**
+   * Obtiene datos de piezas con stock crítico.
+   */
+  async obtenerStockCritico(): Promise<any[]> {
+    return await this.sistemaRepo.findStockCritico();
+  }
+
+  /**
    * Calcula el precio final aplicando un porcentaje de descuento mediante base de datos.
    */
   async calcularDescuento(modeloId: number, porcentaje: number): Promise<unknown> {

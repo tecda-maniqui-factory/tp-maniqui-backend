@@ -32,6 +32,24 @@ export class SistemaController {
   });
 
   /**
+   * Endpoint para obtener el reporte de rentabilidad.
+   * @route GET /reportes/rentabilidad
+   */
+  getRentabilidad = asyncHandler(async (req: Request, res: Response) => {
+    const data = await this.sistemaService.obtenerRentabilidad();
+    res.json(data);
+  });
+
+  /**
+   * Endpoint para obtener el reporte de stock crítico.
+   * @route GET /reportes/stock-critico
+   */
+  getStockCritico = asyncHandler(async (req: Request, res: Response) => {
+    const data = await this.sistemaService.obtenerStockCritico();
+    res.json(data);
+  });
+
+  /**
    * Endpoint para el cálculo dinámico de descuentos mediante UDF de la base de datos.
    * @route GET /sistema/modelos/:id/descuento
    */
