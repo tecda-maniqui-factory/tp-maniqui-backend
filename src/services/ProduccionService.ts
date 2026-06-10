@@ -45,9 +45,14 @@ export class ProduccionService implements IProduccionService {
     }
 
     // VALIDACIÓN DE PIEZAS ANTES DE ENSAMBLAR
-    // Basado en Cat_TiposParte:
-    // 1: Cabeza, 2: Torso, 3: Brazo Derecho, 4: Brazo Izquierdo, 5: Pierna Derecha, 6: Pierna Izquierda
-    const piezasRequeridas = [
+    const [recetas]: any[] = await sequelize.query(`
+      SELECT mr.tipo_parte_id as id, tp.nombre
+      FROM Modelos_Recetas mr
+      JOIN Cat_TiposParte tp ON mr.tipo_parte_id = tp.id
+      WHERE mr.modelo_id = ?
+    `, { replacements: [modelo_id] });
+
+    const piezasRequeridas = recetas.length > 0 ? recetas : [
       { id: 1, nombre: 'Cabeza' },
       { id: 2, nombre: 'Torso' },
       { id: 3, nombre: 'Brazo Derecho' },
