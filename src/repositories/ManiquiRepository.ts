@@ -18,7 +18,7 @@ class ManiquiRepository implements IManiquiRepository {
   async findAll(filters: Record<string, unknown> = {}): Promise<IManiqui[]> {
     return await Maniqui.findAll({
       where: filters,
-      include: [{ model: Modelo, attributes: ['nombre'] }]
+      include: [{ model: Modelo, attributes: ['nombre', 'precio_venta'] }]
     });
   }
 
