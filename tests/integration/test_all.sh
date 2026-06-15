@@ -1,9 +1,10 @@
 #!/bin/bash
 # 🧪 Tecda Maniquí - Probador Automático Full Coverage v4.0 (SOLID/TS)
-BASE_URL="http://localhost:8081"
+BASE_URL="http://localhost:8082"
 
 echo "🧹 Reseteando Base de Datos..."
-npx tsx reset_db_users.js
+pnpm tsx reset_db_users.js
+
 
 echo "🚀 Iniciando pruebas de cobertura total..."
 

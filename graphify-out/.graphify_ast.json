@@ -1,0 +1,5889 @@
+{
+  "nodes": [
+    {
+      "id": "reset_db_users_js",
+      "label": "reset_db_users.js",
+      "file_type": "code",
+      "source_file": "reset_db_users.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "reset_db_users_resetdb",
+      "label": "resetDB()",
+      "file_type": "code",
+      "source_file": "reset_db_users.js",
+      "source_location": "L16"
+    },
+    {
+      "id": "populate_db_js",
+      "label": "populate_db.js",
+      "file_type": "code",
+      "source_file": "populate_db.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tp_maniqui_backend_populate_db_populate",
+      "label": "populate()",
+      "file_type": "code",
+      "source_file": "populate_db.js",
+      "source_location": "L18"
+    },
+    {
+      "id": "run_db_reform_js",
+      "label": "run_db_reform.js",
+      "file_type": "code",
+      "source_file": "run_db_reform.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "run_db_reform_reformardb",
+      "label": "reformarDB()",
+      "file_type": "code",
+      "source_file": "run_db_reform.js",
+      "source_location": "L15"
+    },
+    {
+      "id": "fix_inconsistencies_js",
+      "label": "fix_inconsistencies.js",
+      "file_type": "code",
+      "source_file": "fix_inconsistencies.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tp_maniqui_backend_fix_inconsistencies_fix",
+      "label": "fix()",
+      "file_type": "code",
+      "source_file": "fix_inconsistencies.js",
+      "source_location": "L9"
+    },
+    {
+      "id": "setup_admin_js",
+      "label": "setup_admin.js",
+      "file_type": "code",
+      "source_file": "setup_admin.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "setup_admin_crearadmininicial",
+      "label": "crearAdminInicial()",
+      "file_type": "code",
+      "source_file": "setup_admin.js",
+      "source_location": "L15"
+    },
+    {
+      "id": "tests_unit_produccion_service_test_d_ts",
+      "label": "produccion_service.test.d.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/produccion_service.test.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_produccion_service_test_ts",
+      "label": "produccion_service.test.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/produccion_service.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_controllers_test_d_ts",
+      "label": "controllers.test.d.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/controllers.test.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_middleware_test_d_ts",
+      "label": "middleware.test.d.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/middleware.test.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_auth_test_ts",
+      "label": "auth.test.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/auth.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_auth_test_d_ts",
+      "label": "auth.test.d.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/auth.test.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_produccion_service_test_js",
+      "label": "produccion_service.test.js",
+      "file_type": "code",
+      "source_file": "tests/unit/produccion_service.test.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_validators_test_ts",
+      "label": "validators.test.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/validators.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_middleware_test_ts",
+      "label": "middleware.test.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/middleware.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_logic_test_d_ts",
+      "label": "logic.test.d.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/logic.test.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_unit_logic_test_ts",
+      "label": "logic.test.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/logic.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "unit_logic_test_calculardescuentojs",
+      "label": "calcularDescuentoJS()",
+      "file_type": "code",
+      "source_file": "tests/unit/logic.test.ts",
+      "source_location": "L9"
+    },
+    {
+      "id": "tests_unit_validators_test_d_ts",
+      "label": "validators.test.d.ts",
+      "file_type": "code",
+      "source_file": "tests/unit/validators.test.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_api_ts_assets_hierarchy_js",
+      "label": "hierarchy.js",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/hierarchy.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_api_ts_assets_icons_js",
+      "label": "icons.js",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/icons.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_icons_addicons",
+      "label": "addIcons()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/icons.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "assets_icons_updateuseelements",
+      "label": "updateUseElements()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/icons.js",
+      "source_location": "L11"
+    },
+    {
+      "id": "docs_api_ts_assets_navigation_js",
+      "label": "navigation.js",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/navigation.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_api_ts_assets_search_js",
+      "label": "search.js",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/search.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_api_ts_assets_main_js",
+      "label": "main.js",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "assets_main_getitem",
+      "label": "getItem()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_setitem",
+      "label": "setItem()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_disablewritinglocalstorage",
+      "label": "disableWritingLocalStorage()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_disable",
+      "label": "disable()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_enable",
+      "label": "enable()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_x",
+      "label": "X()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_constructor",
+      "label": "constructor()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_createcomponents",
+      "label": "createComponents()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_filterchanged",
+      "label": "filterChanged()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_showpage",
+      "label": "showPage()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_scrolltohash",
+      "label": "scrollToHash()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_ensureactivepagevisible",
+      "label": "ensureActivePageVisible()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_updateindexvisibility",
+      "label": "updateIndexVisibility()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_ensurefocusedelementvisible",
+      "label": "ensureFocusedElementVisible()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_listenforcodecopies",
+      "label": "listenForCodeCopies()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_rt",
+      "label": "rt()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_r",
+      "label": "R()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_it",
+      "label": "it()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_st",
+      "label": "st()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_ee",
+      "label": "Ee()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_xe",
+      "label": "xe()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_ve",
+      "label": "ve()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_le",
+      "label": "Le()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "assets_main_fromlocalstorage",
+      "label": "fromLocalStorage()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "assets_main_setlocalstorage",
+      "label": "setLocalStorage()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "assets_main_handlevaluechange",
+      "label": "handleValueChange()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "assets_main_se",
+      "label": "Se()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "assets_main_e",
+      "label": "_e()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "assets_main_ot",
+      "label": "ot()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "assets_main_at",
+      "label": "at()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "assets_main_te",
+      "label": "Te()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_ke",
+      "label": "ke()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_ce",
+      "label": "Ce()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_pe",
+      "label": "Pe()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_ut",
+      "label": "ut()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_setactive",
+      "label": "setActive()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_onpointerup",
+      "label": "onPointerUp()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_ondocumentpointerdown",
+      "label": "onDocumentPointerDown()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_ondocumentpointerup",
+      "label": "onDocumentPointerUp()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_add",
+      "label": "add()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_toggle",
+      "label": "toggle()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_he",
+      "label": "He()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_ae",
+      "label": "Ae()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_ne",
+      "label": "Ne()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_re",
+      "label": "Re()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_de",
+      "label": "De()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_fe",
+      "label": "Fe()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_ht",
+      "label": "ht()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_pt",
+      "label": "pt()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_be",
+      "label": "Be()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_ft",
+      "label": "ft()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_je",
+      "label": "je()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_mt",
+      "label": "mt()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "assets_main_gt",
+      "label": "gt()",
+      "file_type": "code",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_app_ts",
+      "label": "app.ts",
+      "file_type": "code",
+      "source_file": "src/app.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_db_ts",
+      "label": "db.ts",
+      "file_type": "code",
+      "source_file": "src/db.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_db_conectardb",
+      "label": "conectarDB()",
+      "file_type": "code",
+      "source_file": "src/db.ts",
+      "source_location": "L35"
+    },
+    {
+      "id": "src_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_container_ts",
+      "label": "container.ts",
+      "file_type": "code",
+      "source_file": "src/container.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_middleware_errormiddleware_ts",
+      "label": "errorMiddleware.ts",
+      "file_type": "code",
+      "source_file": "src/middleware/errorMiddleware.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "middleware_errormiddleware_errorhandler",
+      "label": "errorHandler()",
+      "file_type": "code",
+      "source_file": "src/middleware/errorMiddleware.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "middleware_errormiddleware_asynchandler",
+      "label": "asyncHandler()",
+      "file_type": "code",
+      "source_file": "src/middleware/errorMiddleware.ts",
+      "source_location": "L34"
+    },
+    {
+      "id": "src_middleware_validatormiddleware_ts",
+      "label": "validatorMiddleware.ts",
+      "file_type": "code",
+      "source_file": "src/middleware/validatorMiddleware.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "middleware_validatormiddleware_validarrequest",
+      "label": "validarRequest()",
+      "file_type": "code",
+      "source_file": "src/middleware/validatorMiddleware.ts",
+      "source_location": "L12"
+    },
+    {
+      "id": "src_middleware_authmiddleware_ts",
+      "label": "authMiddleware.ts",
+      "file_type": "code",
+      "source_file": "src/middleware/authMiddleware.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "middleware_authmiddleware_verifytoken",
+      "label": "verifyToken()",
+      "file_type": "code",
+      "source_file": "src/middleware/authMiddleware.ts",
+      "source_location": "L23"
+    },
+    {
+      "id": "middleware_authmiddleware_esgerente",
+      "label": "esGerente()",
+      "file_type": "code",
+      "source_file": "src/middleware/authMiddleware.ts",
+      "source_location": "L42"
+    },
+    {
+      "id": "middleware_authmiddleware_esvendedor",
+      "label": "esVendedor()",
+      "file_type": "code",
+      "source_file": "src/middleware/authMiddleware.ts",
+      "source_location": "L52"
+    },
+    {
+      "id": "src_controllers_sistemacontroller_ts",
+      "label": "sistemaController.ts",
+      "file_type": "code",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "controllers_sistemacontroller_sistemacontroller",
+      "label": "SistemaController",
+      "file_type": "code",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "controllers_sistemacontroller_sistemacontroller_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_controllers_authcontroller_ts",
+      "label": "authController.ts",
+      "file_type": "code",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "controllers_authcontroller_authcontroller",
+      "label": "AuthController",
+      "file_type": "code",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "controllers_authcontroller_authcontroller_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L15"
+    },
+    {
+      "id": "src_controllers_produccioncontroller_ts",
+      "label": "produccionController.ts",
+      "file_type": "code",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "controllers_produccioncontroller_produccioncontroller",
+      "label": "ProduccionController",
+      "file_type": "code",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "controllers_produccioncontroller_produccioncontroller_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_controllers_comercialcontroller_ts",
+      "label": "comercialController.ts",
+      "file_type": "code",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "controllers_comercialcontroller_comercialcontroller",
+      "label": "ComercialController",
+      "file_type": "code",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "controllers_comercialcontroller_comercialcontroller_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_routes_authroutes_ts",
+      "label": "authRoutes.ts",
+      "file_type": "code",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_routes_produccionroutes_ts",
+      "label": "produccionRoutes.ts",
+      "file_type": "code",
+      "source_file": "src/routes/produccionRoutes.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_routes_comercialroutes_ts",
+      "label": "comercialRoutes.ts",
+      "file_type": "code",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_routes_sistemaroutes_ts",
+      "label": "sistemaRoutes.ts",
+      "file_type": "code",
+      "source_file": "src/routes/sistemaRoutes.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_config_env_ts",
+      "label": "env.ts",
+      "file_type": "code",
+      "source_file": "src/config/env.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_utils_logger_ts",
+      "label": "logger.ts",
+      "file_type": "code",
+      "source_file": "src/utils/logger.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_utils_apperror_ts",
+      "label": "AppError.ts",
+      "file_type": "code",
+      "source_file": "src/utils/AppError.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "utils_apperror_apperror",
+      "label": "AppError",
+      "file_type": "code",
+      "source_file": "src/utils/AppError.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "utils_apperror_apperror_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/utils/AppError.ts",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_models_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src/models/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "models_index_usuario",
+      "label": "Usuario",
+      "file_type": "code",
+      "source_file": "src/models/index.ts",
+      "source_location": "L12"
+    },
+    {
+      "id": "models_index_modelo",
+      "label": "Modelo",
+      "file_type": "code",
+      "source_file": "src/models/index.ts",
+      "source_location": "L37"
+    },
+    {
+      "id": "models_index_maniqui",
+      "label": "Maniqui",
+      "file_type": "code",
+      "source_file": "src/models/index.ts",
+      "source_location": "L54"
+    },
+    {
+      "id": "models_index_pieza",
+      "label": "Pieza",
+      "file_type": "code",
+      "source_file": "src/models/index.ts",
+      "source_location": "L73"
+    },
+    {
+      "id": "models_index_cliente",
+      "label": "Cliente",
+      "file_type": "code",
+      "source_file": "src/models/index.ts",
+      "source_location": "L96"
+    },
+    {
+      "id": "models_index_venta",
+      "label": "Venta",
+      "file_type": "code",
+      "source_file": "src/models/index.ts",
+      "source_location": "L113"
+    },
+    {
+      "id": "models_index_detalleventa",
+      "label": "DetalleVenta",
+      "file_type": "code",
+      "source_file": "src/models/index.ts",
+      "source_location": "L138"
+    },
+    {
+      "id": "src_services_sistemaservice_ts",
+      "label": "SistemaService.ts",
+      "file_type": "code",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_sistemaservice_sistemaservice",
+      "label": "SistemaService",
+      "file_type": "code",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "services_sistemaservice_sistemaservice_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "services_sistemaservice_sistemaservice_listarmodelos",
+      "label": ".listarModelos()",
+      "file_type": "code",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L19"
+    },
+    {
+      "id": "services_sistemaservice_sistemaservice_obtenerresumenproduccion",
+      "label": ".obtenerResumenProduccion()",
+      "file_type": "code",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L26"
+    },
+    {
+      "id": "services_sistemaservice_sistemaservice_calculardescuento",
+      "label": ".calcularDescuento()",
+      "file_type": "code",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L33"
+    },
+    {
+      "id": "services_sistemaservice_sistemaservice_listarproveedores",
+      "label": ".listarProveedores()",
+      "file_type": "code",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L44"
+    },
+    {
+      "id": "services_sistemaservice_sistemaservice_crearproveedor",
+      "label": ".crearProveedor()",
+      "file_type": "code",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L51"
+    },
+    {
+      "id": "src_services_produccionservice_ts",
+      "label": "ProduccionService.ts",
+      "file_type": "code",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_produccionservice_produccionservice",
+      "label": "ProduccionService",
+      "file_type": "code",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L15"
+    },
+    {
+      "id": "services_produccionservice_produccionservice_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L16"
+    },
+    {
+      "id": "services_produccionservice_produccionservice_listarmaniquies",
+      "label": ".listarManiquies()",
+      "file_type": "code",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L21"
+    },
+    {
+      "id": "services_produccionservice_produccionservice_obtenermaniqui",
+      "label": ".obtenerManiqui()",
+      "file_type": "code",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L28"
+    },
+    {
+      "id": "services_produccionservice_produccionservice_ensamblarmaniqui",
+      "label": ".ensamblarManiqui()",
+      "file_type": "code",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L39"
+    },
+    {
+      "id": "services_produccionservice_produccionservice_obtenerstockpiezas",
+      "label": ".obtenerStockPiezas()",
+      "file_type": "code",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L87"
+    },
+    {
+      "id": "src_services_comercialservice_ts",
+      "label": "ComercialService.ts",
+      "file_type": "code",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_comercialservice_comercialservice",
+      "label": "ComercialService",
+      "file_type": "code",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "services_comercialservice_comercialservice_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L15"
+    },
+    {
+      "id": "services_comercialservice_comercialservice_listarclientes",
+      "label": ".listarClientes()",
+      "file_type": "code",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L24"
+    },
+    {
+      "id": "services_comercialservice_comercialservice_registrarcliente",
+      "label": ".registrarCliente()",
+      "file_type": "code",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L31"
+    },
+    {
+      "id": "services_comercialservice_comercialservice_listarventas",
+      "label": ".listarVentas()",
+      "file_type": "code",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L38"
+    },
+    {
+      "id": "services_comercialservice_comercialservice_registrarventa",
+      "label": ".registrarVenta()",
+      "file_type": "code",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L45"
+    },
+    {
+      "id": "services_comercialservice_comercialservice_obtenerventa",
+      "label": ".obtenerVenta()",
+      "file_type": "code",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L91"
+    },
+    {
+      "id": "src_services_authservice_ts",
+      "label": "AuthService.ts",
+      "file_type": "code",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_authservice_authservice",
+      "label": "AuthService",
+      "file_type": "code",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L17"
+    },
+    {
+      "id": "services_authservice_authservice_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "services_authservice_authservice_register",
+      "label": ".register()",
+      "file_type": "code",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L23"
+    },
+    {
+      "id": "services_authservice_authservice_login",
+      "label": ".login()",
+      "file_type": "code",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L55"
+    },
+    {
+      "id": "src_types_repositories_ts",
+      "label": "repositories.ts",
+      "file_type": "code",
+      "source_file": "src/types/repositories.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_types_services_ts",
+      "label": "services.ts",
+      "file_type": "code",
+      "source_file": "src/types/services.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_types_entities_ts",
+      "label": "entities.ts",
+      "file_type": "code",
+      "source_file": "src/types/entities.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_repositories_clienterepository_ts",
+      "label": "ClienteRepository.ts",
+      "file_type": "code",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "repositories_clienterepository_clienterepository",
+      "label": "ClienteRepository",
+      "file_type": "code",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "repositories_clienterepository_clienterepository_findall",
+      "label": ".findAll()",
+      "file_type": "code",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "repositories_clienterepository_clienterepository_create",
+      "label": ".create()",
+      "file_type": "code",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L29"
+    },
+    {
+      "id": "repositories_clienterepository_clienterepository_findbyid",
+      "label": ".findById()",
+      "file_type": "code",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L36"
+    },
+    {
+      "id": "src_repositories_maniquirepository_ts",
+      "label": "ManiquiRepository.ts",
+      "file_type": "code",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "repositories_maniquirepository_maniquirepository",
+      "label": "ManiquiRepository",
+      "file_type": "code",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "repositories_maniquirepository_maniquirepository_findall",
+      "label": ".findAll()",
+      "file_type": "code",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "repositories_maniquirepository_maniquirepository_findbyserie",
+      "label": ".findBySerie()",
+      "file_type": "code",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L28"
+    },
+    {
+      "id": "repositories_maniquirepository_maniquirepository_assemble",
+      "label": ".assemble()",
+      "file_type": "code",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L35"
+    },
+    {
+      "id": "repositories_maniquirepository_maniquirepository_create",
+      "label": ".create()",
+      "file_type": "code",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L46"
+    },
+    {
+      "id": "repositories_maniquirepository_maniquirepository_findallpiezas",
+      "label": ".findAllPiezas()",
+      "file_type": "code",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L53"
+    },
+    {
+      "id": "src_repositories_sistemarepository_ts",
+      "label": "SistemaRepository.ts",
+      "file_type": "code",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "repositories_sistemarepository_sistemarepository",
+      "label": "SistemaRepository",
+      "file_type": "code",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "repositories_sistemarepository_sistemarepository_findallmodelos",
+      "label": ".findAllModelos()",
+      "file_type": "code",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "repositories_sistemarepository_sistemarepository_rawquery",
+      "label": ".rawQuery()",
+      "file_type": "code",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L25"
+    },
+    {
+      "id": "repositories_sistemarepository_sistemarepository_getproduccionresumen",
+      "label": ".getProduccionResumen()",
+      "file_type": "code",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L33"
+    },
+    {
+      "id": "repositories_sistemarepository_sistemarepository_calculardescuentoudf",
+      "label": ".calcularDescuentoUDF()",
+      "file_type": "code",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L46"
+    },
+    {
+      "id": "repositories_sistemarepository_sistemarepository_findproveedores",
+      "label": ".findProveedores()",
+      "file_type": "code",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L57"
+    },
+    {
+      "id": "repositories_sistemarepository_sistemarepository_createproveedor",
+      "label": ".createProveedor()",
+      "file_type": "code",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L64"
+    },
+    {
+      "id": "src_repositories_usuariorepository_ts",
+      "label": "UsuarioRepository.ts",
+      "file_type": "code",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "repositories_usuariorepository_usuariorepository",
+      "label": "UsuarioRepository",
+      "file_type": "code",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "repositories_usuariorepository_usuariorepository_findbyusername",
+      "label": ".findByUsername()",
+      "file_type": "code",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L17"
+    },
+    {
+      "id": "repositories_usuariorepository_usuariorepository_findbyusernameall",
+      "label": ".findByUsernameAll()",
+      "file_type": "code",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L24"
+    },
+    {
+      "id": "repositories_usuariorepository_usuariorepository_create",
+      "label": ".create()",
+      "file_type": "code",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L31"
+    },
+    {
+      "id": "repositories_usuariorepository_usuariorepository_updatelastlogin",
+      "label": ".updateLastLogin()",
+      "file_type": "code",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L38"
+    },
+    {
+      "id": "src_repositories_ventarepository_ts",
+      "label": "VentaRepository.ts",
+      "file_type": "code",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "repositories_ventarepository_ventarepository",
+      "label": "VentaRepository",
+      "file_type": "code",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "repositories_ventarepository_ventarepository_findall",
+      "label": ".findAll()",
+      "file_type": "code",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "repositories_ventarepository_ventarepository_create",
+      "label": ".create()",
+      "file_type": "code",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L25"
+    },
+    {
+      "id": "repositories_ventarepository_ventarepository_findbyid",
+      "label": ".findById()",
+      "file_type": "code",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L55"
+    }
+  ],
+  "edges": [
+    {
+      "source": "reset_db_users_js",
+      "target": "bcryptjs",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "reset_db_users.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "reset_db_users_js",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "reset_db_users.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "reset_db_users_js",
+      "target": "src_db_conectardb",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "reset_db_users.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "reset_db_users_js",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "reset_db_users.js",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "reset_db_users_js",
+      "target": "models_index_usuario",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "reset_db_users.js",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "reset_db_users_js",
+      "target": "reset_db_users_resetdb",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "reset_db_users.js",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "bcryptjs",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "models_index_usuario",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "models_index_modelo",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "models_index_maniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "models_index_cliente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "models_index_pieza",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "models_index_venta",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "models_index_detalleventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "populate_db_js",
+      "target": "tp_maniqui_backend_populate_db_populate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "populate_db.js",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "run_db_reform_js",
+      "target": "fs",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_db_reform.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "run_db_reform_js",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_db_reform.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "run_db_reform_js",
+      "target": "src_db_conectardb",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_db_reform.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "run_db_reform_js",
+      "target": "run_db_reform_reformardb",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "run_db_reform.js",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "fix_inconsistencies_js",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix_inconsistencies.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "fix_inconsistencies_js",
+      "target": "models_index_maniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix_inconsistencies.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "fix_inconsistencies_js",
+      "target": "models_index_detalleventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix_inconsistencies.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "fix_inconsistencies_js",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "fix_inconsistencies.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "fix_inconsistencies_js",
+      "target": "tp_maniqui_backend_fix_inconsistencies_fix",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fix_inconsistencies.js",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "setup_admin_js",
+      "target": "bcryptjs",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "setup_admin.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "setup_admin_js",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "setup_admin.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "setup_admin_js",
+      "target": "models_index_usuario",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "setup_admin.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "setup_admin_js",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "setup_admin.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "setup_admin_js",
+      "target": "src_db_conectardb",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "setup_admin.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "setup_admin_js",
+      "target": "setup_admin_crearadmininicial",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup_admin.js",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_ts",
+      "target": "node_assert",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_ts",
+      "target": "src_services_produccionservice_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_ts",
+      "target": "services_produccionservice_produccionservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_ts",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_ts",
+      "target": "models_index_pieza",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_auth_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/auth.test.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_auth_test_ts",
+      "target": "node_assert",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/auth.test.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_auth_test_ts",
+      "target": "jsonwebtoken",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/auth.test.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_auth_test_ts",
+      "target": "dotenv",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/auth.test.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_js",
+      "target": "node_test",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_js",
+      "target": "node_assert",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_js",
+      "target": "src_services_produccionservice_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_produccion_service_test_js",
+      "target": "services_produccionservice_produccionservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/produccion_service.test.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_validators_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/validators.test.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_validators_test_ts",
+      "target": "node_assert",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/validators.test.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_validators_test_ts",
+      "target": "src_middleware_validatormiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/validators.test.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_validators_test_ts",
+      "target": "middleware_validatormiddleware_reglaslogin",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/validators.test.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_validators_test_ts",
+      "target": "middleware_validatormiddleware_reglascliente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/validators.test.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_middleware_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/middleware.test.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_middleware_test_ts",
+      "target": "node_assert",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/middleware.test.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_middleware_test_ts",
+      "target": "src_middleware_authmiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/middleware.test.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_middleware_test_ts",
+      "target": "middleware_authmiddleware_esgerente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/middleware.test.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_middleware_test_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/middleware.test.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_logic_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/logic.test.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_logic_test_ts",
+      "target": "node_assert",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/logic.test.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_unit_logic_test_ts",
+      "target": "unit_logic_test_calculardescuentojs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/unit/logic.test.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_icons_js",
+      "target": "assets_icons_addicons",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/icons.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_icons_js",
+      "target": "assets_icons_updateuseelements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/icons.js",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_icons_addicons",
+      "target": "assets_icons_updateuseelements",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/icons.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_getitem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_setitem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_disablewritinglocalstorage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_disable",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_enable",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_disablewritinglocalstorage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_x",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_constructor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_createcomponents",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_filterchanged",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_showpage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_scrolltohash",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ensureactivepagevisible",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_updateindexvisibility",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ensurefocusedelementvisible",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_listenforcodecopies",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_rt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_r",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_it",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_st",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ee",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_xe",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ve",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_constructor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_le",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_constructor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_fromlocalstorage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_setlocalstorage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_handlevaluechange",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_se",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_e",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_at",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_te",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ke",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ce",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_te",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_pe",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ut",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_constructor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_setactive",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_onpointerup",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ondocumentpointerdown",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ondocumentpointerup",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_constructor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_add",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_toggle",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_constructor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_he",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ae",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ne",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_re",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ve",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_de",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_fe",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_e",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ht",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_pt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_be",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_ft",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_je",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_mt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_ts_assets_main_js",
+      "target": "assets_main_gt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_constructor",
+      "target": "assets_main_createcomponents",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_constructor",
+      "target": "assets_main_ensurefocusedelementvisible",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_constructor",
+      "target": "assets_main_listenforcodecopies",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_constructor",
+      "target": "assets_main_updateindexvisibility",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_constructor",
+      "target": "assets_main_scrolltohash",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_filterchanged",
+      "target": "assets_main_ensurefocusedelementvisible",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_showpage",
+      "target": "assets_main_ensurefocusedelementvisible",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_showpage",
+      "target": "assets_main_updateindexvisibility",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_showpage",
+      "target": "assets_main_scrolltohash",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ensureactivepagevisible",
+      "target": "assets_main_rt",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ensurefocusedelementvisible",
+      "target": "assets_main_add",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_xe",
+      "target": "assets_main_it",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ve",
+      "target": "assets_main_add",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_constructor",
+      "target": "assets_main_setlocalstorage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_constructor",
+      "target": "assets_main_fromlocalstorage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_fromlocalstorage",
+      "target": "assets_main_getitem",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_setlocalstorage",
+      "target": "assets_main_setitem",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_setlocalstorage",
+      "target": "assets_main_handlevaluechange",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_handlevaluechange",
+      "target": "assets_main_toggle",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_handlevaluechange",
+      "target": "assets_main_filterchanged",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_handlevaluechange",
+      "target": "assets_main_updateindexvisibility",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_se",
+      "target": "assets_main_r",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_e",
+      "target": "assets_main_se",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_e",
+      "target": "assets_main_ot",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ot",
+      "target": "assets_main_ee",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ot",
+      "target": "assets_main_fe",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_at",
+      "target": "assets_main_te",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_at",
+      "target": "assets_main_pe",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_at",
+      "target": "assets_main_ce",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ce",
+      "target": "assets_main_te",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_setactive",
+      "target": "assets_main_toggle",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_setactive",
+      "target": "assets_main_add",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_onpointerup",
+      "target": "assets_main_setactive",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ondocumentpointerdown",
+      "target": "assets_main_setactive",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_toggle",
+      "target": "assets_main_setitem",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_constructor",
+      "target": "assets_main_getitem",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_constructor",
+      "target": "assets_main_add",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_he",
+      "target": "assets_main_getitem",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_he",
+      "target": "assets_main_ae",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ne",
+      "target": "assets_main_re",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_re",
+      "target": "assets_main_r",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_re",
+      "target": "assets_main_ve",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_re",
+      "target": "assets_main_createcomponents",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_re",
+      "target": "assets_main_showpage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_re",
+      "target": "assets_main_ensureactivepagevisible",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ve",
+      "target": "assets_main_de",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_de",
+      "target": "assets_main_add",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_de",
+      "target": "assets_main_fe",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_e",
+      "target": "assets_main_ht",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_e",
+      "target": "assets_main_pt",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ht",
+      "target": "assets_main_add",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_pt",
+      "target": "assets_main_be",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_be",
+      "target": "assets_main_r",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_be",
+      "target": "assets_main_add",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_be",
+      "target": "assets_main_ft",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_ft",
+      "target": "assets_main_je",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_je",
+      "target": "assets_main_add",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "assets_main_mt",
+      "target": "assets_main_add",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/api-ts/assets/main.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "cors",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "helmet",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "morgan",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "src_routes_authroutes_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "src_routes_produccionroutes_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "src_routes_comercialroutes_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "src_routes_sistemaroutes_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "swagger_ui_express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "yamljs",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "src_middleware_errormiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_ts",
+      "target": "middleware_errormiddleware_errorhandler",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/app.ts",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "src_db_ts",
+      "target": "sequelize",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/db.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_db_ts",
+      "target": "src_config_env_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/db.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_db_ts",
+      "target": "config_env_env",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/db.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_db_ts",
+      "target": "src_utils_logger_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/db.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_db_ts",
+      "target": "src_db_conectardb",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/db.ts",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "src_index_ts",
+      "target": "src_app_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_index_ts",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_index_ts",
+      "target": "src_db_conectardb",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_index_ts",
+      "target": "src_config_env_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_index_ts",
+      "target": "config_env_env",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_index_ts",
+      "target": "src_utils_logger_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/index.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_repositories_usuariorepository_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_repositories_clienterepository_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_repositories_ventarepository_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_repositories_maniquirepository_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_repositories_sistemarepository_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_services_authservice_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "services_authservice_authservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_services_comercialservice_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "services_comercialservice_comercialservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_services_produccionservice_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "services_produccionservice_produccionservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_services_sistemaservice_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "services_sistemaservice_sistemaservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_controllers_authcontroller_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "controllers_authcontroller_authcontroller",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_controllers_comercialcontroller_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "controllers_comercialcontroller_comercialcontroller",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_controllers_produccioncontroller_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "controllers_produccioncontroller_produccioncontroller",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "src_controllers_sistemacontroller_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "src_container_ts",
+      "target": "controllers_sistemacontroller_sistemacontroller",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/container.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_errormiddleware_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/errorMiddleware.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_errormiddleware_ts",
+      "target": "src_utils_logger_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/errorMiddleware.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_errormiddleware_ts",
+      "target": "src_utils_apperror_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/errorMiddleware.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_errormiddleware_ts",
+      "target": "utils_apperror_apperror",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/errorMiddleware.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_errormiddleware_ts",
+      "target": "middleware_errormiddleware_errorhandler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/errorMiddleware.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_errormiddleware_ts",
+      "target": "middleware_errormiddleware_asynchandler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/errorMiddleware.ts",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_validatormiddleware_ts",
+      "target": "express_validator",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/validatorMiddleware.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_validatormiddleware_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/validatorMiddleware.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_validatormiddleware_ts",
+      "target": "middleware_validatormiddleware_validarrequest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/validatorMiddleware.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_authmiddleware_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/authMiddleware.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_authmiddleware_ts",
+      "target": "jsonwebtoken",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/authMiddleware.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_authmiddleware_ts",
+      "target": "middleware_authmiddleware_verifytoken",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/authMiddleware.ts",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_authmiddleware_ts",
+      "target": "middleware_authmiddleware_esgerente",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/authMiddleware.ts",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "src_middleware_authmiddleware_ts",
+      "target": "middleware_authmiddleware_esvendedor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middleware/authMiddleware.ts",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_sistemacontroller_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_sistemacontroller_ts",
+      "target": "src_types_services_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_sistemacontroller_ts",
+      "target": "types_services_isistemaservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_sistemacontroller_ts",
+      "target": "src_middleware_errormiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_sistemacontroller_ts",
+      "target": "middleware_errormiddleware_asynchandler",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_sistemacontroller_ts",
+      "target": "controllers_sistemacontroller_sistemacontroller",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "controllers_sistemacontroller_sistemacontroller",
+      "target": "controllers_sistemacontroller_sistemacontroller_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/sistemaController.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_authcontroller_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_authcontroller_ts",
+      "target": "src_types_services_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_authcontroller_ts",
+      "target": "types_services_iauthservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_authcontroller_ts",
+      "target": "src_middleware_errormiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_authcontroller_ts",
+      "target": "middleware_errormiddleware_asynchandler",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_authcontroller_ts",
+      "target": "src_utils_logger_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_authcontroller_ts",
+      "target": "controllers_authcontroller_authcontroller",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "controllers_authcontroller_authcontroller",
+      "target": "controllers_authcontroller_authcontroller_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/authController.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_produccioncontroller_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_produccioncontroller_ts",
+      "target": "src_types_services_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_produccioncontroller_ts",
+      "target": "types_services_iproduccionservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_produccioncontroller_ts",
+      "target": "src_middleware_errormiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_produccioncontroller_ts",
+      "target": "middleware_errormiddleware_asynchandler",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_produccioncontroller_ts",
+      "target": "controllers_produccioncontroller_produccioncontroller",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "controllers_produccioncontroller_produccioncontroller",
+      "target": "controllers_produccioncontroller_produccioncontroller_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/produccionController.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_comercialcontroller_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_comercialcontroller_ts",
+      "target": "src_types_services_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_comercialcontroller_ts",
+      "target": "types_services_icomercialservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_comercialcontroller_ts",
+      "target": "src_middleware_errormiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_comercialcontroller_ts",
+      "target": "middleware_errormiddleware_asynchandler",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_controllers_comercialcontroller_ts",
+      "target": "controllers_comercialcontroller_comercialcontroller",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "controllers_comercialcontroller_comercialcontroller",
+      "target": "controllers_comercialcontroller_comercialcontroller_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/comercialController.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_authroutes_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_authroutes_ts",
+      "target": "src_container_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_authroutes_ts",
+      "target": "src_container_authcontroller",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_authroutes_ts",
+      "target": "src_middleware_validatormiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_authroutes_ts",
+      "target": "middleware_validatormiddleware_reglaslogin",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_authroutes_ts",
+      "target": "middleware_validatormiddleware_reglasregistro",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_authroutes_ts",
+      "target": "src_middleware_authmiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_authroutes_ts",
+      "target": "middleware_authmiddleware_verifytoken",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_authroutes_ts",
+      "target": "middleware_authmiddleware_esgerente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/authRoutes.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_produccionroutes_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/produccionRoutes.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_produccionroutes_ts",
+      "target": "src_container_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/produccionRoutes.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_produccionroutes_ts",
+      "target": "src_container_produccioncontroller",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/produccionRoutes.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_produccionroutes_ts",
+      "target": "src_middleware_validatormiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/produccionRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_produccionroutes_ts",
+      "target": "middleware_validatormiddleware_reglasmaniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/produccionRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_produccionroutes_ts",
+      "target": "src_middleware_authmiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/produccionRoutes.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_produccionroutes_ts",
+      "target": "middleware_authmiddleware_verifytoken",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/produccionRoutes.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_produccionroutes_ts",
+      "target": "middleware_authmiddleware_esgerente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/produccionRoutes.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_comercialroutes_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_comercialroutes_ts",
+      "target": "src_container_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_comercialroutes_ts",
+      "target": "src_container_comercialcontroller",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_comercialroutes_ts",
+      "target": "src_middleware_validatormiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_comercialroutes_ts",
+      "target": "middleware_validatormiddleware_reglascliente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_comercialroutes_ts",
+      "target": "middleware_validatormiddleware_reglasventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_comercialroutes_ts",
+      "target": "src_middleware_authmiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_comercialroutes_ts",
+      "target": "middleware_authmiddleware_verifytoken",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_comercialroutes_ts",
+      "target": "middleware_authmiddleware_esvendedor",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/comercialRoutes.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_sistemaroutes_ts",
+      "target": "express",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/sistemaRoutes.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_sistemaroutes_ts",
+      "target": "src_container_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/sistemaRoutes.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_sistemaroutes_ts",
+      "target": "src_container_sistemacontroller",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/sistemaRoutes.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_sistemaroutes_ts",
+      "target": "src_middleware_authmiddleware_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/sistemaRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_sistemaroutes_ts",
+      "target": "middleware_authmiddleware_verifytoken",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/sistemaRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_routes_sistemaroutes_ts",
+      "target": "middleware_authmiddleware_esgerente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/routes/sistemaRoutes.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_config_env_ts",
+      "target": "zod",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/config/env.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_config_env_ts",
+      "target": "dotenv",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/config/env.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_utils_logger_ts",
+      "target": "pino",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/utils/logger.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_utils_logger_ts",
+      "target": "src_config_env_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/utils/logger.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_utils_logger_ts",
+      "target": "config_env_env",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/utils/logger.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_utils_apperror_ts",
+      "target": "utils_apperror_apperror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/utils/AppError.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "utils_apperror_apperror",
+      "target": "utils_apperror_apperror_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/utils/AppError.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "sequelize",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "types_entities_iusuario",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "types_entities_imodelo",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "types_entities_imaniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "types_entities_ipieza",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "types_entities_icliente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "types_entities_iventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "types_entities_idetalleventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "models_index_usuario",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "models_index_modelo",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "models_index_maniqui",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "models_index_pieza",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "models_index_cliente",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "models_index_venta",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "src_models_index_ts",
+      "target": "models_index_detalleventa",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/index.ts",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_sistemaservice_ts",
+      "target": "src_types_repositories_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_sistemaservice_ts",
+      "target": "types_repositories_isistemarepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_sistemaservice_ts",
+      "target": "src_types_services_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_sistemaservice_ts",
+      "target": "types_services_isistemaservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_sistemaservice_ts",
+      "target": "src_utils_apperror_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_sistemaservice_ts",
+      "target": "utils_apperror_apperror",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_sistemaservice_ts",
+      "target": "services_sistemaservice_sistemaservice",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sistemaservice_sistemaservice",
+      "target": "services_sistemaservice_sistemaservice_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sistemaservice_sistemaservice",
+      "target": "services_sistemaservice_sistemaservice_listarmodelos",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sistemaservice_sistemaservice",
+      "target": "services_sistemaservice_sistemaservice_obtenerresumenproduccion",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sistemaservice_sistemaservice",
+      "target": "services_sistemaservice_sistemaservice_calculardescuento",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sistemaservice_sistemaservice",
+      "target": "services_sistemaservice_sistemaservice_listarproveedores",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sistemaservice_sistemaservice",
+      "target": "services_sistemaservice_sistemaservice_crearproveedor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/SistemaService.ts",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "src_types_repositories_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "types_repositories_imaniquirepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "src_types_services_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "types_services_iproduccionservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "types_entities_imaniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "src_utils_apperror_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "utils_apperror_apperror",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "models_index_pieza",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_produccionservice_ts",
+      "target": "services_produccionservice_produccionservice",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "services_produccionservice_produccionservice",
+      "target": "services_produccionservice_produccionservice_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "services_produccionservice_produccionservice",
+      "target": "services_produccionservice_produccionservice_listarmaniquies",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "services_produccionservice_produccionservice",
+      "target": "services_produccionservice_produccionservice_obtenermaniqui",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "services_produccionservice_produccionservice",
+      "target": "services_produccionservice_produccionservice_ensamblarmaniqui",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "services_produccionservice_produccionservice",
+      "target": "services_produccionservice_produccionservice_obtenerstockpiezas",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ProduccionService.ts",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "src_types_repositories_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "types_repositories_iclienterepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "types_repositories_iventarepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "types_repositories_imaniquirepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "src_types_services_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "types_services_icomercialservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "types_entities_icliente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "types_entities_iventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "src_utils_apperror_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "utils_apperror_apperror",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_comercialservice_ts",
+      "target": "services_comercialservice_comercialservice",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "services_comercialservice_comercialservice",
+      "target": "services_comercialservice_comercialservice_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "services_comercialservice_comercialservice",
+      "target": "services_comercialservice_comercialservice_listarclientes",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "services_comercialservice_comercialservice",
+      "target": "services_comercialservice_comercialservice_registrarcliente",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "services_comercialservice_comercialservice",
+      "target": "services_comercialservice_comercialservice_listarventas",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "services_comercialservice_comercialservice",
+      "target": "services_comercialservice_comercialservice_registrarventa",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "services_comercialservice_comercialservice",
+      "target": "services_comercialservice_comercialservice_obtenerventa",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/ComercialService.ts",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "bcryptjs",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "jsonwebtoken",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "src_types_repositories_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "types_repositories_iusuariorepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "src_types_services_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "types_services_iauthservice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "types_entities_iusuario",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "src_config_env_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "config_env_env",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "src_utils_apperror_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "utils_apperror_apperror",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_authservice_ts",
+      "target": "services_authservice_authservice",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "services_authservice_authservice",
+      "target": "services_authservice_authservice_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "services_authservice_authservice",
+      "target": "services_authservice_authservice_register",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "services_authservice_authservice",
+      "target": "services_authservice_authservice_login",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/AuthService.ts",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_repositories_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/repositories.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_repositories_ts",
+      "target": "types_entities_icliente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/repositories.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_repositories_ts",
+      "target": "types_entities_iusuario",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/repositories.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_repositories_ts",
+      "target": "types_entities_imaniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/repositories.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_repositories_ts",
+      "target": "types_entities_imodelo",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/repositories.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_repositories_ts",
+      "target": "types_entities_iventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/repositories.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_services_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/services.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_services_ts",
+      "target": "types_entities_icliente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/services.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_services_ts",
+      "target": "types_entities_iusuario",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/services.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_services_ts",
+      "target": "types_entities_imaniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/services.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_types_services_ts",
+      "target": "types_entities_iventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/types/services.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_clienterepository_ts",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_clienterepository_ts",
+      "target": "models_index_cliente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_clienterepository_ts",
+      "target": "sequelize",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_clienterepository_ts",
+      "target": "src_types_repositories_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_clienterepository_ts",
+      "target": "types_repositories_iclienterepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_clienterepository_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_clienterepository_ts",
+      "target": "types_entities_icliente",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_clienterepository_ts",
+      "target": "repositories_clienterepository_clienterepository",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_clienterepository_clienterepository",
+      "target": "repositories_clienterepository_clienterepository_findall",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_clienterepository_clienterepository",
+      "target": "repositories_clienterepository_clienterepository_create",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_clienterepository_clienterepository",
+      "target": "repositories_clienterepository_clienterepository_findbyid",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ClienteRepository.ts",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "models_index_maniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "models_index_modelo",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "models_index_pieza",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "src_types_repositories_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "types_repositories_imaniquirepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "types_entities_imaniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_maniquirepository_ts",
+      "target": "repositories_maniquirepository_maniquirepository",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_maniquirepository_maniquirepository",
+      "target": "repositories_maniquirepository_maniquirepository_findall",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_maniquirepository_maniquirepository",
+      "target": "repositories_maniquirepository_maniquirepository_findbyserie",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_maniquirepository_maniquirepository",
+      "target": "repositories_maniquirepository_maniquirepository_assemble",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_maniquirepository_maniquirepository",
+      "target": "repositories_maniquirepository_maniquirepository_create",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_maniquirepository_maniquirepository",
+      "target": "repositories_maniquirepository_maniquirepository_findallpiezas",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_maniquirepository_maniquirepository_findallpiezas",
+      "target": "repositories_maniquirepository_maniquirepository_findall",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/ManiquiRepository.ts",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_sistemarepository_ts",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_sistemarepository_ts",
+      "target": "models_index_modelo",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_sistemarepository_ts",
+      "target": "models_index_maniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_sistemarepository_ts",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_sistemarepository_ts",
+      "target": "src_types_repositories_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_sistemarepository_ts",
+      "target": "types_repositories_isistemarepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_sistemarepository_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_sistemarepository_ts",
+      "target": "types_entities_imodelo",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_sistemarepository_ts",
+      "target": "repositories_sistemarepository_sistemarepository",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_sistemarepository_sistemarepository",
+      "target": "repositories_sistemarepository_sistemarepository_findallmodelos",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_sistemarepository_sistemarepository",
+      "target": "repositories_sistemarepository_sistemarepository_rawquery",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_sistemarepository_sistemarepository",
+      "target": "repositories_sistemarepository_sistemarepository_getproduccionresumen",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_sistemarepository_sistemarepository",
+      "target": "repositories_sistemarepository_sistemarepository_calculardescuentoudf",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_sistemarepository_sistemarepository",
+      "target": "repositories_sistemarepository_sistemarepository_findproveedores",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_sistemarepository_sistemarepository",
+      "target": "repositories_sistemarepository_sistemarepository_createproveedor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_sistemarepository_sistemarepository_findproveedores",
+      "target": "repositories_sistemarepository_sistemarepository_rawquery",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/SistemaRepository.ts",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_usuariorepository_ts",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_usuariorepository_ts",
+      "target": "models_index_usuario",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_usuariorepository_ts",
+      "target": "src_types_repositories_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_usuariorepository_ts",
+      "target": "types_repositories_iusuariorepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_usuariorepository_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_usuariorepository_ts",
+      "target": "types_entities_iusuario",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_usuariorepository_ts",
+      "target": "repositories_usuariorepository_usuariorepository",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_usuariorepository_usuariorepository",
+      "target": "repositories_usuariorepository_usuariorepository_findbyusername",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_usuariorepository_usuariorepository",
+      "target": "repositories_usuariorepository_usuariorepository_findbyusernameall",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_usuariorepository_usuariorepository",
+      "target": "repositories_usuariorepository_usuariorepository_create",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_usuariorepository_usuariorepository",
+      "target": "repositories_usuariorepository_usuariorepository_updatelastlogin",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/UsuarioRepository.ts",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "src_models_index_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "models_index_venta",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "models_index_detalleventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "models_index_maniqui",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "src_db_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "src_types_repositories_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "types_repositories_iventarepository",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "src_types_entities_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "types_entities_iventa",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_repositories_ventarepository_ts",
+      "target": "repositories_ventarepository_ventarepository",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_ventarepository_ventarepository",
+      "target": "repositories_ventarepository_ventarepository_findall",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_ventarepository_ventarepository",
+      "target": "repositories_ventarepository_ventarepository_create",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "repositories_ventarepository_ventarepository",
+      "target": "repositories_ventarepository_ventarepository_findbyid",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/repositories/VentaRepository.ts",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "reset_db_users_resetdb",
+      "target": "src_db_conectardb",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "reset_db_users.js",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "run_db_reform_reformardb",
+      "target": "src_db_conectardb",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "run_db_reform.js",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "setup_admin_crearadmininicial",
+      "target": "src_db_conectardb",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "setup_admin.js",
+      "source_location": "L17",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

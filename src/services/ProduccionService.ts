@@ -77,7 +77,10 @@ export class ProduccionService implements IProduccionService {
     }
 
     try {
-      return await this.maniquiRepo.assemble(modelo_id, numero_serie);
+      const result = await this.maniquiRepo.assemble(modelo_id, numero_serie);
+      // Notificar a todos los clientes que el stock ha cambiado debido a un ensamblaje
+      sseManager.notificarStockActualizado();
+      return result;
     } catch (error: any) {
       console.error('❌ Error ejecutando EnsamblarManiqui SP:', error.message);
       // Extraer mensaje del SIGNAL si existe

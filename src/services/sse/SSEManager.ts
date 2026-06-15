@@ -139,6 +139,13 @@ class SSEManager {
   }
 
   /**
+   * Notifica a todos los clientes que el stock general ha cambiado (ej. por ensamblaje).
+   */
+  notificarStockActualizado() {
+    this.broadcast('stock_actualizado', { timestamp: Date.now() });
+  }
+
+  /**
    * Envía un evento a todos los clientes conectados.
    */
   private broadcast(event: string, data: any) {

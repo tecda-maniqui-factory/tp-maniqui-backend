@@ -14,7 +14,7 @@
     "build": "tsc",
     "mock": "npx @stoplight/prism-cli mock openapi.yaml -p 8081 -d",
     "preinstall": "npx only-allow pnpm",
-    "test": "npm run test:unit && npm run test:integration",
+    "test": "pnpm run test:unit && pnpm run test:integration",
     "test:unit": "node --test --import tsx tests/unit/*.test.ts",
     "test:integration": "bash tests/integration/test_all.sh",
     "doc:api": "npx @redocly/cli build-docs openapi.yaml -o docs/api/redoc.html",

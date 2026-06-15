@@ -16,17 +16,32 @@ import {
 import sequelize from './src/db.js';
 
 const populate = async () => {
-  const transaction = await sequelize.transaction();
+  let transaction;
   try {
+    console.log('⏳ Modificando columna rol para soportar operario...');
+    await sequelize.query("ALTER TABLE Usuarios MODIFY COLUMN rol ENUM('vendedor', 'gerente_prod', 'operario') DEFAULT 'vendedor'");
+
+    transaction = await sequelize.transaction();
     console.log('⏳ Iniciando población atómica...');
+
+    // Asegurar Orígenes de Piezas básicos
+    await sequelize.query("INSERT IGNORE INTO Origenes_Piezas (id, nombre, codigo, tipo) VALUES (1, 'Planta', 'INT', 'Produccion Interna'), (2, 'Proveedor Externo A', 'EXT-A', 'Proveedor Externo')", { transaction });
     
     // 1. Usuarios
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash('password123', salt);
+    const hashGerente = await bcrypt.hash('gerente', salt);
+    const hashVendedor = await bcrypt.hash('vendedor', salt);
+    const hashOperario = await bcrypt.hash('operario', salt);
+    const hashAdmin = await bcrypt.hash('tecda2026', salt);
+
     await Usuario.bulkCreate([
       { username: 'vendedor_test', password_hash: passwordHash, nombre_completo: 'Pablo Vendedor', rol: 'vendedor' },
       { username: 'gerente_test', password_hash: passwordHash, nombre_completo: 'Ana Gerente', rol: 'gerente_prod' },
-      { username: 'admin_pablo', password_hash: await bcrypt.hash('tecda2026', salt), nombre_completo: 'Pablo Admin', rol: 'gerente_prod' }
+      { username: 'admin_pablo', password_hash: hashAdmin, nombre_completo: 'Pablo Admin', rol: 'gerente_prod' },
+      { username: 'gerente', password_hash: hashGerente, nombre_completo: 'Gerente Simplificado', rol: 'gerente_prod' },
+      { username: 'vendedor', password_hash: hashVendedor, nombre_completo: 'Vendedor Simplificado', rol: 'vendedor' },
+      { username: 'operario', password_hash: hashOperario, nombre_completo: 'Operario Simplificado', rol: 'operario' }
     ], { ignoreDuplicates: true, transaction });
 
     // 2. Modelos

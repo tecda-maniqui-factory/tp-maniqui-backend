@@ -14,7 +14,7 @@ export interface AuthRequest extends Request {
   user?: {
     id: number;
     username: string;
-    rol: 'vendedor' | 'gerente_prod';
+    rol: 'vendedor' | 'gerente_prod' | 'operario';
   };
 }
 
@@ -60,6 +60,17 @@ export const esGerente = (req: AuthRequest, res: Response, next: NextFunction) =
 export const esVendedor = (req: AuthRequest, res: Response, next: NextFunction) => {
   if (req.user?.rol !== 'vendedor' && req.user?.rol !== 'gerente_prod') {
     return res.status(403).json({ error: 'Acceso denegado: Se requiere rol Vendedor' });
+  }
+  next();
+};
+
+/**
+ * Middleware para restringir acceso solo a Gerentes de Producción u Operarios de Línea.
+ */
+export const esGerenteOOperario = (req: AuthRequest, res: Response, next: NextFunction) => {
+  console.log(`DEBUG: Verificando rol Gerente/Operario. Usuario: ${req.user?.username}, Rol: ${req.user?.rol}`);
+  if (req.user?.rol !== 'gerente_prod' && req.user?.rol !== 'operario') {
+    return res.status(403).json({ error: 'Acceso denegado: Se requiere rol Gerente de Producción u Operario de Línea' });
   }
   next();
 };

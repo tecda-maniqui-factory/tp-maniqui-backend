@@ -1,0 +1,393 @@
+{
+  "communities": {
+    "0": [
+      "controllers_authcontroller_authcontroller",
+      "controllers_authcontroller_authcontroller_constructor",
+      "controllers_comercialcontroller_comercialcontroller",
+      "controllers_comercialcontroller_comercialcontroller_constructor",
+      "controllers_produccioncontroller_produccioncontroller",
+      "controllers_produccioncontroller_produccioncontroller_constructor",
+      "controllers_sistemacontroller_sistemacontroller",
+      "controllers_sistemacontroller_sistemacontroller_constructor",
+      "middleware_errormiddleware_asynchandler",
+      "services_authservice_authservice",
+      "services_authservice_authservice_constructor",
+      "services_authservice_authservice_login",
+      "services_authservice_authservice_register",
+      "src_container_ts",
+      "src_controllers_authcontroller_ts",
+      "src_controllers_comercialcontroller_ts",
+      "src_controllers_produccioncontroller_ts",
+      "src_controllers_sistemacontroller_ts",
+      "src_middleware_errormiddleware_ts",
+      "src_repositories_clienterepository_ts",
+      "src_repositories_usuariorepository_ts",
+      "src_services_authservice_ts",
+      "src_services_comercialservice_ts",
+      "src_services_produccionservice_ts",
+      "src_services_sistemaservice_ts",
+      "src_types_entities_ts",
+      "src_types_repositories_ts",
+      "src_types_services_ts",
+      "src_utils_apperror_ts",
+      "utils_apperror_apperror",
+      "utils_apperror_apperror_constructor"
+    ],
+    "1": [
+      "fix_inconsistencies_js",
+      "models_index_cliente",
+      "models_index_detalleventa",
+      "models_index_maniqui",
+      "models_index_modelo",
+      "models_index_pieza",
+      "models_index_usuario",
+      "models_index_venta",
+      "populate_db_js",
+      "reset_db_users_js",
+      "reset_db_users_resetdb",
+      "run_db_reform_js",
+      "run_db_reform_reformardb",
+      "setup_admin_crearadmininicial",
+      "setup_admin_js",
+      "src_config_env_ts",
+      "src_db_conectardb",
+      "src_db_ts",
+      "src_index_ts",
+      "src_models_index_ts",
+      "src_repositories_maniquirepository_ts",
+      "src_repositories_sistemarepository_ts",
+      "src_repositories_ventarepository_ts",
+      "src_utils_logger_ts",
+      "tests_unit_produccion_service_test_ts",
+      "tp_maniqui_backend_fix_inconsistencies_fix",
+      "tp_maniqui_backend_populate_db_populate"
+    ],
+    "2": [
+      "assets_main_ae",
+      "assets_main_at",
+      "assets_main_ce",
+      "assets_main_disable",
+      "assets_main_disablewritinglocalstorage",
+      "assets_main_enable",
+      "assets_main_gt",
+      "assets_main_he",
+      "assets_main_it",
+      "assets_main_ke",
+      "assets_main_le",
+      "assets_main_ondocumentpointerup",
+      "assets_main_pe",
+      "assets_main_st",
+      "assets_main_te",
+      "assets_main_ut",
+      "assets_main_x",
+      "assets_main_xe",
+      "docs_api_ts_assets_main_js"
+    ],
+    "3": [
+      "assets_main_add",
+      "assets_main_be",
+      "assets_main_de",
+      "assets_main_e",
+      "assets_main_ee",
+      "assets_main_fe",
+      "assets_main_ft",
+      "assets_main_ht",
+      "assets_main_je",
+      "assets_main_mt",
+      "assets_main_ot",
+      "assets_main_pt",
+      "assets_main_r",
+      "assets_main_se",
+      "assets_main_ve"
+    ],
+    "4": [
+      "middleware_authmiddleware_esgerente",
+      "middleware_authmiddleware_esvendedor",
+      "middleware_authmiddleware_verifytoken",
+      "middleware_errormiddleware_errorhandler",
+      "middleware_validatormiddleware_validarrequest",
+      "src_app_ts",
+      "src_middleware_authmiddleware_ts",
+      "src_middleware_validatormiddleware_ts",
+      "src_routes_authroutes_ts",
+      "src_routes_comercialroutes_ts",
+      "src_routes_produccionroutes_ts",
+      "src_routes_sistemaroutes_ts",
+      "tests_unit_middleware_test_ts",
+      "tests_unit_validators_test_ts"
+    ],
+    "5": [
+      "assets_main_constructor",
+      "assets_main_ensurefocusedelementvisible",
+      "assets_main_filterchanged",
+      "assets_main_fromlocalstorage",
+      "assets_main_getitem",
+      "assets_main_listenforcodecopies",
+      "assets_main_scrolltohash",
+      "assets_main_showpage",
+      "assets_main_updateindexvisibility"
+    ],
+    "6": [
+      "assets_main_handlevaluechange",
+      "assets_main_ondocumentpointerdown",
+      "assets_main_onpointerup",
+      "assets_main_setactive",
+      "assets_main_setitem",
+      "assets_main_setlocalstorage",
+      "assets_main_toggle"
+    ],
+    "7": [
+      "services_sistemaservice_sistemaservice",
+      "services_sistemaservice_sistemaservice_calculardescuento",
+      "services_sistemaservice_sistemaservice_constructor",
+      "services_sistemaservice_sistemaservice_crearproveedor",
+      "services_sistemaservice_sistemaservice_listarmodelos",
+      "services_sistemaservice_sistemaservice_listarproveedores",
+      "services_sistemaservice_sistemaservice_obtenerresumenproduccion"
+    ],
+    "8": [
+      "services_produccionservice_produccionservice",
+      "services_produccionservice_produccionservice_constructor",
+      "services_produccionservice_produccionservice_ensamblarmaniqui",
+      "services_produccionservice_produccionservice_listarmaniquies",
+      "services_produccionservice_produccionservice_obtenermaniqui",
+      "services_produccionservice_produccionservice_obtenerstockpiezas",
+      "tests_unit_produccion_service_test_js"
+    ],
+    "9": [
+      "services_comercialservice_comercialservice",
+      "services_comercialservice_comercialservice_constructor",
+      "services_comercialservice_comercialservice_listarclientes",
+      "services_comercialservice_comercialservice_listarventas",
+      "services_comercialservice_comercialservice_obtenerventa",
+      "services_comercialservice_comercialservice_registrarcliente",
+      "services_comercialservice_comercialservice_registrarventa"
+    ],
+    "10": [
+      "repositories_sistemarepository_sistemarepository",
+      "repositories_sistemarepository_sistemarepository_calculardescuentoudf",
+      "repositories_sistemarepository_sistemarepository_createproveedor",
+      "repositories_sistemarepository_sistemarepository_findallmodelos",
+      "repositories_sistemarepository_sistemarepository_findproveedores",
+      "repositories_sistemarepository_sistemarepository_getproduccionresumen",
+      "repositories_sistemarepository_sistemarepository_rawquery"
+    ],
+    "11": [
+      "repositories_maniquirepository_maniquirepository",
+      "repositories_maniquirepository_maniquirepository_assemble",
+      "repositories_maniquirepository_maniquirepository_create",
+      "repositories_maniquirepository_maniquirepository_findall",
+      "repositories_maniquirepository_maniquirepository_findallpiezas",
+      "repositories_maniquirepository_maniquirepository_findbyserie"
+    ],
+    "12": [
+      "assets_main_createcomponents",
+      "assets_main_ensureactivepagevisible",
+      "assets_main_ne",
+      "assets_main_re",
+      "assets_main_rt"
+    ],
+    "13": [
+      "repositories_usuariorepository_usuariorepository",
+      "repositories_usuariorepository_usuariorepository_create",
+      "repositories_usuariorepository_usuariorepository_findbyusername",
+      "repositories_usuariorepository_usuariorepository_findbyusernameall",
+      "repositories_usuariorepository_usuariorepository_updatelastlogin"
+    ],
+    "14": [
+      "repositories_clienterepository_clienterepository",
+      "repositories_clienterepository_clienterepository_create",
+      "repositories_clienterepository_clienterepository_findall",
+      "repositories_clienterepository_clienterepository_findbyid"
+    ],
+    "15": [
+      "repositories_ventarepository_ventarepository",
+      "repositories_ventarepository_ventarepository_create",
+      "repositories_ventarepository_ventarepository_findall",
+      "repositories_ventarepository_ventarepository_findbyid"
+    ],
+    "16": [
+      "assets_icons_addicons",
+      "assets_icons_updateuseelements",
+      "docs_api_ts_assets_icons_js"
+    ],
+    "17": [
+      "tests_unit_logic_test_ts",
+      "unit_logic_test_calculardescuentojs"
+    ],
+    "18": [
+      "tests_unit_produccion_service_test_d_ts"
+    ],
+    "19": [
+      "tests_unit_controllers_test_d_ts"
+    ],
+    "20": [
+      "tests_unit_middleware_test_d_ts"
+    ],
+    "21": [
+      "tests_unit_auth_test_ts"
+    ],
+    "22": [
+      "tests_unit_auth_test_d_ts"
+    ],
+    "23": [
+      "tests_unit_logic_test_d_ts"
+    ],
+    "24": [
+      "tests_unit_validators_test_d_ts"
+    ],
+    "25": [
+      "docs_api_ts_assets_hierarchy_js"
+    ],
+    "26": [
+      "docs_api_ts_assets_navigation_js"
+    ],
+    "27": [
+      "docs_api_ts_assets_search_js"
+    ]
+  },
+  "cohesion": {
+    "0": 0.15,
+    "1": 0.18,
+    "2": 0.14,
+    "3": 0.18,
+    "4": 0.3,
+    "5": 0.31,
+    "6": 0.33,
+    "7": 0.29,
+    "8": 0.29,
+    "9": 0.29,
+    "10": 0.33,
+    "11": 0.4,
+    "12": 0.4,
+    "13": 0.4,
+    "14": 0.5,
+    "15": 0.5,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0
+  },
+  "gods": [
+    {
+      "id": "assets_main_constructor",
+      "label": "constructor()",
+      "degree": 10
+    },
+    {
+      "id": "assets_main_add",
+      "label": "add()",
+      "degree": 10
+    },
+    {
+      "id": "services_produccionservice_produccionservice",
+      "label": "ProduccionService",
+      "degree": 9
+    },
+    {
+      "id": "src_db_conectardb",
+      "label": "conectarDB()",
+      "degree": 8
+    },
+    {
+      "id": "services_sistemaservice_sistemaservice",
+      "label": "SistemaService",
+      "degree": 8
+    },
+    {
+      "id": "services_comercialservice_comercialservice",
+      "label": "ComercialService",
+      "degree": 8
+    },
+    {
+      "id": "assets_main_re",
+      "label": "Re()",
+      "degree": 7
+    },
+    {
+      "id": "utils_apperror_apperror",
+      "label": "AppError",
+      "degree": 7
+    },
+    {
+      "id": "repositories_sistemarepository_sistemarepository",
+      "label": "SistemaRepository",
+      "degree": 7
+    },
+    {
+      "id": "models_index_maniqui",
+      "label": "Maniqui",
+      "degree": 6
+    }
+  ],
+  "surprises": [
+    {
+      "source": "resetDB()",
+      "target": "conectarDB()",
+      "source_files": [
+        "reset_db_users.js",
+        "src/db.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `resetDB()` unexpectedly reaches hub `conectarDB()`"
+    },
+    {
+      "source": "reformarDB()",
+      "target": "conectarDB()",
+      "source_files": [
+        "run_db_reform.js",
+        "src/db.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `reformarDB()` unexpectedly reaches hub `conectarDB()`"
+    },
+    {
+      "source": "crearAdminInicial()",
+      "target": "conectarDB()",
+      "source_files": [
+        "setup_admin.js",
+        "src/db.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `crearAdminInicial()` unexpectedly reaches hub `conectarDB()`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `SistemaService` connect `Community 7` to `Community 0`?",
+      "why": "High betweenness centrality (0.039) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `ComercialService` connect `Community 9` to `Community 0`?",
+      "why": "High betweenness centrality (0.039) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `SistemaRepository` connect `Community 10` to `Community 1`?",
+      "why": "High betweenness centrality (0.039) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 3 inferred relationships involving `conectarDB()` (e.g. with `resetDB()` and `reformarDB()`) actually correct?",
+      "why": "`conectarDB()` has 3 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

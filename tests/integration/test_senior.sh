@@ -1,6 +1,6 @@
 #!/bin/bash
 # 🧪 Tecda Maniquí - Full Coverage Final Verification v2.1
-BASE_URL="http://localhost:8081"
+BASE_URL="http://localhost:8082"
 TOKEN="eyJhbGciOiJIUzI1NiIsInR..."
 
 # Colores

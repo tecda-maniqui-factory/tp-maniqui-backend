@@ -6,7 +6,7 @@
 import { Router } from 'express';
 import { produccionController } from '../container.js';
 import { reglasManiqui } from '../middleware/validatorMiddleware.js';
-import { verifyToken, esGerente } from '../middleware/authMiddleware.js';
+import { verifyToken, esGerente, esGerenteOOperario } from '../middleware/authMiddleware.js';
 
 const router: Router = Router();
 
@@ -17,7 +17,7 @@ router.use(verifyToken);
  */
 router.get('/maniquies', produccionController.getManiquies);
 router.get('/maniquies/:serie', produccionController.getManiquiBySerie);
-router.post('/maniquies/ensamblar', esGerente, reglasManiqui, produccionController.ensamblarManiqui);
+router.post('/maniquies/ensamblar', esGerenteOOperario, reglasManiqui, produccionController.ensamblarManiqui);
 
 /**
  * Rutas de Piezas

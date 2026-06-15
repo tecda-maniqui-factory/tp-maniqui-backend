@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { sseManager } from '../services/sse/SSEManager.js';
-import { verifyToken, esGerente } from '../middleware/authMiddleware.js';
+import { verifyToken, esGerente, esGerenteOOperario } from '../middleware/authMiddleware.js';
 import { asyncHandler } from '../middleware/errorMiddleware.js';
 
 const router: Router = Router();
@@ -23,7 +23,7 @@ router.get('/stream', verifyToken, (req: Request, res: Response) => {
 /**
  * Endpoint para generar una nueva orden de compra desde el Dashboard.
  */
-router.post('/ordenes', verifyToken, esGerente, asyncHandler(async (req: Request, res: Response) => {
+router.post('/ordenes', verifyToken, esGerenteOOperario, asyncHandler(async (req: Request, res: Response) => {
   const { modelo, parte } = req.body;
   const orden = await sseManager.nuevaOrden(modelo, parte);
   

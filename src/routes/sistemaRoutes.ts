@@ -29,7 +29,7 @@ router.post('/sistema/proveedores', esGerente, sistemaController.createProveedor
  */
 router.get('/sistema/reportes/produccion', esGerente, sistemaController.getProduccionResumen);
 router.get('/reportes/rentabilidad', esGerente, sistemaController.getRentabilidad);
-router.get('/reportes/stock-critico', esGerente, sistemaController.getStockCritico);
+router.get('/reportes/stock-critico', sistemaController.getStockCritico);
 
 /** Router de Express para este módulo */
 export default router;

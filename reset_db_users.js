@@ -32,6 +32,9 @@ const resetDB = async () => {
     }
     await sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
 
+    console.log('🔧 Modificando columna rol para soportar operario...');
+    await sequelize.query("ALTER TABLE Usuarios MODIFY COLUMN rol ENUM('vendedor', 'gerente_prod', 'operario') DEFAULT 'vendedor'");
+
     console.log('🌱 Insertando Catálogos base...');
     await sequelize.query("INSERT INTO Cat_Sexos (id, nombre) VALUES (1, 'Masculino'), (2, 'Femenino')");
     await sequelize.query("INSERT INTO Cat_Estilos (id, nombre) VALUES (1, 'Realista'), (2, 'Abstracto')");
@@ -39,6 +42,7 @@ const resetDB = async () => {
     await sequelize.query("INSERT INTO Cat_TiposParte (id, nombre, codigo) VALUES (1, 'Cabeza', 'CAB'), (2, 'Torso', 'TOR'), (3, 'Brazo D', 'BRD'), (4, 'Brazo I', 'BRI'), (5, 'Pierna D', 'PID'), (6, 'Pierna I', 'PII')");
     await sequelize.query("INSERT INTO Cat_TonosAcabado (id, nombre, acabado) VALUES (1, 'Blanco', 'Mate')");
     await sequelize.query("INSERT INTO Origenes_Piezas (id, nombre, codigo, tipo) VALUES (1, 'Planta', 'INT', 'Produccion Interna')");
+    await sequelize.query("INSERT INTO Origenes_Piezas (id, nombre, codigo, tipo) VALUES (2, 'Proveedor Externo A', 'EXT-A', 'Proveedor Externo')");
     
     console.log('📐 Creando Modelo semilla...');
     await sequelize.query("INSERT INTO Modelos (id, nombre, sexo_id, estilo_id, cuerpo_id, precio_venta, costo_unitario, activo) VALUES (1, 'Modelo Test Pro', 1, 1, 1, 50000.00, 20000.00, 1)");
@@ -55,6 +59,31 @@ const resetDB = async () => {
       nombre_completo: 'Pablo Administrador',
       email: 'admin@tecda.com',
       rol: 'gerente_prod'
+    });
+
+    console.log('👤 Creando usuarios simplificados...');
+    await Usuario.create({
+      username: 'gerente',
+      password_hash: await bcrypt.hash('gerente', salt),
+      nombre_completo: 'Gerente Simplificado',
+      email: 'gerente@tecda.com',
+      rol: 'gerente_prod'
+    });
+
+    await Usuario.create({
+      username: 'vendedor',
+      password_hash: await bcrypt.hash('vendedor', salt),
+      nombre_completo: 'Vendedor Simplificado',
+      email: 'vendedor@tecda.com',
+      rol: 'vendedor'
+    });
+
+    await Usuario.create({
+      username: 'operario',
+      password_hash: await bcrypt.hash('operario', salt),
+      nombre_completo: 'Operario Simplificado',
+      email: 'operario@tecda.com',
+      rol: 'operario'
     });
 
     console.log('📦 Insertando piezas semilla para ensamblaje...');

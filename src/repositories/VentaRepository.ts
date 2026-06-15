@@ -3,7 +3,7 @@
  * @description Repositorio para la gestión de transacciones de venta.
  */
 
-import { Venta, DetalleVenta, Maniqui } from '../models/index.js';
+import { Venta, DetalleVenta, Maniqui, Modelo } from '../models/index.js';
 import sequelize from '../db.js';
 import { IVentaRepository } from '../types/repositories.js';
 import { IVenta } from '../types/entities.js';
@@ -54,7 +54,18 @@ class VentaRepository implements IVentaRepository {
    */
   async findById(id: number): Promise<IVenta | null> {
     return await Venta.findByPk(id, {
-      include: [DetalleVenta]
+      include: [
+        {
+          model: DetalleVenta,
+          include: [
+            {
+              model: Maniqui,
+              as: 'maniqui',
+              include: [Modelo]
+            }
+          ]
+        }
+      ]
     });
   }
 }

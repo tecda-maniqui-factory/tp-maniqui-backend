@@ -8,7 +8,7 @@ export interface IUsuario {
   password_hash: string;
   nombre_completo?: string | undefined;
   email?: string | undefined;
-  rol: 'vendedor' | 'gerente_prod';
+  rol: 'vendedor' | 'gerente_prod' | 'operario';
   activo: boolean;
   last_login?: Date | undefined;
   created_at?: Date | undefined;

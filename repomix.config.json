@@ -1,0 +1,18 @@
+{
+  "output": {
+    "filePath": "repomix-output.txt",
+    "style": "plain"
+  },
+  "ignore": {
+    "customPatterns": [
+      "repomix-output.*",
+      "docs/api/redoc.html",
+      "dist/**",
+      "pnpm-lock.yaml",
+      "graphify-out/**",
+      ".omg/**",
+      "node_modules/**",
+      ".git/**"
+    ]
+  }
+}

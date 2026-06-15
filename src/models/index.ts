@@ -15,7 +15,7 @@ export class Usuario extends Model<IUsuario, UsuarioCreationAttributes> implemen
   declare password_hash: string;
   declare nombre_completo: string;
   declare email: string;
-  declare rol: 'vendedor' | 'gerente_prod';
+  declare rol: 'vendedor' | 'gerente_prod' | 'operario';
   declare activo: boolean;
   declare last_login?: Date;
   declare created_at?: Date;
@@ -26,7 +26,7 @@ Usuario.init({
   password_hash: { type: DataTypes.STRING, allowNull: false },
   nombre_completo: { type: DataTypes.STRING },
   email: { type: DataTypes.STRING, unique: true },
-  rol: { type: DataTypes.ENUM('vendedor', 'gerente_prod'), defaultValue: 'vendedor' },
+  rol: { type: DataTypes.ENUM('vendedor', 'gerente_prod', 'operario'), defaultValue: 'vendedor' },
   activo: { type: DataTypes.BOOLEAN, defaultValue: true },
   last_login: { type: DataTypes.DATE },
   created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
@@ -199,6 +199,8 @@ Cliente.hasMany(Venta, { foreignKey: 'cliente_id' });
 Venta.belongsTo(Cliente, { foreignKey: 'cliente_id' });
 Venta.hasMany(DetalleVenta, { foreignKey: 'venta_id' });
 DetalleVenta.belongsTo(Venta, { foreignKey: 'venta_id' });
+DetalleVenta.belongsTo(Maniqui, { foreignKey: 'maniqui_id', as: 'maniqui' });
+Maniqui.hasMany(DetalleVenta, { foreignKey: 'maniqui_id', as: 'detalles' });
 
 Modelo.hasMany(ModeloReceta, { foreignKey: 'modelo_id', as: 'receta' });
 ModeloReceta.belongsTo(Modelo, { foreignKey: 'modelo_id' });
