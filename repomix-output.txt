@@ -73,9 +73,12 @@ src/
   routes/
     authRoutes.ts
     comercialRoutes.ts
+    notificacionesRoutes.ts
     produccionRoutes.ts
     sistemaRoutes.ts
   services/
+    sse/
+      SSEManager.ts
     AuthService.ts
     ComercialService.ts
     ProduccionService.ts
@@ -144,28 +147,6 @@ typedoc.json
 ================================================================
 Files
 ================================================================
-
-================
-File: repomix.config.json
-================
-{
-  "output": {
-    "filePath": "repomix-output.txt",
-    "style": "plain"
-  },
-  "ignore": {
-    "customPatterns": [
-      "repomix-output.*",
-      "docs/api/redoc.html",
-      "dist/**",
-      "pnpm-lock.yaml",
-      "graphify-out/**",
-      ".omg/**",
-      "node_modules/**",
-      ".git/**"
-    ]
-  }
-}
 
 ================
 File: src/config/env.ts
@@ -308,145 +289,6 @@ export class ComercialController {
 }
 
 ================
-File: src/controllers/sistemaController.ts
-================
-/**
- * @file sistemaController.ts
- * @description Controladores para utilidades de catálogo, reportes y salud del sistema.
- */
-
-import { Request, Response } from 'express';
-import { ISistemaService } from '../types/services.js';
-import { asyncHandler } from '../middleware/errorMiddleware.js';
-
-/**
- * Controlador encargado de proveer información técnica y operativa del sistema.
- */
-export class SistemaController {
-  constructor(private sistemaService: ISistemaService) {}
-
-  /**
-   * Endpoint para obtener el catálogo de modelos técnicos.
-   * @route GET /sistema/modelos
-   */
-  getModelos = asyncHandler(async (req: Request, res: Response) => {
-    const modelos = await this.sistemaService.listarModelos();
-    res.json(modelos);
-  });
-
-  /**
-   * Endpoint para obtener métricas y resumenes de producción.
-   * @route GET /sistema/reportes/produccion
-   */
-  getProduccionResumen = asyncHandler(async (req: Request, res: Response) => {
-    const resumen = await this.sistemaService.obtenerResumenProduccion();
-    res.json(resumen);
-  });
-
-  /**
-   * Endpoint para el cálculo dinámico de descuentos mediante UDF de la base de datos.
-   * @route GET /sistema/modelos/:id/descuento
-   */
-  calcularDescuento = asyncHandler(async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const { porcentaje } = req.query;
-
-    if (!porcentaje) {
-      const error: any = new Error('El porcentaje es requerido');
-      error.statusCode = 400;
-      throw error;
-    }
-
-    const resultado = await this.sistemaService.calcularDescuento(
-      parseInt(id as string), 
-      parseFloat(porcentaje as string)
-    );
-
-    res.json(resultado);
-  });
-
-  /**
-   * Endpoint para listar proveedores externos.
-   * @route GET /sistema/proveedores
-   */
-  getProveedores = asyncHandler(async (req: Request, res: Response) => {
-    const proveedores = await this.sistemaService.listarProveedores();
-    res.json(proveedores);
-  });
-
-  /**
-   * Endpoint para dar de alta un nuevo proveedor.
-   * @route POST /sistema/proveedores
-   */
-  createProveedor = asyncHandler(async (req: Request, res: Response) => {
-    const { nombre, codigo } = req.body;
-    await this.sistemaService.crearProveedor(nombre, codigo);
-    res.status(201).json({ message: 'Proveedor creado con éxito' });
-  });
-}
-
-================
-File: src/middleware/authMiddleware.ts
-================
-/**
- * @file authMiddleware.ts
- * @description Filtros de seguridad para proteger rutas y verificar roles.
- */
-
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-
-/**
- * Interfaz extendida para incluir el usuario en la petición Express.
- */
-export interface AuthRequest extends Request {
-  user?: {
-    id: number;
-    username: string;
-    rol: 'vendedor' | 'gerente_prod';
-  };
-}
-
-/**
- * Middleware para validar el token JWT.
- */
-export const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {
-  const token = req.headers['authorization']?.split(' ')[1];
-
-  if (!token) {
-    return res.status(403).json({ error: 'No se proporcionó un token' });
-  }
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as any;
-    req.user = decoded;
-    next();
-  } catch (error) {
-    return res.status(401).json({ error: 'Token inválido o expirado' });
-  }
-};
-
-/**
- * Middleware para restringir acceso solo a Gerentes de Producción.
- */
-export const esGerente = (req: AuthRequest, res: Response, next: NextFunction) => {
-  if (req.user?.rol !== 'gerente_prod') {
-    return res.status(403).json({ error: 'Acceso denegado: Se requiere rol Gerente de Producción' });
-  }
-  next();
-};
-
-/**
- * Middleware para restringir acceso solo a Vendedores.
- */
-export const esVendedor = (req: AuthRequest, res: Response, next: NextFunction) => {
-  if (req.user?.rol !== 'vendedor' && req.user?.rol !== 'gerente_prod') {
-    return res.status(403).json({ error: 'Acceso denegado: Se requiere rol Vendedor' });
-  }
-  next();
-};
-
-================
 File: src/middleware/errorMiddleware.ts
 ================
 /**
@@ -559,169 +401,6 @@ export const reglasVenta = [
 ];
 
 ================
-File: src/models/index.ts
-================
-/**
- * @file index.ts
- * @description Definición central de modelos de datos utilizando Sequelize ORM.
- */
-
-import { DataTypes, Model, Optional } from 'sequelize';
-import sequelize from '../db.js';
-import { IUsuario, IModelo, IManiqui, IPieza, ICliente, IVenta, IDetalleVenta } from '../types/entities.js';
-
-// --- USUARIO ---
-interface UsuarioCreationAttributes extends Optional<IUsuario, 'id' | 'activo'> {}
-export class Usuario extends Model<IUsuario, UsuarioCreationAttributes> implements IUsuario {
-  declare id: number;
-  declare username: string;
-  declare password_hash: string;
-  declare nombre_completo: string;
-  declare email: string;
-  declare rol: 'vendedor' | 'gerente_prod';
-  declare activo: boolean;
-  declare last_login?: Date;
-  declare created_at?: Date;
-}
-Usuario.init({
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  username: { type: DataTypes.STRING, unique: true, allowNull: false },
-  password_hash: { type: DataTypes.STRING, allowNull: false },
-  nombre_completo: { type: DataTypes.STRING },
-  email: { type: DataTypes.STRING, unique: true },
-  rol: { type: DataTypes.ENUM('vendedor', 'gerente_prod'), defaultValue: 'vendedor' },
-  activo: { type: DataTypes.BOOLEAN, defaultValue: true },
-  last_login: { type: DataTypes.DATE },
-  created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
-}, { sequelize, modelName: 'Usuarios' });
-
-// --- MODELO ---
-interface ModeloCreationAttributes extends Optional<IModelo, 'id' | 'activo'> {}
-export class Modelo extends Model<IModelo, ModeloCreationAttributes> implements IModelo {
-  declare id: number;
-  declare nombre: string;
-  declare costo_unitario: number;
-  declare precio_venta: number;
-  declare activo: boolean;
-}
-Modelo.init({
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  nombre: { type: DataTypes.STRING, unique: true, allowNull: false },
-  costo_unitario: { type: DataTypes.DECIMAL(10, 2) },
-  precio_venta: { type: DataTypes.DECIMAL(10, 2) },
-  activo: { type: DataTypes.BOOLEAN, defaultValue: true }
-}, { sequelize, modelName: 'Modelos' });
-
-// --- MANIQUI ---
-interface ManiquiCreationAttributes extends Optional<IManiqui, 'id' | 'status'> {}
-export class Maniqui extends Model<IManiqui, ManiquiCreationAttributes> implements IManiqui {
-  declare id: number;
-  declare numero_serie: string;
-  declare modelo_id: number;
-  declare fecha_ensamblaje?: Date;
-  declare numero_lote?: string;
-  declare status: 'En Producción' | 'Disponible' | 'Vendido' | 'Dañado';
-}
-Maniqui.init({
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  numero_serie: { type: DataTypes.STRING, unique: true, allowNull: false },
-  modelo_id: { type: DataTypes.INTEGER, allowNull: false },
-  fecha_ensamblaje: { type: DataTypes.DATE },
-  numero_lote: { type: DataTypes.STRING },
-  status: { type: DataTypes.ENUM('En Producción', 'Disponible', 'Vendido', 'Dañado'), defaultValue: 'Disponible' }
-}, { sequelize, modelName: 'Maniquies' });
-
-// --- PIEZA ---
-interface PiezaCreationAttributes extends Optional<IPieza, 'id'> {}
-export class Pieza extends Model<IPieza, PiezaCreationAttributes> implements IPieza {
-  declare id: number;
-  declare serial_parte: string;
-  declare tipo_parte_id: number;
-  declare modelo_id: number;
-  declare origen_id: number;
-  declare tono_acabado_id: number;
-  declare maniqui_id?: number;
-  declare costo: number;
-}
-Pieza.init({
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  serial_parte: { type: DataTypes.STRING, unique: true },
-  tipo_parte_id: { type: DataTypes.INTEGER, allowNull: false },
-  modelo_id: { type: DataTypes.INTEGER, allowNull: false },
-  origen_id: { type: DataTypes.INTEGER, allowNull: false },
-  tono_acabado_id: { type: DataTypes.INTEGER, allowNull: false },
-  maniqui_id: { type: DataTypes.INTEGER },
-  costo: { type: DataTypes.DECIMAL(10, 2) }
-}, { sequelize, modelName: 'Piezas' });
-
-// --- CLIENTE ---
-interface ClienteCreationAttributes extends Optional<ICliente, 'id' | 'activo'> {}
-export class Cliente extends Model<ICliente, ClienteCreationAttributes> implements ICliente {
-  declare id: number;
-  declare nombre: string;
-  declare cuit_cuil: string;
-  declare email: string;
-  declare activo: boolean;
-}
-Cliente.init({
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  nombre: { type: DataTypes.STRING, allowNull: false },
-  cuit_cuil: { type: DataTypes.STRING, unique: true },
-  email: { type: DataTypes.STRING },
-  activo: { type: DataTypes.BOOLEAN, defaultValue: true }
-}, { sequelize, modelName: 'Clientes' });
-
-// --- VENTA ---
-interface VentaCreationAttributes extends Optional<IVenta, 'id' | 'fecha_venta' | 'metodo_pago' | 'moneda'> {}
-export class Venta extends Model<IVenta, VentaCreationAttributes> implements IVenta {
-  declare id: number;
-  declare cliente_id: number;
-  declare fecha_venta: Date;
-  declare total: number;
-  declare metodo_pago: 'Efectivo' | 'Transferencia' | 'Tarjeta' | 'Mercado Pago' | 'Otros';
-  declare nro_factura?: string;
-  declare cae?: string;
-  declare fecha_vencimiento_cae?: Date;
-  declare moneda: 'ARS' | 'USD';
-}
-Venta.init({
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  cliente_id: { type: DataTypes.INTEGER, allowNull: false },
-  fecha_venta: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-  total: { type: DataTypes.DECIMAL(12, 2) },
-  metodo_pago: { type: DataTypes.ENUM('Efectivo', 'Transferencia', 'Tarjeta', 'Mercado Pago', 'Otros'), defaultValue: 'Transferencia' },
-  nro_factura: { type: DataTypes.STRING, unique: true },
-  cae: { type: DataTypes.STRING },
-  fecha_vencimiento_cae: { type: DataTypes.DATEONLY },
-  moneda: { type: DataTypes.ENUM('ARS', 'USD'), defaultValue: 'ARS' }
-}, { sequelize, modelName: 'Ventas' });
-
-// --- DETALLE VENTA ---
-interface DetalleVentaCreationAttributes extends Optional<IDetalleVenta, 'id'> {}
-export class DetalleVenta extends Model<IDetalleVenta, DetalleVentaCreationAttributes> implements IDetalleVenta {
-  declare id: number;
-  declare venta_id: number;
-  declare maniqui_id: number;
-  declare precio_final: number;
-}
-DetalleVenta.init({
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  venta_id: { type: DataTypes.INTEGER, allowNull: false },
-  maniqui_id: { type: DataTypes.INTEGER, unique: true, allowNull: false },
-  precio_final: { type: DataTypes.DECIMAL(10, 2) }
-}, { sequelize, modelName: 'Detalle_Ventas' });
-
-// --- RELACIONES ---
-Modelo.hasMany(Maniqui, { foreignKey: 'modelo_id' });
-Maniqui.belongsTo(Modelo, { foreignKey: 'modelo_id' });
-Maniqui.hasMany(Pieza, { foreignKey: 'maniqui_id' });
-Pieza.belongsTo(Maniqui, { foreignKey: 'maniqui_id' });
-Cliente.hasMany(Venta, { foreignKey: 'cliente_id' });
-Venta.belongsTo(Cliente, { foreignKey: 'cliente_id' });
-Venta.hasMany(DetalleVenta, { foreignKey: 'venta_id' });
-DetalleVenta.belongsTo(Venta, { foreignKey: 'venta_id' });
-
-================
 File: src/repositories/ClienteRepository.ts
 ================
 /**
@@ -770,85 +449,6 @@ class ClienteRepository implements IClienteRepository {
 const instance = new ClienteRepository();
 export default instance;
 export { ClienteRepository };
-
-================
-File: src/repositories/SistemaRepository.ts
-================
-/**
- * @file SistemaRepository.ts
- * @description Repositorio para consultas de catálogo, reportes y utilidades del sistema.
- */
-
-import { Modelo, Maniqui } from '../models/index.js';
-import sequelize from '../db.js';
-import { ISistemaRepository } from '../types/repositories.js';
-import { IModelo } from '../types/entities.js';
-
-/**
- * Patrón Repository para consultas transversales de Sistema, Catálogos y Reportes Analíticos.
- */
-class SistemaRepository implements ISistemaRepository {
-  /**
-   * Obtiene la lista completa de modelos técnicos activos.
-   */
-  async findAllModelos(): Promise<IModelo[]> {
-    return await Modelo.findAll();
-  }
-
-  /**
-   * Ejecuta una consulta SQL pura y devuelve los resultados.
-   */
-  async rawQuery(query: string, replacements: unknown[] = []): Promise<unknown[]> {
-    const [rows] = await sequelize.query(query, { replacements });
-    return rows as unknown[];
-  }
-
-  /**
-   * Genera un resumen estadístico de la producción actual agrupado por estado.
-   */
-  async getProduccionResumen(): Promise<unknown[]> {
-    return await Maniqui.findAll({
-      attributes: [
-        'status',
-        [sequelize.fn('COUNT', sequelize.col('id')), 'cantidad']
-      ],
-      group: ['status']
-    }) as any;
-  }
-
-  /**
-   * Invoca la función almacenada 'CalcularDescuento' en la DB.
-   */
-  async calcularDescuentoUDF(modeloId: number, porcentaje: number): Promise<unknown | null> {
-    const [result] = await sequelize.query(
-      'SELECT precio_venta, CalcularDescuento(precio_venta, ?) as precio_final FROM Modelos WHERE id = ?',
-      { replacements: [porcentaje, modeloId] }
-    );
-    return (result as any[])[0] || null;
-  }
-
-  /**
-   * Obtiene los proveedores externos registrados en la tabla Origenes_Piezas.
-   */
-  async findProveedores(): Promise<unknown[]> {
-    return await this.rawQuery("SELECT * FROM Origenes_Piezas WHERE tipo = 'Proveedor Externo'");
-  }
-
-  /**
-   * Registra manualmente un nuevo proveedor externo.
-   */
-  async createProveedor(nombre: string, codigo: string): Promise<void> {
-    await sequelize.query(
-      "INSERT INTO Origenes_Piezas (nombre, codigo, tipo) VALUES (?, ?, 'Proveedor Externo')",
-      { replacements: [nombre, codigo] }
-    );
-  }
-}
-
-/** Instancia singleton del repositorio */
-const instance = new SistemaRepository();
-export default instance;
-export { SistemaRepository };
 
 ================
 File: src/repositories/UsuarioRepository.ts
@@ -902,77 +502,6 @@ class UsuarioRepository implements IUsuarioRepository {
 const instance = new UsuarioRepository();
 export default instance;
 export { UsuarioRepository };
-
-================
-File: src/repositories/VentaRepository.ts
-================
-/**
- * @file VentaRepository.ts
- * @description Repositorio para la gestión de transacciones de venta.
- */
-
-import { Venta, DetalleVenta, Maniqui } from '../models/index.js';
-import sequelize from '../db.js';
-import { IVentaRepository } from '../types/repositories.js';
-import { IVenta } from '../types/entities.js';
-
-/**
- * Patrón Repository para gestionar transacciones de Ventas.
- */
-class VentaRepository implements IVentaRepository {
-  /**
-   * Obtiene todas las ventas con filtros opcionales.
-   */
-  async findAll(filters: Record<string, unknown> = {}): Promise<IVenta[]> {
-    return await Venta.findAll({ where: filters as any });
-  }
-
-  /**
-   * Registra una venta completa con sus detalles dentro de una transacción atómica.
-   */
-  async create(ventaData: Partial<IVenta>, detalles: { maniqui_id: number; precio_final: number }[]): Promise<IVenta> {
-    const t = await sequelize.transaction();
-
-    try {
-      const nuevaVenta = await Venta.create(ventaData as any, { transaction: t });
-
-      for (const item of detalles) {
-        await DetalleVenta.create({
-          venta_id: nuevaVenta.id,
-          maniqui_id: item.maniqui_id,
-          precio_final: item.precio_final
-        }, { transaction: t });
-
-        await Maniqui.update(
-          { status: 'Vendido' },
-          { where: { id: item.maniqui_id }, transaction: t }
-        );
-      }
-
-      await t.commit();
-      return nuevaVenta;
-    } catch (error) {
-      await t.rollback();
-      throw error;
-    }
-  }
-
-  /**
-   * Busca una venta por su ID.
-   */
-  async findById(id: number): Promise<IVenta | null> {
-    return await Venta.findByPk(id, {
-      include: [DetalleVenta]
-    });
-  }
-}
-
-/**
- * Instancia única del repositorio de ventas (Singleton).
- */
-const instance = new VentaRepository();
-export default instance;
-export { VentaRepository };
 
 ================
 File: src/routes/authRoutes.ts
@@ -1032,74 +561,6 @@ router.post('/clientes', reglasCliente, comercialController.createCliente);
 router.get('/ventas', comercialController.getVentas);
 router.post('/ventas', esVendedor, reglasVenta, comercialController.registrarVenta);
 router.get('/ventas/:id', comercialController.getVentaById);
-
-/** Router de Express para este módulo */
-export default router;
-
-================
-File: src/routes/produccionRoutes.ts
-================
-/**
- * @file produccionRoutes.ts
- * @description Rutas para el módulo de Producción.
- */
-
-import { Router } from 'express';
-import { produccionController } from '../container.js';
-import { reglasManiqui } from '../middleware/validatorMiddleware.js';
-import { verifyToken, esGerente } from '../middleware/authMiddleware.js';
-
-const router: Router = Router();
-
-router.use(verifyToken);
-
-/**
- * Rutas de Maniquíes
- */
-router.get('/maniquies', produccionController.getManiquies);
-router.get('/maniquies/:serie', produccionController.getManiquiBySerie);
-router.post('/maniquies/ensamblar', esGerente, reglasManiqui, produccionController.ensamblarManiqui);
-
-/**
- * Rutas de Piezas
- */
-router.get('/piezas/stock', produccionController.getPiezasStock);
-
-/** Router de Express para este módulo */
-export default router;
-
-================
-File: src/routes/sistemaRoutes.ts
-================
-/**
- * @file sistemaRoutes.ts
- * @description Rutas para utilidades de catálogo y reportes.
- */
-
-import { Router } from 'express';
-import { sistemaController } from '../container.js';
-import { verifyToken, esGerente } from '../middleware/authMiddleware.js';
-
-const router: Router = Router();
-
-router.use(verifyToken);
-
-/**
- * Catálogos
- */
-router.get('/sistema/modelos', sistemaController.getModelos);
-router.get('/sistema/modelos/:id/descuento', sistemaController.calcularDescuento);
-
-/**
- * Proveedores
- */
-router.get('/sistema/proveedores', sistemaController.getProveedores);
-router.post('/sistema/proveedores', esGerente, sistemaController.createProveedor);
-
-/**
- * Reportes Analíticos
- */
-router.get('/sistema/reportes/produccion', esGerente, sistemaController.getProduccionResumen);
 
 /** Router de Express para este módulo */
 export default router;
@@ -1194,143 +655,6 @@ export class AuthService implements IAuthService {
 }
 
 ================
-File: src/services/SistemaService.ts
-================
-/**
- * @file SistemaService.ts
- * @description Servicio para utilidades transversales, catálogos y reportes.
- */
-
-import { ISistemaRepository } from '../types/repositories.js';
-import { ISistemaService } from '../types/services.js';
-import { AppError } from '../utils/AppError.js';
-
-/**
- * Servicio encargado de proveer catálogos técnicos y métricas de salud del sistema.
- */
-export class SistemaService implements ISistemaService {
-  constructor(private sistemaRepo: ISistemaRepository) {}
-
-  /**
-   * Obtiene todos los modelos técnicos disponibles.
-   */
-  async listarModelos(): Promise<any[]> {
-    return await this.sistemaRepo.findAllModelos();
-  }
-
-  /**
-   * Genera un resumen estadístico para el dashboard.
-   */
-  async obtenerResumenProduccion(): Promise<any[]> {
-    return await this.sistemaRepo.getProduccionResumen();
-  }
-
-  /**
-   * Calcula el precio final aplicando un porcentaje de descuento mediante base de datos.
-   */
-  async calcularDescuento(modeloId: number, porcentaje: number): Promise<unknown> {
-    const resultado = await this.sistemaRepo.calcularDescuentoUDF(modeloId, porcentaje);
-    if (!resultado) {
-      throw new AppError('Modelo no encontrado', 404);
-    }
-    return resultado;
-  }
-
-  /**
-   * Lista los proveedores de piezas registrados.
-   */
-  async listarProveedores(): Promise<any[]> {
-    return await this.sistemaRepo.findProveedores();
-  }
-
-  /**
-   * Registra un nuevo proveedor en la base de datos.
-   */
-  async crearProveedor(nombre: string, codigo: string): Promise<void> {
-    await this.sistemaRepo.createProveedor(nombre, codigo);
-  }
-}
-
-================
-File: src/types/entities.ts
-================
-/**
- * Definiciones de entidades del dominio.
- */
-
-export interface IUsuario {
-  id?: number | undefined;
-  username: string;
-  password_hash: string;
-  nombre_completo?: string | undefined;
-  email?: string | undefined;
-  rol: 'vendedor' | 'gerente_prod';
-  activo: boolean;
-  last_login?: Date | undefined;
-  created_at?: Date | undefined;
-}
-
-export interface IModelo {
-  id?: number | undefined;
-  nombre: string;
-  costo_unitario: number;
-  precio_venta: number;
-  activo: boolean;
-}
-
-export type ManiquiStatus = 'En Producción' | 'Disponible' | 'Vendido' | 'Dañado';
-
-export interface IManiqui {
-  id?: number | undefined;
-  numero_serie: string;
-  modelo_id: number;
-  fecha_ensamblaje?: Date | undefined;
-  numero_lote?: string | undefined;
-  status: ManiquiStatus;
-}
-
-export interface IPieza {
-  id?: number | undefined;
-  serial_parte?: string | undefined;
-  tipo_parte_id: number;
-  modelo_id: number;
-  origen_id: number;
-  tono_acabado_id: number;
-  maniqui_id?: number | undefined;
-  costo: number;
-}
-
-export interface ICliente {
-  id?: number | undefined;
-  nombre: string;
-  cuit_cuil: string;
-  email?: string | undefined;
-  activo: boolean;
-}
-
-export type MetodoPago = 'Efectivo' | 'Transferencia' | 'Tarjeta' | 'Mercado Pago' | 'Otros';
-export type Moneda = 'ARS' | 'USD';
-
-export interface IVenta {
-  id?: number | undefined;
-  cliente_id: number;
-  fecha_venta?: Date | undefined;
-  total: number;
-  metodo_pago: MetodoPago;
-  nro_factura?: string | undefined;
-  cae?: string | undefined;
-  fecha_vencimiento_cae?: string | Date | undefined;
-  moneda: Moneda;
-}
-
-export interface IDetalleVenta {
-  id?: number | undefined;
-  venta_id: number;
-  maniqui_id: number;
-  precio_final: number;
-}
-
-================
 File: src/utils/AppError.ts
 ================
 /**
@@ -1372,131 +696,6 @@ const logger = pino({
 });
 
 export default logger;
-
-================
-File: src/app.ts
-================
-/**
- * @file app.ts
- * @description Configuración central de Express. 
- */
-
-import express, { Request, Response, Application } from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
-import morgan from 'morgan';
-
-import authRoutes from './routes/authRoutes.js';
-import produccionRoutes from './routes/produccionRoutes.js';
-import comercialRoutes from './routes/comercialRoutes.js';
-import sistemaRoutes from './routes/sistemaRoutes.js';
-
-import swaggerUi from 'swagger-ui-express';
-import YAML from 'yamljs';
-
-import { errorHandler } from './middleware/errorMiddleware.js';
-
-const swaggerDocument = YAML.load('./openapi.yaml');
-
-const app: Application = express();
-
-// --- MIDDLEWARES GLOBALES ---
-app.use(helmet());
-app.use(cors());
-app.use(morgan('dev'));
-app.use(express.json());
-
-// --- DOCUMENTACIÓN ---
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-// --- RUTAS DE MÓDULOS ---
-app.use('/auth', authRoutes);
-app.use('/', produccionRoutes);
-app.use('/', comercialRoutes);
-app.use('/', sistemaRoutes);
-
-// --- ENDPOINTS DE SISTEMA ---
-app.get('/', (req: Request, res: Response) => {
-  res.json({
-    mensaje: "Bienvenido a la API de Tecda Maniquí",
-    version: "2.1.0",
-    docs: "/api-docs"
-  });
-});
-
-app.get('/sistema/health', (req: Request, res: Response) => {
-  res.json({
-    status: "UP",
-    db_connection: true,
-    uptime: process.uptime()
-  });
-});
-
-app.get('/sistema/info', (req: Request, res: Response) => {
-  res.json({
-    nombre: "Tecda Maniquí API",
-    version: "2.1.0",
-    entorno: process.env.NODE_ENV
-  });
-});
-
-// --- MANEJO DE ERRORES ---
-app.use(errorHandler);
-
-app.use((req: Request, res: Response) => {
-  res.status(404).json({ error: "Ruta no encontrada" });
-});
-
-/** Aplicación Express configurada */
-export default app;
-
-================
-File: src/db.ts
-================
-/**
- * @file db.ts
- * @description Gestión de la conexión a la base de datos MySQL utilizando Sequelize ORM.
- */
-
-import { Sequelize } from 'sequelize';
-import { env } from './config/env.js';
-import logger from './utils/logger.js';
-
-/**
- * Instancia central de Sequelize para la comunicación con la base de datos.
- */
-const sequelize = new Sequelize(
-  env.DB_NAME,
-  env.DB_USER,
-  env.DB_PASS,
-  {
-    host: env.DB_HOST,
-    port: env.DB_PORT,
-    dialect: 'mysql',
-    dialectOptions: {
-      multipleStatements: true
-    },
-    logging: (msg) => logger.debug(msg),
-    define: {
-      timestamps: false,
-      freezeTableName: true
-    }
-  }
-);
-
-/**
- * Verifica la autenticación con el servidor de base de datos.
- */
-export const conectarDB = async (): Promise<void> => {
-  try {
-    await sequelize.authenticate();
-    logger.info('✅ Conexión establecida con Sequelize (MySQL)');
-  } catch (error: any) {
-    logger.error('❌ No se pudo conectar a la base de datos: %s', error.message);
-  }
-};
-
-export default sequelize;
 
 ================
 File: src/index.ts
@@ -1910,53 +1109,6 @@ Content-Type: application/json
 GET {{baseUrl}}/maniquies
 
 ================
-File: tests/integration/test_senior.sh
-================
-#!/bin/bash
-# 🧪 Tecda Maniquí - Full Coverage Final Verification v2.1
-BASE_URL="http://localhost:8081"
-TOKEN="eyJhbGciOiJIUzI1NiIsInR..."
-
-# Colores
-G='\033[0;32m'; R='\033[0;31m'; B='\033[0;34m'; NC='\033[0m'
-
-run_test() {
-    local method=$1; local path=$2; local expect=$3; local title=$4; local prefer=$5
-    echo -n -e "${B}TEST:${NC} $title... "
-    local headers="-H 'Content-Type: application/json' -H 'Authorization: Bearer $TOKEN'"
-    [ -n "$prefer" ] && headers="$headers -H 'Prefer: code=$prefer'"
-    local data="-d '{}'"
-    [[ "$method" == "GET" ]] && data=""
-    local full_cmd="curl -s -o /dev/null -w '%{http_code}' -X $method $headers $data '$BASE_URL$path'"
-    status=$(eval "$full_cmd")
-    if [ "$status" == "$expect" ]; then
-        echo -e "${G}PASSED ($status)${NC}"
-    else
-        echo -e "${R}FAILED (Expected $expect, Got $status)${NC}"
-    fi
-}
-
-echo -e "🚀 Iniciando Verificación Senior v2.1...\n"
-
-# Éxitos Base
-run_test "POST" "/auth/login" "200" "Auth: Login Gerente"
-run_test "GET" "/reportes/produccion" "200" "Analítica: Vista de Producción"
-
-# Flujo de Ventas
-run_test "POST" "/clientes" "201" "Ventas: Registro Cliente"
-run_test "POST" "/ventas" "201" "Ventas: Registro Venta Exitosa"
-
-# Seguridad y Roles
-run_test "POST" "/maniquies" "403" "Seguridad: Bloqueo Rol Vendedor en Producción" "403"
-run_test "GET" "/maniquies" "401" "Seguridad: Token Requerido" "401"
-
-# Negocio (SQL Constraints)
-run_test "PUT" "/piezas/PZ-1/ensamblar" "409" "Motor DB: Trigger Anti-Frankenstein" "409"
-run_test "POST" "/maniquies" "409" "Motor DB: SP Fallo por Stock Insuficiente" "409"
-
-echo -e "\n🏁 Auditoría Senior finalizada."
-
-================
 File: tests/unit/auth.test.ts
 ================
 /**
@@ -2206,124 +1358,26 @@ async function fix() {
 fix();
 
 ================
-File: populate_db.js
+File: repomix.config.json
 ================
-/**
- * @file populate_db.js
- * @description Script robusto y ATÓMICO para poblar la base de datos con stock suficiente para ensamblar (6 piezas).
- */
-
-import bcrypt from 'bcryptjs';
-import { 
-  Usuario, 
-  Modelo, 
-  Maniqui, 
-  Cliente, 
-  Pieza, 
-  Venta, 
-  DetalleVenta 
-} from './src/models/index.js';
-import sequelize from './src/db.js';
-
-const populate = async () => {
-  const transaction = await sequelize.transaction();
-  try {
-    console.log('⏳ Iniciando población atómica...');
-    
-    // 1. Usuarios
-    const salt = await bcrypt.genSalt(10);
-    const passwordHash = await bcrypt.hash('password123', salt);
-    await Usuario.bulkCreate([
-      { username: 'vendedor_test', password_hash: passwordHash, nombre_completo: 'Pablo Vendedor', rol: 'vendedor' },
-      { username: 'gerente_test', password_hash: passwordHash, nombre_completo: 'Ana Gerente', rol: 'gerente_prod' },
-      { username: 'admin_pablo', password_hash: await bcrypt.hash('tecda2026', salt), nombre_completo: 'Pablo Admin', rol: 'gerente_prod' }
-    ], { ignoreDuplicates: true, transaction });
-
-    // 2. Modelos
-    // Nota: El SP valida que el modelo exista. Usaremos IDs fijos para coincidir con el catálogo si es necesario.
-    await Modelo.bulkCreate([
-      { id: 1, nombre: 'Modelo Alpha', costo_unitario: 10000, precio_venta: 30000 },
-      { id: 2, nombre: 'Modelo Beta', costo_unitario: 12000, precio_venta: 35000 }
-    ], { ignoreDuplicates: true, transaction });
-    
-    const modelosDB = await Modelo.findAll({ transaction });
-
-    // 3. Clientes
-    await Cliente.bulkCreate([
-      { nombre: 'Cliente Real S.A.', cuit_cuil: '30-11222333-4', email: 'contacto@real.com' }
-    ], { ignoreDuplicates: true, transaction });
-    const clientesDB = await Cliente.findAll({ transaction });
-
-    // 4. Piezas en Stock (Sueltas)
-    // Tipos Requeridos por SP: 1: Cabeza, 2: Torso, 3: Brazo Der, 4: Brazo Izq, 5: Pierna Der, 6: Pierna Izq
-    console.log('📦 Generando piezas en stock (6 tipos por modelo)...');
-    const piezasSueltas = [];
-    for (const mod of modelosDB) {
-      for (let tipo = 1; tipo <= 6; tipo++) {
-        for (let i = 1; i <= 5; i++) { // 5 de cada tipo para cada modelo
-          piezasSueltas.push({
-            serial_parte: `P-${mod.id}-${tipo}-${i}-${Math.floor(Math.random() * 10000)}`,
-            tipo_parte_id: tipo,
-            modelo_id: mod.id,
-            origen_id: 1, 
-            tono_acabado_id: 1, 
-            costo: mod.costo_unitario / 6,
-            maniqui_id: null
-          });
-        }
-      }
-    }
-    await Pieza.bulkCreate(piezasSueltas, { transaction, ignoreDuplicates: true });
-
-    // 5. Maniquíes ya ensamblados (Disponibles)
-    console.log('🤖 Creando maniquíes ya disponibles...');
-    const maniquiesData = [];
-    for (const mod of modelosDB) {
-      for (let i = 1; i <= 2; i++) {
-        maniquiesData.push({
-          numero_serie: `S-${mod.id}-${i}-${Math.floor(Math.random() * 1000)}`,
-          modelo_id: mod.id,
-          status: 'Disponible',
-          fecha_ensamblaje: new Date()
-        });
-      }
-    }
-    const maniquiesCreados = await Maniqui.bulkCreate(maniquiesData, { transaction });
-
-    // 6. Simular una venta
-    console.log('💰 Registrando una venta de prueba...');
-    const facturaNro = `FAC-${Date.now()}`;
-    const cliente = clientesDB[0];
-    const maniquiAVender = maniquiesCreados[0];
-    const modeloManiqui = modelosDB.find(m => m.id === maniquiAVender.modelo_id);
-
-    const nuevaVenta = await Venta.create({
-      cliente_id: cliente.id,
-      total: modeloManiqui.precio_venta,
-      metodo_pago: 'Efectivo',
-      nro_factura: facturaNro,
-      moneda: 'ARS'
-    }, { transaction });
-
-    await DetalleVenta.create({
-      venta_id: nuevaVenta.id,
-      maniqui_id: maniquiAVender.id,
-      precio_final: modeloManiqui.precio_venta
-    }, { transaction });
-
-    await maniquiAVender.update({ status: 'Vendido' }, { transaction });
-
-    await transaction.commit();
-    console.log('✅ Base de datos poblada con éxito. Listo para ensamblar (6 tipos de piezas).');
-    process.exit(0);
-  } catch (error) {
-    if (transaction) await transaction.rollback();
-    console.error('❌ Error en población:', error.message);
-    process.exit(1);
+{
+  "output": {
+    "filePath": "repomix-output.txt",
+    "style": "plain"
+  },
+  "ignore": {
+    "customPatterns": [
+      "repomix-output.*",
+      "docs/api/redoc.html",
+      "dist/**",
+      "pnpm-lock.yaml",
+      "graphify-out/**",
+      ".omg/**",
+      "node_modules/**",
+      ".git/**"
+    ]
   }
-};
-
-populate();
+}
 
 ================
 File: tsconfig.json
@@ -2400,129 +1454,381 @@ File: typedoc.json
 }
 
 ================
-File: src/controllers/produccionController.ts
+File: src/repositories/SistemaRepository.ts
 ================
 /**
- * @file produccionController.ts
- * @description Controladores para la gestión de la cadena de producción y ensamblaje.
+ * @file SistemaRepository.ts
+ * @description Repositorio para consultas de catálogo, reportes y utilidades del sistema.
  */
 
-import { Request, Response } from 'express';
-import { IProduccionService } from '../types/services.js';
-import { asyncHandler } from '../middleware/errorMiddleware.js';
-
-/**
- * Controlador encargado de la visualización y ensamblaje de productos.
- */
-export class ProduccionController {
-  constructor(private produccionService: IProduccionService) {}
-
-  /**
-   * Endpoint para listar todos los maniquíes en stock o producción.
-   * @route GET /maniquies
-   */
-  getManiquies = asyncHandler(async (req: Request, res: Response) => {
-    const maniquies = await this.produccionService.listarManiquies(req.query);
-    res.json(maniquies);
-  });
-
-  /**
-   * Endpoint para buscar un maniquí específico por serie.
-   * @route GET /maniquies/:serie
-   */
-  getManiquiBySerie = asyncHandler(async (req: Request, res: Response) => {
-    const { serie } = req.params;
-    const maniqui = await this.produccionService.obtenerManiqui(serie as string);
-    res.json(maniqui);
-  });
-
-  /**
-   * Endpoint para disparar el proceso de ensamblaje técnico.
-   * @route POST /maniquies/ensamblar
-   */
-  ensamblarManiqui = asyncHandler(async (req: Request, res: Response) => {
-    const { modelo_id, numero_serie } = req.body;
-    const resultado = await this.produccionService.ensamblarManiqui(modelo_id, numero_serie);
-    res.status(201).json({
-      message: 'Maniquí ensamblado con éxito',
-      resultado
-    });
-  });
-
-  /**
-   * Endpoint para listar piezas en stock (no ensambladas).
-   * @route GET /piezas/stock
-   */
-  getPiezasStock = asyncHandler(async (req: Request, res: Response) => {
-    const piezas = await this.produccionService.obtenerStockPiezas();
-    res.json(piezas);
-  });
-}
-
-================
-File: src/repositories/ManiquiRepository.ts
-================
-/**
- * @file ManiquiRepository.ts
- * @description Repositorio para la gestión de persistencia y ensamblaje de Maniquíes.
- */
-
-import { Maniqui, Modelo, Pieza } from '../models/index.js';
+import { Modelo, Maniqui } from '../models/index.js';
 import sequelize from '../db.js';
-import { IManiquiRepository } from '../types/repositories.js';
-import { IManiqui } from '../types/entities.js';
+import { ISistemaRepository } from '../types/repositories.js';
+import { IModelo } from '../types/entities.js';
 
 /**
- * Patrón Repository para gestionar la persistencia y ensamblaje de Maniquíes.
+ * Patrón Repository para consultas transversales de Sistema, Catálogos y Reportes Analíticos.
  */
-class ManiquiRepository implements IManiquiRepository {
+class SistemaRepository implements ISistemaRepository {
   /**
-   * Obtiene todos los maniquíes con filtros opcionales.
+   * Obtiene la lista completa de modelos técnicos activos.
    */
-  async findAll(filters: Record<string, unknown> = {}): Promise<IManiqui[]> {
+  async findAllModelos(): Promise<IModelo[]> {
+    return await Modelo.findAll();
+  }
+
+  /**
+   * Ejecuta una consulta SQL pura y devuelve los resultados.
+   */
+  async rawQuery(query: string, replacements: unknown[] = []): Promise<unknown[]> {
+    const [rows] = await sequelize.query(query, { replacements });
+    return rows as unknown[];
+  }
+
+  /**
+   * Genera un resumen estadístico de la producción actual agrupado por estado.
+   */
+  async getProduccionResumen(): Promise<unknown[]> {
     return await Maniqui.findAll({
-      where: filters,
-      include: [{ model: Modelo, attributes: ['nombre'] }]
-    });
+      attributes: [
+        'status',
+        [sequelize.fn('COUNT', sequelize.col('id')), 'cantidad']
+      ],
+      group: ['status']
+    }) as any;
   }
 
   /**
-   * Busca un maniquí específico por su número de serie único.
+   * Obtiene el reporte de rentabilidad desde la vista SQL.
    */
-  async findBySerie(numero_serie: string): Promise<IManiqui | null> {
-    return await Maniqui.findOne({ where: { numero_serie } });
+  async findRentabilidad(): Promise<unknown[]> {
+    return await this.rawQuery('SELECT * FROM Vista_Rentabilidad');
   }
 
   /**
-   * Ejecuta el procedimiento almacenado 'EnsamblarManiqui' en la base de datos.
+   * Obtiene el reporte de stock crítico desde la vista SQL.
    */
-  async assemble(modelo_id: number, numero_serie: string): Promise<any> {
+  async findStockCritico(): Promise<unknown[]> {
+    return await this.rawQuery('SELECT * FROM Vista_Stock_Critico');
+  }
+
+  /**
+   * Invoca la función almacenada 'CalcularDescuento' en la DB.
+   */
+  async calcularDescuentoUDF(modeloId: number, porcentaje: number): Promise<unknown | null> {
     const [result] = await sequelize.query(
-      'CALL EnsamblarManiqui(?, ?)',
-      { replacements: [modelo_id, numero_serie] }
+      'SELECT precio_venta, CalcularDescuento(precio_venta, ?) as precio_final FROM Modelos WHERE id = ?',
+      { replacements: [porcentaje, modeloId] }
     );
-    return result;
+    return (result as any[])[0] || null;
   }
 
   /**
-   * Crea un registro de maniquí de forma directa.
+   * Obtiene los proveedores externos registrados en la tabla Origenes_Piezas.
    */
-  async create(data: Partial<IManiqui>): Promise<IManiqui> {
-    return await Maniqui.create(data as any);
+  async findProveedores(): Promise<unknown[]> {
+    return await this.rawQuery("SELECT * FROM Origenes_Piezas WHERE tipo = 'Proveedor Externo'");
   }
 
   /**
-   * Busca piezas con filtros opcionales (útil para stock).
+   * Registra manualmente un nuevo proveedor externo.
    */
-  async findAllPiezas(filters: Record<string, unknown> = {}): Promise<any[]> {
-    return await Pieza.findAll({ where: filters });
+  async createProveedor(nombre: string, codigo: string): Promise<void> {
+    await sequelize.query(
+      "INSERT INTO Origenes_Piezas (nombre, codigo, tipo) VALUES (?, ?, 'Proveedor Externo')",
+      { replacements: [nombre, codigo] }
+    );
   }
 }
 
 /** Instancia singleton del repositorio */
-const instance = new ManiquiRepository();
+const instance = new SistemaRepository();
 export default instance;
-export { ManiquiRepository };
+export { SistemaRepository };
+
+================
+File: src/repositories/VentaRepository.ts
+================
+/**
+ * @file VentaRepository.ts
+ * @description Repositorio para la gestión de transacciones de venta.
+ */
+
+import { Venta, DetalleVenta, Maniqui, Modelo } from '../models/index.js';
+import sequelize from '../db.js';
+import { IVentaRepository } from '../types/repositories.js';
+import { IVenta } from '../types/entities.js';
+
+/**
+ * Patrón Repository para gestionar transacciones de Ventas.
+ */
+class VentaRepository implements IVentaRepository {
+  /**
+   * Obtiene todas las ventas con filtros opcionales.
+   */
+  async findAll(filters: Record<string, unknown> = {}): Promise<IVenta[]> {
+    return await Venta.findAll({ where: filters as any });
+  }
+
+  /**
+   * Registra una venta completa con sus detalles dentro de una transacción atómica.
+   */
+  async create(ventaData: Partial<IVenta>, detalles: { maniqui_id: number; precio_final: number }[]): Promise<IVenta> {
+    const t = await sequelize.transaction();
+
+    try {
+      const nuevaVenta = await Venta.create(ventaData as any, { transaction: t });
+
+      for (const item of detalles) {
+        await DetalleVenta.create({
+          venta_id: nuevaVenta.id,
+          maniqui_id: item.maniqui_id,
+          precio_final: item.precio_final
+        }, { transaction: t });
+
+        await Maniqui.update(
+          { status: 'Vendido' },
+          { where: { id: item.maniqui_id }, transaction: t }
+        );
+      }
+
+      await t.commit();
+      return nuevaVenta;
+    } catch (error) {
+      await t.rollback();
+      throw error;
+    }
+  }
+
+  /**
+   * Busca una venta por su ID.
+   */
+  async findById(id: number): Promise<IVenta | null> {
+    return await Venta.findByPk(id, {
+      include: [
+        {
+          model: DetalleVenta,
+          include: [
+            {
+              model: Maniqui,
+              as: 'maniqui',
+              include: [Modelo]
+            }
+          ]
+        }
+      ]
+    });
+  }
+}
+
+/**
+ * Instancia única del repositorio de ventas (Singleton).
+ */
+const instance = new VentaRepository();
+export default instance;
+export { VentaRepository };
+
+================
+File: src/routes/notificacionesRoutes.ts
+================
+import { Router, Request, Response } from 'express';
+import { sseManager } from '../services/sse/SSEManager.js';
+import { verifyToken, esGerente, esGerenteOOperario } from '../middleware/authMiddleware.js';
+import { asyncHandler } from '../middleware/errorMiddleware.js';
+
+const router: Router = Router();
+
+/**
+ * Endpoint SSE. Los clientes (Dashboard/Suministros) se conectan aquí 
+ * para escuchar eventos en vivo.
+ */
+router.get('/stream', verifyToken, (req: Request, res: Response) => {
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
+  });
+  
+  // Registrar cliente en el hub
+  sseManager.addClient(res);
+});
+
+/**
+ * Endpoint para generar una nueva orden de compra desde el Dashboard.
+ */
+router.post('/ordenes', verifyToken, esGerenteOOperario, asyncHandler(async (req: Request, res: Response) => {
+  const { modelo, parte } = req.body;
+  const orden = await sseManager.nuevaOrden(modelo, parte);
+  
+  res.status(201).json({ success: true, orden });
+}));
+
+export default router;
+
+================
+File: src/services/sse/SSEManager.ts
+================
+import { Response } from 'express';
+
+export interface OrdenCompra {
+  id: string;
+  modelo_nombre: string;
+  tipo_parte: string;
+  fecha: string;
+  estado: 'pendiente' | 'completada';
+}
+
+/**
+ * Gestor de Server-Sent Events (SSE)
+ * Mantiene conexiones vivas para emitir actualizaciones en tiempo real a los clientes conectados.
+ */
+class SSEManager {
+  private clients: Response[] = [];
+  private ordenesActivas: OrdenCompra[] = [];
+
+  constructor() {
+    this.cargarOrdenesDesdeBD();
+  }
+
+  async cargarOrdenesDesdeBD() {
+    try {
+      const { OrdenesCompra } = await import('../../models/index.js');
+      const ordenes = await OrdenesCompra.findAll({ where: { estado: 'pendiente' } });
+      this.ordenesActivas = ordenes.map(o => ({
+        id: o.id.toString(),
+        modelo_nombre: o.modelo_nombre,
+        tipo_parte: o.tipo_parte,
+        fecha: o.fecha.toISOString(),
+        estado: o.estado
+      }));
+      console.log(`📡 SSEManager: ${this.ordenesActivas.length} órdenes pendientes cargadas desde la Base de Datos.`);
+    } catch (error) {
+      console.error('❌ Error al cargar órdenes desde la base de datos en SSEManager:', error);
+    }
+  }
+
+  /**
+   * Agrega un nuevo cliente al hub de notificaciones.
+   */
+  addClient(res: Response) {
+    this.clients.push(res);
+    
+    // Al conectar, enviarle el estado actual de las órdenes
+    this.sendToClient(res, 'sync_ordenes', this.ordenesActivas);
+
+    res.on('close', () => {
+      this.clients = this.clients.filter(client => client !== res);
+    });
+  }
+
+  /**
+   * Registra una nueva orden y notifica a todos los clientes.
+   */
+  async nuevaOrden(modelo: string, parte: string) {
+    try {
+      const { OrdenesCompra } = await import('../../models/index.js');
+      const dbOrden = await OrdenesCompra.create({
+        modelo_nombre: modelo,
+        tipo_parte: parte,
+        estado: 'pendiente'
+      });
+
+      const nueva: OrdenCompra = {
+        id: dbOrden.id.toString(),
+        modelo_nombre: dbOrden.modelo_nombre,
+        tipo_parte: dbOrden.tipo_parte,
+        fecha: dbOrden.fecha.toISOString(),
+        estado: dbOrden.estado
+      };
+      
+      this.ordenesActivas.push(nueva);
+      this.broadcast('nueva_orden', nueva);
+      return nueva;
+    } catch (error) {
+      console.error('❌ Error al guardar la orden en la base de datos:', error);
+      // Fallback a memoria
+      const nueva: OrdenCompra = {
+        id: Date.now().toString(),
+        modelo_nombre: modelo,
+        tipo_parte: parte,
+        fecha: new Date().toISOString(),
+        estado: 'pendiente'
+      };
+      this.ordenesActivas.push(nueva);
+      this.broadcast('nueva_orden', nueva);
+      return nueva;
+    }
+  }
+
+  /**
+   * Marca una orden como completada (cuando ingresa a stock).
+   */
+  async completarOrden(tipo_parte: string, modelo_nombre: string) {
+    try {
+      const { OrdenesCompra } = await import('../../models/index.js');
+
+      // Buscamos órdenes que coincidan con la parte y modelo recibidos
+      const ordenIndex = this.ordenesActivas.findIndex(
+        o => o.tipo_parte === tipo_parte && o.modelo_nombre === modelo_nombre && o.estado === 'pendiente'
+      );
+
+      if (ordenIndex !== -1) {
+        const orden = this.ordenesActivas[ordenIndex];
+        if (orden) {
+          await OrdenesCompra.update(
+            { estado: 'completada' },
+            { where: { id: parseInt(orden.id) } }
+          );
+
+          orden.estado = 'completada';
+          this.ordenesActivas.splice(ordenIndex, 1); // La quitamos de activas
+          this.broadcast('orden_completada', { id: orden.id });
+        }
+      } else {
+        // En caso de que no esté cargada en la caché de memoria pero sí en BD
+        await OrdenesCompra.update(
+          { estado: 'completada' },
+          { where: { tipo_parte, modelo_nombre, estado: 'pendiente' } }
+        );
+      }
+    } catch (error) {
+      console.error('❌ Error al completar la orden en la base de datos:', error);
+      // Fallback a memoria
+      const ordenIndex = this.ordenesActivas.findIndex(
+        o => o.tipo_parte === tipo_parte && o.modelo_nombre === modelo_nombre && o.estado === 'pendiente'
+      );
+      if (ordenIndex !== -1) {
+        const orden = this.ordenesActivas[ordenIndex];
+        if (orden) {
+          orden.estado = 'completada';
+          this.ordenesActivas.splice(ordenIndex, 1); // La quitamos de activas
+          this.broadcast('orden_completada', { id: orden.id });
+        }
+      }
+    }
+  }
+
+  /**
+   * Notifica a todos los clientes que el stock general ha cambiado (ej. por ensamblaje).
+   */
+  notificarStockActualizado() {
+    this.broadcast('stock_actualizado', { timestamp: Date.now() });
+  }
+
+  /**
+   * Envía un evento a todos los clientes conectados.
+   */
+  private broadcast(event: string, data: any) {
+    this.clients.forEach(client => this.sendToClient(client, event, data));
+  }
+
+  private sendToClient(client: Response, event: string, data: any) {
+    client.write(`event: ${event}\n`);
+    client.write(`data: ${JSON.stringify(data)}\n\n`);
+  }
+}
+
+export const sseManager = new SSEManager();
 
 ================
 File: src/services/ComercialService.ts
@@ -2627,78 +1933,83 @@ export class ComercialService implements IComercialService {
 }
 
 ================
-File: src/types/repositories.ts
+File: src/app.ts
 ================
-import { ICliente, IUsuario, IManiqui, IModelo, IVenta } from './entities.js';
+/**
+ * @file app.ts
+ * @description Configuración central de Express. 
+ */
 
-export interface IClienteRepository {
-  findAll(filters?: Record<string, unknown>): Promise<ICliente[]>;
-  create(data: Partial<ICliente>): Promise<ICliente>;
-  findById(id: number): Promise<ICliente | null>;
-}
+import express, { Request, Response, Application } from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
 
-export interface IUsuarioRepository {
-  findByUsername(username: string): Promise<IUsuario | null>;
-  findByUsernameAll(username: string): Promise<IUsuario | null>;
-  create(userData: Partial<IUsuario>): Promise<IUsuario>;
-  updateLastLogin(id: number): Promise<number[]>;
-}
+import authRoutes from './routes/authRoutes.js';
+import produccionRoutes from './routes/produccionRoutes.js';
+import comercialRoutes from './routes/comercialRoutes.js';
+import sistemaRoutes from './routes/sistemaRoutes.js';
+import notificacionesRoutes from './routes/notificacionesRoutes.js';
 
-export interface IManiquiRepository {
-  findAll(filters?: Record<string, unknown>): Promise<IManiqui[]>;
-  findBySerie(numero_serie: string): Promise<IManiqui | null>;
-  assemble(modelo_id: number, numero_serie: string): Promise<unknown>;
-  create(data: Partial<IManiqui>): Promise<IManiqui>;
-  findAllPiezas(filters?: Record<string, unknown>): Promise<any[]>;
-}
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 
-export interface ISistemaRepository {
-  findAllModelos(): Promise<IModelo[]>;
-  rawQuery(query: string, replacements?: unknown[]): Promise<unknown[]>;
-  getProduccionResumen(): Promise<unknown[]>;
-  calcularDescuentoUDF(modeloId: number, porcentaje: number): Promise<unknown | null>;
-  findProveedores(): Promise<unknown[]>;
-  createProveedor(nombre: string, codigo: string): Promise<void>;
-}
+import { errorHandler } from './middleware/errorMiddleware.js';
 
-export interface IVentaRepository {
-  findAll(filters?: Record<string, unknown>): Promise<IVenta[]>;
-  create(ventaData: Partial<IVenta>, detalles: { maniqui_id: number; precio_final: number }[]): Promise<IVenta>;
-  findById(id: number): Promise<IVenta | null>;
-}
+const swaggerDocument = YAML.load('./openapi.yaml');
 
-================
-File: src/types/services.ts
-================
-import { ICliente, IUsuario, IManiqui, IVenta } from './entities.js';
+const app: Application = express();
 
-export interface IAuthService {
-  register(userData: Partial<IUsuario> & { password?: string }): Promise<Partial<IUsuario>>;
-  login(username: string, password: string): Promise<{ token: string; usuario: Partial<IUsuario> & { nombre?: string | undefined } }>;
-}
+// --- MIDDLEWARES GLOBALES ---
+app.use(helmet());
+app.use(cors());
+app.use(morgan('dev'));
+app.use(express.json());
 
-export interface IComercialService {
-  listarClientes(filters?: Record<string, unknown>): Promise<ICliente[]>;
-  registrarCliente(data: Partial<ICliente>): Promise<ICliente>;
-  listarVentas(filters?: Record<string, unknown>): Promise<IVenta[]>;
-  registrarVenta(data: { cliente_id: number; metodo_pago?: string; maniquies: any[]; moneda?: string }): Promise<IVenta>;
-  obtenerVenta(id: number): Promise<IVenta>;
-}
+// --- DOCUMENTACIÓN ---
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-export interface IProduccionService {
-  listarManiquies(filters?: Record<string, unknown>): Promise<IManiqui[]>;
-  obtenerManiqui(serie: string): Promise<IManiqui>;
-  ensamblarManiqui(modelo_id: number, numero_serie: string): Promise<unknown>;
-  obtenerStockPiezas(): Promise<any[]>;
-}
+// --- ENDPOINTS DE SISTEMA ---
+app.get('/', (req: Request, res: Response) => {
+  res.json({
+    mensaje: "Bienvenido a la API de Tecda Maniquí",
+    version: "2.1.0",
+    docs: "/api-docs"
+  });
+});
 
-export interface ISistemaService {
-  listarModelos(): Promise<any[]>;
-  obtenerResumenProduccion(): Promise<any[]>;
-  calcularDescuento(modeloId: number, porcentaje: number): Promise<unknown>;
-  listarProveedores(): Promise<any[]>;
-  crearProveedor(nombre: string, codigo: string): Promise<void>;
-}
+app.get('/sistema/health', (req: Request, res: Response) => {
+  res.json({
+    status: "UP",
+    db_connection: true,
+    uptime: process.uptime()
+  });
+});
+
+app.get('/sistema/info', (req: Request, res: Response) => {
+  res.json({
+    nombre: "Tecda Maniquí API",
+    version: "2.1.0",
+    entorno: process.env.NODE_ENV
+  });
+});
+
+// --- RUTAS DE MÓDULOS ---
+app.use('/auth', authRoutes);
+app.use('/', produccionRoutes);
+app.use('/', comercialRoutes);
+app.use('/', sistemaRoutes);
+app.use('/notificaciones', notificacionesRoutes);
+
+// --- MANEJO DE ERRORES ---
+app.use(errorHandler);
+
+app.use((req: Request, res: Response) => {
+  res.status(404).json({ error: "Ruta no encontrada" });
+});
+
+/** Aplicación Express configurada */
+export default app;
 
 ================
 File: src/container.ts
@@ -2735,6 +2046,56 @@ export const comercialController = new ComercialController(comercialService);
 export const produccionController = new ProduccionController(produccionService);
 /** Controlador para utilidades del sistema y catálogos */
 export const sistemaController = new SistemaController(sistemaService);
+
+================
+File: src/db.ts
+================
+/**
+ * @file db.ts
+ * @description Gestión de la conexión a la base de datos MySQL utilizando Sequelize ORM.
+ */
+
+import { Sequelize } from 'sequelize';
+import { env } from './config/env.js';
+import logger from './utils/logger.js';
+
+/**
+ * Instancia central de Sequelize para la comunicación con la base de datos.
+ */
+const sequelize = new Sequelize(
+  env.DB_NAME,
+  env.DB_USER,
+  env.DB_PASS,
+  {
+    host: env.DB_HOST,
+    port: env.DB_PORT,
+    dialect: 'mysql',
+    dialectOptions: {
+      multipleStatements: true
+    },
+    logging: (msg) => logger.debug(msg),
+    define: {
+      timestamps: false,
+      freezeTableName: true
+    }
+  }
+);
+
+/**
+ * Verifica la autenticación con el servidor de base de datos.
+ */
+export const conectarDB = async (): Promise<void> => {
+  try {
+    await sequelize.authenticate();
+    logger.info('✅ Conexión establecida con Sequelize (MySQL)');
+    await sequelize.sync();
+    logger.info('✅ Modelos sincronizados con la Base de Datos');
+  } catch (error: any) {
+    logger.error('❌ No se pudo conectar a la base de datos: %s', error.message);
+  }
+};
+
+export default sequelize;
 
 ================
 File: tests/integration/api_tests.http
@@ -2866,157 +2227,51 @@ GET {{baseUrl}}/sistema/reportes/produccion
 Authorization: Bearer {{tokenGerente}}
 
 ================
-File: tests/integration/test_all.sh
+File: tests/integration/test_senior.sh
 ================
 #!/bin/bash
-# 🧪 Tecda Maniquí - Probador Automático Full Coverage v4.0 (SOLID/TS)
-BASE_URL="http://localhost:8081"
+# 🧪 Tecda Maniquí - Full Coverage Final Verification v2.1
+BASE_URL="http://localhost:8082"
+TOKEN="eyJhbGciOiJIUzI1NiIsInR..."
 
-echo "🧹 Reseteando Base de Datos..."
-npx tsx reset_db_users.js
+# Colores
+G='\033[0;32m'; R='\033[0;31m'; B='\033[0;34m'; NC='\033[0m'
 
-echo "🚀 Iniciando pruebas de cobertura total..."
-
-# 1. Login y obtención de Token
-echo -n "Autenticando admin_pablo... "
-LOGIN_RESPONSE=$(curl -o /dev/null -s -w "%{http_code}" -X POST "$BASE_URL/auth/login" \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin_pablo","password":"tecda2026"}')
-
-# Realizamos login real para extraer token
-LOGIN_REAL=$(curl -s -X POST "$BASE_URL/auth/login" \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin_pablo","password":"tecda2026"}')
-
-echo "DEBUG: Response: $LOGIN_REAL"
-
-TOKEN=$(echo $LOGIN_REAL | grep -oP '(?<="token":")[^"]+')
-if [ -z "$TOKEN" ]; then echo "❌ ERROR: No se pudo obtener el token."; exit 1; fi
-AUTH_HEADER="Authorization: Bearer $TOKEN"
-echo "✅ OK"
-
-test_endpoint() {
-    local method=$1; local path=$2; local expected=$3; local data=$4; local msg=$5
-    echo -n "Testing $method $path ($msg)... "
-    
-    if [ "$method" == "GET" ]; then
-        status=$(curl -o /dev/null -s -w "%{http_code}" -H "$AUTH_HEADER" "$BASE_URL$path")
+run_test() {
+    local method=$1; local path=$2; local expect=$3; local title=$4; local prefer=$5
+    echo -n -e "${B}TEST:${NC} $title... "
+    local headers="-H 'Content-Type: application/json' -H 'Authorization: Bearer $TOKEN'"
+    [ -n "$prefer" ] && headers="$headers -H 'Prefer: code=$prefer'"
+    local data="-d '{}'"
+    [[ "$method" == "GET" ]] && data=""
+    local full_cmd="curl -s -o /dev/null -w '%{http_code}' -X $method $headers $data '$BASE_URL$path'"
+    status=$(eval "$full_cmd")
+    if [ "$status" == "$expect" ]; then
+        echo -e "${G}PASSED ($status)${NC}"
     else
-        status=$(curl -o /dev/null -s -w "%{http_code}" -X "$method" \
-            -H "$AUTH_HEADER" \
-            -H "Content-Type: application/json" \
-            -d "$data" "$BASE_URL$path")
-    fi
-
-    if [ "$status" == "$expected" ]; then
-        echo "✅ ($status)"
-    else
-        echo "❌ ERROR ($status vs $expected)"
+        echo -e "${R}FAILED (Expected $expect, Got $status)${NC}"
     fi
 }
 
-# --- 1. AUTENTICACIÓN Y USUARIOS ---
-test_endpoint "POST" "/auth/register" "201" '{"username":"ventas_ana_2", "password":"password123", "email":"ana2@tecda.com", "rol":"vendedor"}' "Registro nuevo usuario"
+echo -e "🚀 Iniciando Verificación Senior v2.1...\n"
 
-# --- 2. PRODUCCIÓN Y ENSAMBLAJE ---
-test_endpoint "GET"  "/maniquies" "200" "" "Listar maniquíes"
-test_endpoint "POST" "/maniquies/ensamblar" "201" '{"modelo_id": 1, "numero_serie": "SERIE-TS-001"}' "Ensamblar maniquí SOLID"
-test_endpoint "GET"  "/maniquies/SERIE-TS-001" "200" "" "Obtener detalle por serie"
+# Éxitos Base
+run_test "POST" "/auth/login" "200" "Auth: Login Gerente"
+run_test "GET" "/reportes/produccion" "200" "Analítica: Vista de Producción"
 
-# --- 3. COMERCIAL (CLIENTES Y VENTAS) ---
-test_endpoint "POST" "/clientes" "201" '{"nombre":"Cliente TS", "cuit_cuil":"20-99887766-5", "email":"ts@test.com"}' "Registrar cliente"
-test_endpoint "GET"  "/clientes" "200" "" "Listar clientes"
-test_endpoint "POST" "/ventas" "201" '{"cliente_id":1, "maniquies":[{"maniqui_id":1, "precio_final":15000}]}' "Registrar venta SOLID"
-test_endpoint "GET"  "/ventas" "200" "" "Listar ventas"
+# Flujo de Ventas
+run_test "POST" "/clientes" "201" "Ventas: Registro Cliente"
+run_test "POST" "/ventas" "201" "Ventas: Registro Venta Exitosa"
 
-# --- 4. SISTEMA Y SALUD ---
-test_endpoint "GET"  "/sistema/modelos" "200" "" "Listar modelos"
-test_endpoint "GET"  "/sistema/health" "200" "" "Salud del sistema"
-test_endpoint "GET"  "/sistema/modelos/1/descuento?porcentaje=15" "200" "" "Cálculo Descuento UDF"
+# Seguridad y Roles
+run_test "POST" "/maniquies" "403" "Seguridad: Bloqueo Rol Vendedor en Producción" "403"
+run_test "GET" "/maniquies" "401" "Seguridad: Token Requerido" "401"
 
-# --- 5. PRUEBAS NEGATIVAS ---
-test_endpoint "POST" "/auth/login" "401" '{"username":"bad","password":"bad"}' "Login fallido"
-test_endpoint "GET"  "/maniquies/NONEXISTENT" "404" "" "Maniquí no encontrado"
+# Negocio (SQL Constraints)
+run_test "PUT" "/piezas/PZ-1/ensamblar" "409" "Motor DB: Trigger Anti-Frankenstein" "409"
+run_test "POST" "/maniquies" "409" "Motor DB: SP Fallo por Stock Insuficiente" "409"
 
-echo "🏁 Fin de pruebas de integración v4.0."
-
-================
-File: tests/unit/produccion_service.test.ts
-================
-import test from 'node:test';
-import assert from 'node:assert';
-import { ProduccionService } from '../../src/services/ProduccionService.js';
-import { Pieza } from '../../src/models/index.js';
-
-// Mock de Pieza.count para controlar el stock en los tests
-const originalCount = Pieza.count;
-
-test('ProduccionService (Unitario)', async (t) => {
-  
-  await t.test('listarManiquies: Debe llamar al repositorio', async () => {
-    const mockRepo = {
-      findAll: async (filters: any) => [{ id: 1, numero_serie: 'ABC' } as any],
-      findBySerie: async () => null,
-      assemble: async () => ({}),
-      create: async () => ({}) as any,
-      findAllPiezas: async () => []
-    };
-
-    const service = new ProduccionService(mockRepo);
-    const result = await service.listarManiquies({});
-
-    assert.strictEqual(result.length, 1);
-    assert.strictEqual(result[0]?.numero_serie, 'ABC');
-  });
-
-  await t.test('ensamblarManiqui: Debe lanzar error si falta una pieza (Torso)', async () => {
-    const mockRepo = {
-      findAll: async () => [],
-      findBySerie: async () => null,
-      assemble: async () => ({}),
-      create: async () => ({}) as any,
-      findAllPiezas: async () => []
-    };
-
-    // Simular que no hay stock de Torso (tipo_parte_id: 1)
-    Pieza.count = (async (options: any) => {
-      if (options.where.tipo_parte_id === 1) return 0;
-      return 1;
-    }) as any;
-
-    const service = new ProduccionService(mockRepo);
-    await assert.rejects(
-      () => service.ensamblarManiqui(1, 'SERIE-ERROR'),
-      { message: 'Falta stock de la pieza: Torso' }
-    );
-  });
-
-  await t.test('ensamblarManiqui: Debe llamar a assemble si hay stock de todas las piezas', async () => {
-    let assembleCalled = false;
-    const mockRepo = {
-      findAll: async () => [],
-      findBySerie: async () => null,
-      assemble: async (modId: number, serie: string) => {
-        assembleCalled = true;
-        return { success: true };
-      },
-      create: async () => ({}) as any,
-      findAllPiezas: async () => []
-    };
-
-    // Simular que hay stock de todas las piezas
-    Pieza.count = (async () => 1) as any;
-
-    const service = new ProduccionService(mockRepo);
-    const result = await service.ensamblarManiqui(1, 'SERIE-OK');
-
-    assert.strictEqual(assembleCalled, true);
-    assert.deepStrictEqual(result, { success: true });
-  });
-
-  // Restaurar originalCount al finalizar
-  Pieza.count = originalCount;
-});
+echo -e "\n🏁 Auditoría Senior finalizada."
 
 ================
 File: .gitignore
@@ -3038,91 +2293,6 @@ tests/unit/*.d.ts
 
 # Documentation
 docs/api-ts/
-
-================
-File: pnpm-workspace.yaml
-================
-allowBuilds:
-  core-js: true
-  esbuild: true
-  protobufjs: true
-
-================
-File: reset_db_users.js
-================
-/**
- * @file reset_db_users.js
- * @description Script de mantenimiento para limpiar y repoblar la base de datos con datos de prueba (Seed).
- * Útil para entornos de desarrollo y testing.
- */
-
-import bcrypt from 'bcryptjs';
-import sequelize, { conectarDB } from './src/db.js';
-import { Usuario } from './src/models/index.js';
-
-/**
- * Ejecuta el proceso de truncado de tablas e inserción de datos semilla.
- * @async
- * @returns {Promise<void>}
- */
-const resetDB = async () => {
-  try {
-    await conectarDB();
-
-    console.log('🧹 Reseteando Base de Datos completa...');
-    await sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
-    
-    const tablas = [
-      'Logs_Auditoria', 'Detalle_Ventas', 'Ventas', 'Clientes', 
-      'Piezas', 'Maniquies', 'Usuarios', 'sistema_secuencias',
-      'Modelos', 'Cat_Sexos', 'Cat_Estilos', 'Cat_TiposCuerpo', 
-      'Cat_TiposParte', 'Cat_TonosAcabado', 'Origenes_Piezas'
-    ];
-
-    for (const tabla of tablas) {
-      await sequelize.query(`TRUNCATE TABLE ${tabla}`);
-    }
-    await sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
-
-    console.log('🌱 Insertando Catálogos base...');
-    await sequelize.query("INSERT INTO Cat_Sexos (id, nombre) VALUES (1, 'Masculino'), (2, 'Femenino')");
-    await sequelize.query("INSERT INTO Cat_Estilos (id, nombre) VALUES (1, 'Realista'), (2, 'Abstracto')");
-    await sequelize.query("INSERT INTO Cat_TiposCuerpo (id, nombre) VALUES (1, 'Entero'), (2, 'Busto')");
-    await sequelize.query("INSERT INTO Cat_TiposParte (id, nombre, codigo) VALUES (1, 'Cabeza', 'CAB'), (2, 'Torso', 'TOR'), (3, 'Brazo D', 'BRD'), (4, 'Brazo I', 'BRI'), (5, 'Pierna D', 'PID'), (6, 'Pierna I', 'PII')");
-    await sequelize.query("INSERT INTO Cat_TonosAcabado (id, nombre, acabado) VALUES (1, 'Blanco', 'Mate')");
-    await sequelize.query("INSERT INTO Origenes_Piezas (id, nombre, codigo, tipo) VALUES (1, 'Planta', 'INT', 'Produccion Interna')");
-    
-    console.log('📐 Creando Modelo semilla...');
-    await sequelize.query("INSERT INTO Modelos (id, nombre, sexo_id, estilo_id, cuerpo_id, precio_venta, costo_unitario, activo) VALUES (1, 'Modelo Test Pro', 1, 1, 1, 50000.00, 20000.00, 1)");
-
-    console.log('⚙️ Inicializando secuencias...');
-    await sequelize.query("INSERT INTO sistema_secuencias (tipo_parte_id, ultimo_numero) SELECT id, 0 FROM Cat_TiposParte");
-
-    console.log('👤 Creando administrador...');
-    const salt = await bcrypt.genSalt(10);
-    const password_hash = await bcrypt.hash('tecda2026', salt);
-    await Usuario.create({
-      username: 'admin_pablo',
-      password_hash,
-      nombre_completo: 'Pablo Administrador',
-      email: 'admin@tecda.com',
-      rol: 'gerente_prod'
-    });
-
-    console.log('📦 Insertando piezas semilla para ensamblaje...');
-    for (let i = 1; i <= 10; i++) {
-      await sequelize.query(`INSERT INTO Piezas (tipo_parte_id, modelo_id, origen_id, tono_acabado_id, costo) VALUES (${(i % 6) + 1}, 1, 1, 1, 100.00)`);
-    }
-
-    console.log('✅ Base de Datos reconstruida y lista.');
-    process.exit(0);
-  } catch (error) {
-    console.error('❌ Error en el reset:', error.message);
-    process.exit(1);
-  }
-};
-
-resetDB();
 
 ================
 File: run_db_reform.js
@@ -3249,101 +2419,861 @@ const crearAdminInicial = async () => {
 crearAdminInicial();
 
 ================
-File: src/services/ProduccionService.ts
+File: src/controllers/produccionController.ts
 ================
 /**
- * @file ProduccionService.ts
- * @description Servicio para la gestión de la cadena de producción.
+ * @file produccionController.ts
+ * @description Controladores para la gestión de la cadena de producción y ensamblaje.
  */
 
-import { IManiquiRepository } from '../types/repositories.js';
+import { Request, Response } from 'express';
 import { IProduccionService } from '../types/services.js';
-import { IManiqui } from '../types/entities.js';
-import { AppError } from '../utils/AppError.js';
-import { Pieza } from '../models/index.js';
+import { asyncHandler } from '../middleware/errorMiddleware.js';
 
 /**
- * Servicio encargado de la lógica de ensamblaje y control de stock de maniquíes.
+ * Controlador encargado de la visualización y ensamblaje de productos.
  */
-export class ProduccionService implements IProduccionService {
-  constructor(private maniquiRepo: IManiquiRepository) {}
+export class ProduccionController {
+  constructor(private produccionService: IProduccionService) {}
 
   /**
-   * Obtiene la lista de maniquíes existentes.
+   * Endpoint para listar todos los maniquíes en stock o producción.
+   * @route GET /maniquies
    */
-  async listarManiquies(filters?: Record<string, unknown>): Promise<IManiqui[]> {
-    return await this.maniquiRepo.findAll(filters);
-  }
+  getManiquies = asyncHandler(async (req: Request, res: Response) => {
+    const maniquies = await this.produccionService.listarManiquies(req.query);
+    res.json(maniquies);
+  });
 
   /**
-   * Busca un maniquí por su código de serie.
+   * Endpoint para buscar un maniquí específico por serie.
+   * @route GET /maniquies/:serie
    */
-  async obtenerManiqui(serie: string): Promise<IManiqui> {
-    const maniqui = await this.maniquiRepo.findBySerie(serie);
-    if (!maniqui) {
-      throw new AppError('Maniquí no encontrado', 404);
-    }
-    return maniqui;
-  }
+  getManiquiBySerie = asyncHandler(async (req: Request, res: Response) => {
+    const { serie } = req.params;
+    const maniqui = await this.produccionService.obtenerManiqui(serie as string);
+    res.json(maniqui);
+  });
 
   /**
-   * Inicia el proceso de ensamblaje de un nuevo producto.
+   * Endpoint para disparar el proceso de ensamblaje técnico.
+   * @route POST /maniquies/ensamblar
    */
-  async ensamblarManiqui(modelo_id: number, numero_serie: string): Promise<unknown> {
-    const existe = await this.maniquiRepo.findBySerie(numero_serie);
-    if (existe) {
-      throw new AppError('El número de serie ya existe', 400);
-    }
-
-    // VALIDACIÓN DE PIEZAS ANTES DE ENSAMBLAR
-    // Basado en Cat_TiposParte:
-    // 1: Cabeza, 2: Torso, 3: Brazo Derecho, 4: Brazo Izquierdo, 5: Pierna Derecha, 6: Pierna Izquierda
-    const piezasRequeridas = [
-      { id: 1, nombre: 'Cabeza' },
-      { id: 2, nombre: 'Torso' },
-      { id: 3, nombre: 'Brazo Derecho' },
-      { id: 4, nombre: 'Brazo Izquierdo' },
-      { id: 5, nombre: 'Pierna Derecha' },
-      { id: 6, nombre: 'Pierna Izquierda' }
-    ];
-
-    for (const piezaReq of piezasRequeridas) {
-      // Usamos cast to any para evitar errores de tipado estrictos de Sequelize en el conteo simple
-      const stock = await (Pieza as any).count({
-        where: {
-          modelo_id,
-          tipo_parte_id: piezaReq.id,
-          maniqui_id: null
-        }
-      });
-
-      if (stock === 0) {
-        throw new AppError(`Stock insuficiente: No hay ${piezaReq.nombre} disponible para este modelo.`, 400);
-      }
-    }
-
-    try {
-      return await this.maniquiRepo.assemble(modelo_id, numero_serie);
-    } catch (error: any) {
-      console.error('❌ Error ejecutando EnsamblarManiqui SP:', error.message);
-      // Extraer mensaje del SIGNAL si existe
-      const msg = error.message.includes('ERROR:') 
-        ? error.message.split('ERROR:')[1].trim()
-        : error.message;
-      throw new AppError(`Error en el motor de ensamblaje: ${msg}`, 400);
-    }
-  }
-
-  /**
-   * Obtiene el listado de piezas individuales en stock (no ensambladas).
-   */
-  async obtenerStockPiezas(): Promise<any[]> {
-    // Piezas que no pertenecen a ningún maniquí (maniqui_id es null)
-    return await this.maniquiRepo.findAllPiezas({
-      maniqui_id: null
+  ensamblarManiqui = asyncHandler(async (req: Request, res: Response) => {
+    const { modelo_id, numero_serie } = req.body;
+    const resultado = await this.produccionService.ensamblarManiqui(modelo_id, numero_serie);
+    res.status(201).json({
+      message: 'Maniquí ensamblado con éxito',
+      resultado
     });
+  });
+
+  /**
+   * Endpoint para listar piezas en stock (no ensambladas).
+   * @route GET /piezas/stock
+   */
+  getPiezasStock = asyncHandler(async (req: Request, res: Response) => {
+    const piezas = await this.produccionService.obtenerStockPiezas();
+    res.json(piezas);
+  });
+
+  /**
+   * Endpoint para ingresar nuevas piezas al almacén.
+   * @route POST /piezas/ingreso
+   */
+  ingresarPiezas = asyncHandler(async (req: Request, res: Response) => {
+    const { origen_codigo, tipo_parte_codigo, modelo_id, cantidad } = req.body;
+    await this.produccionService.ingresarPiezas(origen_codigo, tipo_parte_codigo, modelo_id, cantidad);
+    res.status(201).json({ success: true, message: `${cantidad} piezas ingresadas correctamente.` });
+  });
+}
+
+================
+File: src/controllers/sistemaController.ts
+================
+/**
+ * @file sistemaController.ts
+ * @description Controladores para utilidades de catálogo, reportes y salud del sistema.
+ */
+
+import { Request, Response } from 'express';
+import { ISistemaService } from '../types/services.js';
+import { asyncHandler } from '../middleware/errorMiddleware.js';
+
+/**
+ * Controlador encargado de proveer información técnica y operativa del sistema.
+ */
+export class SistemaController {
+  constructor(private sistemaService: ISistemaService) {}
+
+  /**
+   * Endpoint para obtener el catálogo de modelos técnicos.
+   * @route GET /sistema/modelos
+   */
+  getModelos = asyncHandler(async (req: Request, res: Response) => {
+    const modelos = await this.sistemaService.listarModelos();
+    res.json(modelos);
+  });
+
+  /**
+   * Endpoint para registrar un nuevo modelo técnico.
+   * @route POST /sistema/modelos
+   */
+  createModelo = asyncHandler(async (req: Request, res: Response) => {
+    const { nombre, partes, sexo_id } = req.body;
+    const nuevo = await this.sistemaService.crearModelo({ nombre, partes, sexo_id });
+    res.status(201).json(nuevo);
+  });
+
+  /**
+   * Endpoint para obtener métricas y resumenes de producción.
+   * @route GET /sistema/reportes/produccion
+   */
+  getProduccionResumen = asyncHandler(async (req: Request, res: Response) => {
+    const resumen = await this.sistemaService.obtenerResumenProduccion();
+    res.json(resumen);
+  });
+
+  /**
+   * Endpoint para obtener el reporte de rentabilidad.
+   * @route GET /reportes/rentabilidad
+   */
+  getRentabilidad = asyncHandler(async (req: Request, res: Response) => {
+    const data = await this.sistemaService.obtenerRentabilidad();
+    res.json(data);
+  });
+
+  /**
+   * Endpoint para obtener el reporte de stock crítico.
+   * @route GET /reportes/stock-critico
+   */
+  getStockCritico = asyncHandler(async (req: Request, res: Response) => {
+    const data = await this.sistemaService.obtenerStockCritico();
+    res.json(data);
+  });
+
+  /**
+   * Endpoint para el cálculo dinámico de descuentos mediante UDF de la base de datos.
+   * @route GET /sistema/modelos/:id/descuento
+   */
+  calcularDescuento = asyncHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { porcentaje } = req.query;
+
+    if (!porcentaje) {
+      const error: any = new Error('El porcentaje es requerido');
+      error.statusCode = 400;
+      throw error;
+    }
+
+    const resultado = await this.sistemaService.calcularDescuento(
+      parseInt(id as string), 
+      parseFloat(porcentaje as string)
+    );
+
+    res.json(resultado);
+  });
+
+  /**
+   * Endpoint para listar proveedores externos.
+   * @route GET /sistema/proveedores
+   */
+  getProveedores = asyncHandler(async (req: Request, res: Response) => {
+    const proveedores = await this.sistemaService.listarProveedores();
+    res.json(proveedores);
+  });
+
+  /**
+   * Endpoint para dar de alta un nuevo proveedor.
+   * @route POST /sistema/proveedores
+   */
+  createProveedor = asyncHandler(async (req: Request, res: Response) => {
+    const { nombre, codigo } = req.body;
+    await this.sistemaService.crearProveedor(nombre, codigo);
+    res.status(201).json({ message: 'Proveedor creado con éxito' });
+  });
+}
+
+================
+File: src/middleware/authMiddleware.ts
+================
+/**
+ * @file authMiddleware.ts
+ * @description Filtros de seguridad para proteger rutas y verificar roles.
+ */
+
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+import { env } from '../config/env.js';
+
+/**
+ * Interfaz extendida para incluir el usuario en la petición Express.
+ */
+export interface AuthRequest extends Request {
+  user?: {
+    id: number;
+    username: string;
+    rol: 'vendedor' | 'gerente_prod' | 'operario';
+  };
+}
+
+/**
+ * Middleware para validar el token JWT.
+ */
+export const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {
+  let token = req.headers['authorization']?.split(' ')[1];
+
+  // Soporte para token por query string (especialmente para SSE / EventSource)
+  if (!token && req.query.token) {
+    token = req.query.token as string;
+  }
+
+  if (!token) {
+    return res.status(403).json({ error: 'No se proporcionó un token' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, env.JWT_SECRET) as any;
+    req.user = decoded;
+    next();
+  } catch (error) {
+    console.error('DEBUG: Error verificando token:', error);
+    return res.status(401).json({ error: 'Token inválido o expirado' });
+  }
+};
+
+/**
+ * Middleware para restringir acceso solo a Gerentes de Producción.
+ */
+export const esGerente = (req: AuthRequest, res: Response, next: NextFunction) => {
+  console.log(`DEBUG: Verificando rol Gerente. Usuario: ${req.user?.username}, Rol: ${req.user?.rol}`);
+  if (req.user?.rol !== 'gerente_prod') {
+    return res.status(403).json({ error: 'Acceso denegado: Se requiere rol Gerente de Producción' });
+  }
+  next();
+};
+
+/**
+ * Middleware para restringir acceso solo a Vendedores.
+ */
+export const esVendedor = (req: AuthRequest, res: Response, next: NextFunction) => {
+  if (req.user?.rol !== 'vendedor' && req.user?.rol !== 'gerente_prod') {
+    return res.status(403).json({ error: 'Acceso denegado: Se requiere rol Vendedor' });
+  }
+  next();
+};
+
+/**
+ * Middleware para restringir acceso solo a Gerentes de Producción u Operarios de Línea.
+ */
+export const esGerenteOOperario = (req: AuthRequest, res: Response, next: NextFunction) => {
+  console.log(`DEBUG: Verificando rol Gerente/Operario. Usuario: ${req.user?.username}, Rol: ${req.user?.rol}`);
+  if (req.user?.rol !== 'gerente_prod' && req.user?.rol !== 'operario') {
+    return res.status(403).json({ error: 'Acceso denegado: Se requiere rol Gerente de Producción u Operario de Línea' });
+  }
+  next();
+};
+
+================
+File: src/routes/produccionRoutes.ts
+================
+/**
+ * @file produccionRoutes.ts
+ * @description Rutas para el módulo de Producción.
+ */
+
+import { Router } from 'express';
+import { produccionController } from '../container.js';
+import { reglasManiqui } from '../middleware/validatorMiddleware.js';
+import { verifyToken, esGerente, esGerenteOOperario } from '../middleware/authMiddleware.js';
+
+const router: Router = Router();
+
+router.use(verifyToken);
+
+/**
+ * Rutas de Maniquíes
+ */
+router.get('/maniquies', produccionController.getManiquies);
+router.get('/maniquies/:serie', produccionController.getManiquiBySerie);
+router.post('/maniquies/ensamblar', esGerenteOOperario, reglasManiqui, produccionController.ensamblarManiqui);
+
+/**
+ * Rutas de Piezas
+ */
+router.get('/piezas/stock', produccionController.getPiezasStock);
+router.post('/piezas/ingreso', esGerente, produccionController.ingresarPiezas);
+
+/** Router de Express para este módulo */
+export default router;
+
+================
+File: src/services/SistemaService.ts
+================
+/**
+ * @file SistemaService.ts
+ * @description Servicio para utilidades transversales, catálogos y reportes.
+ */
+
+import { ISistemaRepository } from '../types/repositories.js';
+import { ISistemaService } from '../types/services.js';
+import { AppError } from '../utils/AppError.js';
+import sequelize from '../db.js';
+import { Modelo, ModeloReceta } from '../models/index.js';
+
+/**
+ * Servicio encargado de proveer catálogos técnicos y métricas de salud del sistema.
+ */
+export class SistemaService implements ISistemaService {
+  constructor(private sistemaRepo: ISistemaRepository) {}
+
+  /**
+   * Obtiene todos los modelos técnicos disponibles.
+   */
+  async listarModelos(): Promise<any[]> {
+    return await this.sistemaRepo.findAllModelos();
+  }
+
+  /**
+   * Genera un resumen estadístico para el dashboard.
+   */
+  async obtenerResumenProduccion(): Promise<any[]> {
+    return await this.sistemaRepo.getProduccionResumen();
+  }
+
+  /**
+   * Obtiene datos analíticos de rentabilidad.
+   */
+  async obtenerRentabilidad(): Promise<any[]> {
+    return await this.sistemaRepo.findRentabilidad();
+  }
+
+  /**
+   * Obtiene datos de piezas con stock crítico.
+   */
+  async obtenerStockCritico(): Promise<any[]> {
+    return await this.sistemaRepo.findStockCritico();
+  }
+
+  /**
+   * Calcula el precio final aplicando un porcentaje de descuento mediante base de datos.
+   */
+  async calcularDescuento(modeloId: number, porcentaje: number): Promise<unknown> {
+    const resultado = await this.sistemaRepo.calcularDescuentoUDF(modeloId, porcentaje);
+    if (!resultado) {
+      throw new AppError('Modelo no encontrado', 404);
+    }
+    return resultado;
+  }
+
+  /**
+   * Lista los proveedores de piezas registrados.
+   */
+  async listarProveedores(): Promise<any[]> {
+    return await this.sistemaRepo.findProveedores();
+  }
+
+  /**
+   * Registra un nuevo proveedor en la base de datos.
+   */
+  async crearProveedor(nombre: string, codigo: string): Promise<void> {
+    await this.sistemaRepo.createProveedor(nombre, codigo);
+  }
+
+  /**
+   * Registra un nuevo modelo técnico y sus piezas requeridas (receta) de manera atómica.
+   */
+  async crearModelo(data: { nombre: string; partes: string[]; sexo_id: number }): Promise<any> {
+    const { nombre, partes, sexo_id } = data;
+
+    const t = await sequelize.transaction();
+    try {
+      const nuevoModelo = await Modelo.create({
+        nombre,
+        sexo_id,
+        estilo_id: 1, // Por defecto
+        cuerpo_id: 1, // Por defecto
+        costo_unitario: 5000,
+        precio_venta: 18500
+      }, { transaction: t });
+
+      for (const codigo of partes) {
+        const [tipos]: any[] = await sequelize.query(
+          `SELECT id FROM Cat_TiposParte WHERE codigo = ?`,
+          { replacements: [codigo], transaction: t }
+        );
+        if (tipos.length > 0) {
+          await ModeloReceta.create({
+            modelo_id: nuevoModelo.id,
+            tipo_parte_id: tipos[0].id
+          }, { transaction: t });
+        }
+      }
+
+      await t.commit();
+      return nuevoModelo;
+    } catch (error) {
+      await t.rollback();
+      throw error;
+    }
   }
 }
+
+================
+File: src/types/repositories.ts
+================
+import { ICliente, IUsuario, IManiqui, IModelo, IVenta } from './entities.js';
+
+export interface IClienteRepository {
+  findAll(filters?: Record<string, unknown>): Promise<ICliente[]>;
+  create(data: Partial<ICliente>): Promise<ICliente>;
+  findById(id: number): Promise<ICliente | null>;
+}
+
+export interface IUsuarioRepository {
+  findByUsername(username: string): Promise<IUsuario | null>;
+  findByUsernameAll(username: string): Promise<IUsuario | null>;
+  create(userData: Partial<IUsuario>): Promise<IUsuario>;
+  updateLastLogin(id: number): Promise<number[]>;
+}
+
+export interface IManiquiRepository {
+  findAll(filters?: Record<string, unknown>): Promise<IManiqui[]>;
+  findBySerie(numero_serie: string): Promise<IManiqui | null>;
+  assemble(modelo_id: number, numero_serie: string): Promise<unknown>;
+  create(data: Partial<IManiqui>): Promise<IManiqui>;
+  findAllPiezas(filters?: Record<string, unknown>): Promise<any[]>;
+  createPiezas(piezas: any[]): Promise<void>;
+}
+
+export interface ISistemaRepository {
+  findAllModelos(): Promise<IModelo[]>;
+  rawQuery(query: string, replacements?: unknown[]): Promise<unknown[]>;
+  getProduccionResumen(): Promise<unknown[]>;
+  findRentabilidad(): Promise<unknown[]>;
+  findStockCritico(): Promise<unknown[]>;
+  calcularDescuentoUDF(modeloId: number, porcentaje: number): Promise<unknown | null>;
+  findProveedores(): Promise<unknown[]>;
+  createProveedor(nombre: string, codigo: string): Promise<void>;
+}
+
+export interface IVentaRepository {
+  findAll(filters?: Record<string, unknown>): Promise<IVenta[]>;
+  create(ventaData: Partial<IVenta>, detalles: { maniqui_id: number; precio_final: number }[]): Promise<IVenta>;
+  findById(id: number): Promise<IVenta | null>;
+}
+
+================
+File: tests/integration/test_all.sh
+================
+#!/bin/bash
+# 🧪 Tecda Maniquí - Probador Automático Full Coverage v4.0 (SOLID/TS)
+BASE_URL="http://localhost:8082"
+
+echo "🧹 Reseteando Base de Datos..."
+pnpm tsx reset_db_users.js
+
+
+echo "🚀 Iniciando pruebas de cobertura total..."
+
+# 1. Login y obtención de Token
+echo -n "Autenticando admin_pablo... "
+LOGIN_RESPONSE=$(curl -o /dev/null -s -w "%{http_code}" -X POST "$BASE_URL/auth/login" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin_pablo","password":"tecda2026"}')
+
+# Realizamos login real para extraer token
+LOGIN_REAL=$(curl -s -X POST "$BASE_URL/auth/login" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin_pablo","password":"tecda2026"}')
+
+echo "DEBUG: Response: $LOGIN_REAL"
+
+TOKEN=$(echo $LOGIN_REAL | grep -oP '(?<="token":")[^"]+')
+if [ -z "$TOKEN" ]; then echo "❌ ERROR: No se pudo obtener el token."; exit 1; fi
+AUTH_HEADER="Authorization: Bearer $TOKEN"
+echo "✅ OK"
+
+test_endpoint() {
+    local method=$1; local path=$2; local expected=$3; local data=$4; local msg=$5
+    echo -n "Testing $method $path ($msg)... "
+    
+    if [ "$method" == "GET" ]; then
+        status=$(curl -o /dev/null -s -w "%{http_code}" -H "$AUTH_HEADER" "$BASE_URL$path")
+    else
+        status=$(curl -o /dev/null -s -w "%{http_code}" -X "$method" \
+            -H "$AUTH_HEADER" \
+            -H "Content-Type: application/json" \
+            -d "$data" "$BASE_URL$path")
+    fi
+
+    if [ "$status" == "$expected" ]; then
+        echo "✅ ($status)"
+    else
+        echo "❌ ERROR ($status vs $expected)"
+    fi
+}
+
+# --- 1. AUTENTICACIÓN Y USUARIOS ---
+test_endpoint "POST" "/auth/register" "201" '{"username":"ventas_ana_2", "password":"password123", "email":"ana2@tecda.com", "rol":"vendedor"}' "Registro nuevo usuario"
+
+# --- 2. PRODUCCIÓN Y ENSAMBLAJE ---
+test_endpoint "GET"  "/maniquies" "200" "" "Listar maniquíes"
+test_endpoint "POST" "/maniquies/ensamblar" "201" '{"modelo_id": 1, "numero_serie": "SERIE-TS-001"}' "Ensamblar maniquí SOLID"
+test_endpoint "GET"  "/maniquies/SERIE-TS-001" "200" "" "Obtener detalle por serie"
+
+# --- 3. COMERCIAL (CLIENTES Y VENTAS) ---
+test_endpoint "POST" "/clientes" "201" '{"nombre":"Cliente TS", "cuit_cuil":"20-99887766-5", "email":"ts@test.com"}' "Registrar cliente"
+test_endpoint "GET"  "/clientes" "200" "" "Listar clientes"
+test_endpoint "POST" "/ventas" "201" '{"cliente_id":1, "maniquies":[{"maniqui_id":1, "precio_final":15000}]}' "Registrar venta SOLID"
+test_endpoint "GET"  "/ventas" "200" "" "Listar ventas"
+
+# --- 4. SISTEMA Y SALUD ---
+test_endpoint "GET"  "/sistema/modelos" "200" "" "Listar modelos"
+test_endpoint "GET"  "/sistema/health" "200" "" "Salud del sistema"
+test_endpoint "GET"  "/sistema/modelos/1/descuento?porcentaje=15" "200" "" "Cálculo Descuento UDF"
+
+# --- 5. PRUEBAS NEGATIVAS ---
+test_endpoint "POST" "/auth/login" "401" '{"username":"bad","password":"bad"}' "Login fallido"
+test_endpoint "GET"  "/maniquies/NONEXISTENT" "404" "" "Maniquí no encontrado"
+
+echo "🏁 Fin de pruebas de integración v4.0."
+
+================
+File: tests/unit/produccion_service.test.ts
+================
+import test from 'node:test';
+import assert from 'node:assert';
+import { ProduccionService } from '../../src/services/ProduccionService.js';
+import { Pieza } from '../../src/models/index.js';
+
+// Mock de Pieza.count para controlar el stock en los tests
+const originalCount = Pieza.count;
+
+test('ProduccionService (Unitario)', async (t) => {
+  
+  await t.test('listarManiquies: Debe llamar al repositorio', async () => {
+    const mockRepo = {
+      findAll: async (filters: any) => [{ id: 1, numero_serie: 'ABC' } as any],
+      findBySerie: async () => null,
+      assemble: async () => ({}),
+      create: async () => ({}) as any,
+      findAllPiezas: async () => []
+    };
+
+    const service = new ProduccionService(mockRepo);
+    const result = await service.listarManiquies({});
+
+    assert.strictEqual(result.length, 1);
+    assert.strictEqual(result[0]?.numero_serie, 'ABC');
+  });
+
+  await t.test('ensamblarManiqui: Debe lanzar error si falta una pieza (Torso)', async () => {
+    const mockRepo = {
+      findAll: async () => [],
+      findBySerie: async () => null,
+      assemble: async () => ({}),
+      create: async () => ({}) as any,
+      findAllPiezas: async () => []
+    };
+
+    // Simular que no hay stock de Cabeza (tipo_parte_id: 1)
+    Pieza.count = (async (options: any) => {
+      if (options.where.tipo_parte_id === 1) return 0;
+      return 1;
+    }) as any;
+
+    const service = new ProduccionService(mockRepo);
+    await assert.rejects(
+      () => service.ensamblarManiqui(1, 'SERIE-ERROR'),
+      { message: 'Stock insuficiente: No hay Cabeza disponible para este modelo.' }
+    );
+  });
+
+  await t.test('ensamblarManiqui: Debe llamar a assemble si hay stock de todas las piezas', async () => {
+    let assembleCalled = false;
+    const mockRepo = {
+      findAll: async () => [],
+      findBySerie: async () => null,
+      assemble: async (modId: number, serie: string) => {
+        assembleCalled = true;
+        return { success: true };
+      },
+      create: async () => ({}) as any,
+      findAllPiezas: async () => []
+    };
+
+    // Simular que hay stock de todas las piezas
+    Pieza.count = (async () => 1) as any;
+
+    const service = new ProduccionService(mockRepo);
+    const result = await service.ensamblarManiqui(1, 'SERIE-OK');
+
+    assert.strictEqual(assembleCalled, true);
+    assert.deepStrictEqual(result, { success: true });
+  });
+
+  // Restaurar originalCount al finalizar
+  Pieza.count = originalCount;
+});
+
+================
+File: pnpm-workspace.yaml
+================
+allowBuilds:
+  '@scarf/scarf': set this to true or false
+  core-js: true
+  esbuild: true
+  protobufjs: true
+
+================
+File: populate_db.js
+================
+/**
+ * @file populate_db.js
+ * @description Script robusto y ATÓMICO para poblar la base de datos con stock suficiente para ensamblar (6 piezas).
+ */
+
+import bcrypt from 'bcryptjs';
+import { 
+  Usuario, 
+  Modelo, 
+  Maniqui, 
+  Cliente, 
+  Pieza, 
+  Venta, 
+  DetalleVenta 
+} from './src/models/index.js';
+import sequelize from './src/db.js';
+
+const populate = async () => {
+  let transaction;
+  try {
+    console.log('⏳ Modificando columna rol para soportar operario...');
+    await sequelize.query("ALTER TABLE Usuarios MODIFY COLUMN rol ENUM('vendedor', 'gerente_prod', 'operario') DEFAULT 'vendedor'");
+
+    transaction = await sequelize.transaction();
+    console.log('⏳ Iniciando población atómica...');
+
+    // Asegurar Orígenes de Piezas básicos
+    await sequelize.query("INSERT IGNORE INTO Origenes_Piezas (id, nombre, codigo, tipo) VALUES (1, 'Planta', 'INT', 'Produccion Interna'), (2, 'Proveedor Externo A', 'EXT-A', 'Proveedor Externo')", { transaction });
+    
+    // 1. Usuarios
+    const salt = await bcrypt.genSalt(10);
+    const passwordHash = await bcrypt.hash('password123', salt);
+    const hashGerente = await bcrypt.hash('gerente', salt);
+    const hashVendedor = await bcrypt.hash('vendedor', salt);
+    const hashOperario = await bcrypt.hash('operario', salt);
+    const hashAdmin = await bcrypt.hash('tecda2026', salt);
+
+    await Usuario.bulkCreate([
+      { username: 'vendedor_test', password_hash: passwordHash, nombre_completo: 'Pablo Vendedor', rol: 'vendedor' },
+      { username: 'gerente_test', password_hash: passwordHash, nombre_completo: 'Ana Gerente', rol: 'gerente_prod' },
+      { username: 'admin_pablo', password_hash: hashAdmin, nombre_completo: 'Pablo Admin', rol: 'gerente_prod' },
+      { username: 'gerente', password_hash: hashGerente, nombre_completo: 'Gerente Simplificado', rol: 'gerente_prod' },
+      { username: 'vendedor', password_hash: hashVendedor, nombre_completo: 'Vendedor Simplificado', rol: 'vendedor' },
+      { username: 'operario', password_hash: hashOperario, nombre_completo: 'Operario Simplificado', rol: 'operario' }
+    ], { ignoreDuplicates: true, transaction });
+
+    // 2. Modelos
+    // Nota: El SP valida que el modelo exista. Usaremos IDs fijos para coincidir con el catálogo si es necesario.
+    await Modelo.bulkCreate([
+      { id: 1, nombre: 'Modelo Alpha', costo_unitario: 10000, precio_venta: 30000, sexo_id: 1, estilo_id: 1, cuerpo_id: 1 },
+      { id: 2, nombre: 'Modelo Beta', costo_unitario: 12000, precio_venta: 35000, sexo_id: 1, estilo_id: 1, cuerpo_id: 1 }
+    ], { ignoreDuplicates: true, transaction });
+    
+    const modelosDB = await Modelo.findAll({ transaction });
+
+    // 3. Clientes
+    await Cliente.bulkCreate([
+      { nombre: 'Cliente Real S.A.', cuit_cuil: '30-11222333-4', email: 'contacto@real.com' }
+    ], { ignoreDuplicates: true, transaction });
+    const clientesDB = await Cliente.findAll({ transaction });
+
+    // 4. Piezas en Stock (Sueltas)
+    // Tipos Requeridos por SP: 1: Cabeza, 2: Torso, 3: Brazo Der, 4: Brazo Izq, 5: Pierna Der, 6: Pierna Izq
+    console.log('📦 Generando piezas en stock (6 tipos por modelo)...');
+    const piezasSueltas = [];
+    for (const mod of modelosDB) {
+      for (let tipo = 1; tipo <= 6; tipo++) {
+        for (let i = 1; i <= 5; i++) { // 5 de cada tipo para cada modelo
+          piezasSueltas.push({
+            serial_parte: `P-${mod.id}-${tipo}-${i}-${Math.floor(Math.random() * 10000)}`,
+            tipo_parte_id: tipo,
+            modelo_id: mod.id,
+            origen_id: 1, 
+            tono_acabado_id: 1, 
+            costo: mod.costo_unitario / 6,
+            maniqui_id: null
+          });
+        }
+      }
+    }
+    await Pieza.bulkCreate(piezasSueltas, { transaction, ignoreDuplicates: true });
+
+    // 5. Maniquíes ya ensamblados (Disponibles)
+    console.log('🤖 Creando maniquíes ya disponibles...');
+    const maniquiesData = [];
+    for (const mod of modelosDB) {
+      for (let i = 1; i <= 2; i++) {
+        maniquiesData.push({
+          numero_serie: `S-${mod.id}-${i}-${Math.floor(Math.random() * 1000)}`,
+          modelo_id: mod.id,
+          status: 'Disponible',
+          fecha_ensamblaje: new Date()
+        });
+      }
+    }
+    const maniquiesCreados = await Maniqui.bulkCreate(maniquiesData, { transaction });
+
+    // 6. Simular una venta
+    console.log('💰 Registrando una venta de prueba...');
+    console.log('DEBUG models:', modelosDB.map(m => ({ id: m.id, nombre: m.nombre })));
+    const maniquiAVender = maniquiesCreados[0];
+    console.log('DEBUG maniqui:', maniquiAVender ? { id: maniquiAVender.id, modelo_id: maniquiAVender.modelo_id } : 'null');
+    
+    if (maniquiAVender) {
+      const modeloManiqui = modelosDB.find(m => m.id === maniquiAVender.modelo_id);
+      console.log('DEBUG modeloManiqui:', modeloManiqui ? { id: modeloManiqui.id, precio: modeloManiqui.precio_venta } : 'null');
+      
+      const precio = modeloManiqui ? modeloManiqui.precio_venta : 30000;
+      const facturaNro = `FAC-${Date.now()}`;
+      const cliente = clientesDB[0];
+
+      const nuevaVenta = await Venta.create({
+        cliente_id: cliente.id,
+        total: precio,
+        metodo_pago: 'Efectivo',
+        nro_factura: facturaNro,
+        moneda: 'ARS'
+      }, { transaction });
+
+      await DetalleVenta.create({
+        venta_id: nuevaVenta.id,
+        maniqui_id: maniquiAVender.id,
+        precio_final: precio
+      }, { transaction });
+
+      await maniquiAVender.update({ status: 'Vendido' }, { transaction });
+    }
+
+    await transaction.commit();
+    console.log('✅ Base de datos poblada con éxito. Listo para ensamblar (6 tipos de piezas).');
+    process.exit(0);
+  } catch (error) {
+    if (transaction) await transaction.rollback();
+    console.error('❌ Error en población:', error.message);
+    process.exit(1);
+  }
+};
+
+populate();
+
+================
+File: reset_db_users.js
+================
+/**
+ * @file reset_db_users.js
+ * @description Script de mantenimiento para limpiar y repoblar la base de datos con datos de prueba (Seed).
+ * Útil para entornos de desarrollo y testing.
+ */
+
+import bcrypt from 'bcryptjs';
+import sequelize, { conectarDB } from './src/db.js';
+import { Usuario } from './src/models/index.js';
+
+/**
+ * Ejecuta el proceso de truncado de tablas e inserción de datos semilla.
+ * @async
+ * @returns {Promise<void>}
+ */
+const resetDB = async () => {
+  try {
+    await conectarDB();
+
+    console.log('🧹 Reseteando Base de Datos completa...');
+    await sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
+    
+    const tablas = [
+      'Logs_Auditoria', 'Detalle_Ventas', 'Ventas', 'Clientes', 
+      'Piezas', 'Maniquies', 'Usuarios', 'sistema_secuencias',
+      'Modelos', 'Cat_Sexos', 'Cat_Estilos', 'Cat_TiposCuerpo', 
+      'Cat_TiposParte', 'Cat_TonosAcabado', 'Origenes_Piezas'
+    ];
+
+    for (const tabla of tablas) {
+      await sequelize.query(`TRUNCATE TABLE ${tabla}`);
+    }
+    await sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
+
+    console.log('🔧 Modificando columna rol para soportar operario...');
+    await sequelize.query("ALTER TABLE Usuarios MODIFY COLUMN rol ENUM('vendedor', 'gerente_prod', 'operario') DEFAULT 'vendedor'");
+
+    console.log('🌱 Insertando Catálogos base...');
+    await sequelize.query("INSERT INTO Cat_Sexos (id, nombre) VALUES (1, 'Masculino'), (2, 'Femenino')");
+    await sequelize.query("INSERT INTO Cat_Estilos (id, nombre) VALUES (1, 'Realista'), (2, 'Abstracto')");
+    await sequelize.query("INSERT INTO Cat_TiposCuerpo (id, nombre) VALUES (1, 'Entero'), (2, 'Busto')");
+    await sequelize.query("INSERT INTO Cat_TiposParte (id, nombre, codigo) VALUES (1, 'Cabeza', 'CAB'), (2, 'Torso', 'TOR'), (3, 'Brazo D', 'BRD'), (4, 'Brazo I', 'BRI'), (5, 'Pierna D', 'PID'), (6, 'Pierna I', 'PII')");
+    await sequelize.query("INSERT INTO Cat_TonosAcabado (id, nombre, acabado) VALUES (1, 'Blanco', 'Mate')");
+    await sequelize.query("INSERT INTO Origenes_Piezas (id, nombre, codigo, tipo) VALUES (1, 'Planta', 'INT', 'Produccion Interna')");
+    await sequelize.query("INSERT INTO Origenes_Piezas (id, nombre, codigo, tipo) VALUES (2, 'Proveedor Externo A', 'EXT-A', 'Proveedor Externo')");
+    
+    console.log('📐 Creando Modelo semilla...');
+    await sequelize.query("INSERT INTO Modelos (id, nombre, sexo_id, estilo_id, cuerpo_id, precio_venta, costo_unitario, activo) VALUES (1, 'Modelo Test Pro', 1, 1, 1, 50000.00, 20000.00, 1)");
+
+    console.log('⚙️ Inicializando secuencias...');
+    await sequelize.query("INSERT INTO sistema_secuencias (tipo_parte_id, ultimo_numero) SELECT id, 0 FROM Cat_TiposParte");
+
+    console.log('👤 Creando administrador...');
+    const salt = await bcrypt.genSalt(10);
+    const password_hash = await bcrypt.hash('tecda2026', salt);
+    await Usuario.create({
+      username: 'admin_pablo',
+      password_hash,
+      nombre_completo: 'Pablo Administrador',
+      email: 'admin@tecda.com',
+      rol: 'gerente_prod'
+    });
+
+    console.log('👤 Creando usuarios simplificados...');
+    await Usuario.create({
+      username: 'gerente',
+      password_hash: await bcrypt.hash('gerente', salt),
+      nombre_completo: 'Gerente Simplificado',
+      email: 'gerente@tecda.com',
+      rol: 'gerente_prod'
+    });
+
+    await Usuario.create({
+      username: 'vendedor',
+      password_hash: await bcrypt.hash('vendedor', salt),
+      nombre_completo: 'Vendedor Simplificado',
+      email: 'vendedor@tecda.com',
+      rol: 'vendedor'
+    });
+
+    await Usuario.create({
+      username: 'operario',
+      password_hash: await bcrypt.hash('operario', salt),
+      nombre_completo: 'Operario Simplificado',
+      email: 'operario@tecda.com',
+      rol: 'operario'
+    });
+
+    console.log('📦 Insertando piezas semilla para ensamblaje...');
+    for (let i = 1; i <= 10; i++) {
+      await sequelize.query(`INSERT INTO Piezas (tipo_parte_id, modelo_id, origen_id, tono_acabado_id, costo) VALUES (${(i % 6) + 1}, 1, 1, 1, 100.00)`);
+    }
+
+    console.log('✅ Base de Datos reconstruida y lista.');
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Error en el reset:', error.message);
+    process.exit(1);
+  }
+};
+
+resetDB();
 
 ================
 File: docs/SECURITY_GUIDE.md
@@ -3390,75 +3320,456 @@ Nunca almacenamos contraseñas en texto plano. Utilizamos **BCryptJS** con un fa
 ---
 
 ================
-File: package.json
+File: src/models/index.ts
 ================
-{
-  "name": "tp-maniqui-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "packageManager": "pnpm@11.2.2",
-  "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=11.2.2"
+/**
+ * @file index.ts
+ * @description Definición central de modelos de datos utilizando Sequelize ORM.
+ */
+
+import { DataTypes, Model, Optional } from 'sequelize';
+import sequelize from '../db.js';
+import { IUsuario, IModelo, IManiqui, IPieza, ICliente, IVenta, IDetalleVenta, IOrdenCompra, IModeloReceta } from '../types/entities.js';
+
+// --- USUARIO ---
+interface UsuarioCreationAttributes extends Optional<IUsuario, 'id' | 'activo'> {}
+export class Usuario extends Model<IUsuario, UsuarioCreationAttributes> implements IUsuario {
+  declare id: number;
+  declare username: string;
+  declare password_hash: string;
+  declare nombre_completo: string;
+  declare email: string;
+  declare rol: 'vendedor' | 'gerente_prod' | 'operario';
+  declare activo: boolean;
+  declare last_login?: Date;
+  declare created_at?: Date;
+}
+Usuario.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  username: { type: DataTypes.STRING, unique: true, allowNull: false },
+  password_hash: { type: DataTypes.STRING, allowNull: false },
+  nombre_completo: { type: DataTypes.STRING },
+  email: { type: DataTypes.STRING, unique: true },
+  rol: { type: DataTypes.ENUM('vendedor', 'gerente_prod', 'operario'), defaultValue: 'vendedor' },
+  activo: { type: DataTypes.BOOLEAN, defaultValue: true },
+  last_login: { type: DataTypes.DATE },
+  created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
+}, { sequelize, modelName: 'Usuarios' });
+
+// --- MODELO ---
+interface ModeloCreationAttributes extends Optional<IModelo, 'id' | 'activo'> {}
+export class Modelo extends Model<IModelo, ModeloCreationAttributes> implements IModelo {
+  declare id: number;
+  declare nombre: string;
+  declare sexo_id?: number;
+  declare estilo_id?: number;
+  declare cuerpo_id?: number;
+  declare costo_unitario: number;
+  declare precio_venta: number;
+  declare activo: boolean;
+}
+Modelo.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  nombre: { type: DataTypes.STRING, unique: true, allowNull: false },
+  sexo_id: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  estilo_id: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  cuerpo_id: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  costo_unitario: { type: DataTypes.DECIMAL(10, 2) },
+  precio_venta: { type: DataTypes.DECIMAL(10, 2) },
+  activo: { type: DataTypes.BOOLEAN, defaultValue: true }
+}, { sequelize, modelName: 'Modelos' });
+
+// --- MANIQUI ---
+interface ManiquiCreationAttributes extends Optional<IManiqui, 'id' | 'status'> {}
+export class Maniqui extends Model<IManiqui, ManiquiCreationAttributes> implements IManiqui {
+  declare id: number;
+  declare numero_serie: string;
+  declare modelo_id: number;
+  declare fecha_ensamblaje?: Date;
+  declare numero_lote?: string;
+  declare status: 'En Producción' | 'Disponible' | 'Vendido' | 'Dañado';
+}
+Maniqui.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  numero_serie: { type: DataTypes.STRING, unique: true, allowNull: false },
+  modelo_id: { type: DataTypes.INTEGER, allowNull: false },
+  fecha_ensamblaje: { type: DataTypes.DATE },
+  numero_lote: { type: DataTypes.STRING },
+  status: { type: DataTypes.ENUM('En Producción', 'Disponible', 'Vendido', 'Dañado'), defaultValue: 'Disponible' }
+}, { sequelize, modelName: 'Maniquies' });
+
+// --- PIEZA ---
+interface PiezaCreationAttributes extends Optional<IPieza, 'id'> {}
+export class Pieza extends Model<IPieza, PiezaCreationAttributes> implements IPieza {
+  declare id: number;
+  declare serial_parte: string;
+  declare tipo_parte_id: number;
+  declare modelo_id: number;
+  declare origen_id: number;
+  declare tono_acabado_id: number;
+  declare maniqui_id?: number;
+  declare costo: number;
+}
+Pieza.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  serial_parte: { type: DataTypes.STRING, unique: true },
+  tipo_parte_id: { type: DataTypes.INTEGER, allowNull: false },
+  modelo_id: { type: DataTypes.INTEGER, allowNull: false },
+  origen_id: { type: DataTypes.INTEGER, allowNull: false },
+  tono_acabado_id: { type: DataTypes.INTEGER, allowNull: false },
+  maniqui_id: { type: DataTypes.INTEGER },
+  costo: { type: DataTypes.DECIMAL(10, 2) }
+}, { sequelize, modelName: 'Piezas' });
+
+// --- CLIENTE ---
+interface ClienteCreationAttributes extends Optional<ICliente, 'id' | 'activo'> {}
+export class Cliente extends Model<ICliente, ClienteCreationAttributes> implements ICliente {
+  declare id: number;
+  declare nombre: string;
+  declare cuit_cuil: string;
+  declare email: string;
+  declare activo: boolean;
+}
+Cliente.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  nombre: { type: DataTypes.STRING, allowNull: false },
+  cuit_cuil: { type: DataTypes.STRING, unique: true },
+  email: { type: DataTypes.STRING },
+  activo: { type: DataTypes.BOOLEAN, defaultValue: true }
+}, { sequelize, modelName: 'Clientes' });
+
+// --- VENTA ---
+interface VentaCreationAttributes extends Optional<IVenta, 'id' | 'fecha_venta' | 'metodo_pago' | 'moneda'> {}
+export class Venta extends Model<IVenta, VentaCreationAttributes> implements IVenta {
+  declare id: number;
+  declare cliente_id: number;
+  declare fecha_venta: Date;
+  declare total: number;
+  declare metodo_pago: 'Efectivo' | 'Transferencia' | 'Tarjeta' | 'Mercado Pago' | 'Otros';
+  declare nro_factura?: string;
+  declare cae?: string;
+  declare fecha_vencimiento_cae?: Date;
+  declare moneda: 'ARS' | 'USD';
+}
+Venta.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  cliente_id: { type: DataTypes.INTEGER, allowNull: false },
+  fecha_venta: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  total: { type: DataTypes.DECIMAL(12, 2) },
+  metodo_pago: { type: DataTypes.ENUM('Efectivo', 'Transferencia', 'Tarjeta', 'Mercado Pago', 'Otros'), defaultValue: 'Transferencia' },
+  nro_factura: { type: DataTypes.STRING, unique: true },
+  cae: { type: DataTypes.STRING },
+  fecha_vencimiento_cae: { type: DataTypes.DATEONLY },
+  moneda: { type: DataTypes.ENUM('ARS', 'USD'), defaultValue: 'ARS' }
+}, { sequelize, modelName: 'Ventas' });
+
+// --- DETALLE VENTA ---
+interface DetalleVentaCreationAttributes extends Optional<IDetalleVenta, 'id'> {}
+export class DetalleVenta extends Model<IDetalleVenta, DetalleVentaCreationAttributes> implements IDetalleVenta {
+  declare id: number;
+  declare venta_id: number;
+  declare maniqui_id: number;
+  declare precio_final: number;
+}
+DetalleVenta.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  venta_id: { type: DataTypes.INTEGER, allowNull: false },
+  maniqui_id: { type: DataTypes.INTEGER, unique: true, allowNull: false },
+  precio_final: { type: DataTypes.DECIMAL(10, 2) }
+}, { sequelize, modelName: 'Detalle_Ventas' });
+
+// --- ORDEN COMPRA ---
+interface OrdenCompraCreationAttributes extends Optional<IOrdenCompra, 'id' | 'fecha' | 'estado'> {}
+export class OrdenesCompra extends Model<IOrdenCompra, OrdenCompraCreationAttributes> implements IOrdenCompra {
+  declare id: number;
+  declare modelo_nombre: string;
+  declare tipo_parte: string;
+  declare fecha: Date;
+  declare estado: 'pendiente' | 'completada';
+}
+OrdenesCompra.init({
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  modelo_nombre: { type: DataTypes.STRING, allowNull: false },
+  tipo_parte: { type: DataTypes.STRING, allowNull: false },
+  fecha: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  estado: { type: DataTypes.ENUM('pendiente', 'completada'), defaultValue: 'pendiente' }
+}, { sequelize, modelName: 'Ordenes_Compra' });
+
+// --- MODELO RECETA ---
+export class ModeloReceta extends Model<IModeloReceta> implements IModeloReceta {
+  declare modelo_id: number;
+  declare tipo_parte_id: number;
+}
+ModeloReceta.init({
+  modelo_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    references: { model: 'Modelos', key: 'id' },
+    onDelete: 'CASCADE'
   },
-  "scripts": {
-    "start": "node dist/index.js",
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "mock": "npx @stoplight/prism-cli mock openapi.yaml -p 8081 -d",
-    "preinstall": "npx only-allow pnpm",
-    "test": "npm run test:unit && npm run test:integration",
-    "test:unit": "node --test --import tsx tests/unit/*.test.ts",
-    "test:integration": "bash tests/integration/test_all.sh",
-    "doc:api": "npx @redocly/cli build-docs openapi.yaml -o docs/api/redoc.html",
-    "doc:ts": "typedoc",
-    "doc": "npm run doc:api && npm run doc:ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "express-validator": "^7.3.2",
-    "helmet": "^8.2.0",
-    "jsonwebtoken": "^9.0.3",
-    "morgan": "^1.10.1",
-    "mysql2": "^3.22.3",
-    "pino": "^10.3.1",
-    "pino-pretty": "^13.1.3",
-    "sequelize": "^6.37.8",
-    "swagger-ui-express": "^5.0.1",
-    "yamljs": "^0.3.0",
-    "zod": "^4.4.3"
-  },
-  "devDependencies": {
-    "@redocly/cli": "^2.31.4",
-    "@stoplight/prism-cli": "^5.15.10",
-    "@types/bcryptjs": "^3.0.0",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "@types/jsonwebtoken": "^9.0.10",
-    "@types/morgan": "^1.9.10",
-    "@types/node": "^25.9.1",
-    "@types/swagger-ui-express": "^4.1.8",
-    "@types/validator": "^13.15.10",
-    "@types/yamljs": "^0.2.34",
-    "@typescript-eslint/eslint-plugin": "^8.60.0",
-    "@typescript-eslint/parser": "^8.60.0",
-    "eslint": "^10.4.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
-    "jsdoc": "^4.0.4",
-    "prettier": "^3.8.3",
-    "tsx": "^4.22.3",
-    "typedoc": "^0.28.19",
-    "typescript": "^6.0.3"
+  tipo_parte_id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    references: { model: 'Cat_TiposParte', key: 'id' }
   }
+}, { sequelize, modelName: 'Modelos_Recetas', tableName: 'Modelos_Recetas', timestamps: false });
+
+// --- RELACIONES ---
+Modelo.hasMany(Maniqui, { foreignKey: 'modelo_id' });
+Maniqui.belongsTo(Modelo, { foreignKey: 'modelo_id' });
+Maniqui.hasMany(Pieza, { foreignKey: 'maniqui_id' });
+Pieza.belongsTo(Maniqui, { foreignKey: 'maniqui_id' });
+Cliente.hasMany(Venta, { foreignKey: 'cliente_id' });
+Venta.belongsTo(Cliente, { foreignKey: 'cliente_id' });
+Venta.hasMany(DetalleVenta, { foreignKey: 'venta_id' });
+DetalleVenta.belongsTo(Venta, { foreignKey: 'venta_id' });
+DetalleVenta.belongsTo(Maniqui, { foreignKey: 'maniqui_id', as: 'maniqui' });
+Maniqui.hasMany(DetalleVenta, { foreignKey: 'maniqui_id', as: 'detalles' });
+
+Modelo.hasMany(ModeloReceta, { foreignKey: 'modelo_id', as: 'receta' });
+ModeloReceta.belongsTo(Modelo, { foreignKey: 'modelo_id' });
+
+================
+File: src/repositories/ManiquiRepository.ts
+================
+/**
+ * @file ManiquiRepository.ts
+ * @description Repositorio para la gestión de persistencia y ensamblaje de Maniquíes.
+ */
+
+import { Maniqui, Modelo, Pieza } from '../models/index.js';
+import sequelize from '../db.js';
+import { IManiquiRepository } from '../types/repositories.js';
+import { IManiqui } from '../types/entities.js';
+
+/**
+ * Patrón Repository para gestionar la persistencia y ensamblaje de Maniquíes.
+ */
+class ManiquiRepository implements IManiquiRepository {
+  /**
+   * Obtiene todos los maniquíes con filtros opcionales.
+   */
+  async findAll(filters: Record<string, unknown> = {}): Promise<IManiqui[]> {
+    return await Maniqui.findAll({
+      where: filters,
+      include: [{ model: Modelo, attributes: ['nombre', 'precio_venta'] }]
+    });
+  }
+
+  /**
+   * Busca un maniquí específico por su número de serie único.
+   */
+  async findBySerie(numero_serie: string): Promise<IManiqui | null> {
+    return await Maniqui.findOne({ where: { numero_serie } });
+  }
+
+  /**
+   * Ejecuta el procedimiento almacenado 'EnsamblarManiqui' en la base de datos.
+   */
+  async assemble(modelo_id: number, numero_serie: string): Promise<any> {
+    const [result] = await sequelize.query(
+      'CALL EnsamblarManiqui(?, ?)',
+      { replacements: [modelo_id, numero_serie] }
+    );
+    return result;
+  }
+
+  /**
+   * Crea un registro de maniquí de forma directa.
+   */
+  async create(data: Partial<IManiqui>): Promise<IManiqui> {
+    return await Maniqui.create(data as any);
+  }
+
+  /**
+   * Busca piezas con filtros opcionales (útil para stock).
+   */
+  async findAllPiezas(filters: Record<string, unknown> = {}): Promise<any[]> {
+    return await Pieza.findAll({ where: filters });
+  }
+
+  /**
+   * Crea múltiples piezas en lote.
+   */
+  async createPiezas(piezas: any[]): Promise<void> {
+    await Pieza.bulkCreate(piezas);
+  }
+}
+
+/** Instancia singleton del repositorio */
+const instance = new ManiquiRepository();
+export default instance;
+export { ManiquiRepository };
+
+================
+File: src/routes/sistemaRoutes.ts
+================
+/**
+ * @file sistemaRoutes.ts
+ * @description Rutas para utilidades de catálogo y reportes.
+ */
+
+import { Router } from 'express';
+import { sistemaController } from '../container.js';
+import { verifyToken, esGerente } from '../middleware/authMiddleware.js';
+
+const router: Router = Router();
+
+router.use(verifyToken);
+
+/**
+ * Catálogos
+ */
+router.get('/sistema/modelos', sistemaController.getModelos);
+router.post('/sistema/modelos', esGerente, sistemaController.createModelo);
+router.get('/sistema/modelos/:id/descuento', sistemaController.calcularDescuento);
+
+/**
+ * Proveedores
+ */
+router.get('/sistema/proveedores', sistemaController.getProveedores);
+router.post('/sistema/proveedores', esGerente, sistemaController.createProveedor);
+
+/**
+ * Reportes Analíticos
+ */
+router.get('/sistema/reportes/produccion', esGerente, sistemaController.getProduccionResumen);
+router.get('/reportes/rentabilidad', esGerente, sistemaController.getRentabilidad);
+router.get('/reportes/stock-critico', sistemaController.getStockCritico);
+
+/** Router de Express para este módulo */
+export default router;
+
+================
+File: src/types/entities.ts
+================
+/**
+ * Definiciones de entidades del dominio.
+ */
+
+export interface IUsuario {
+  id?: number | undefined;
+  username: string;
+  password_hash: string;
+  nombre_completo?: string | undefined;
+  email?: string | undefined;
+  rol: 'vendedor' | 'gerente_prod' | 'operario';
+  activo: boolean;
+  last_login?: Date | undefined;
+  created_at?: Date | undefined;
+}
+
+export interface IModelo {
+  id?: number | undefined;
+  nombre: string;
+  sexo_id?: number | undefined;
+  estilo_id?: number | undefined;
+  cuerpo_id?: number | undefined;
+  costo_unitario: number;
+  precio_venta: number;
+  activo: boolean;
+}
+
+export type ManiquiStatus = 'En Producción' | 'Disponible' | 'Vendido' | 'Dañado';
+
+export interface IManiqui {
+  id?: number | undefined;
+  numero_serie: string;
+  modelo_id: number;
+  fecha_ensamblaje?: Date | undefined;
+  numero_lote?: string | undefined;
+  status: ManiquiStatus;
+}
+
+export interface IPieza {
+  id?: number | undefined;
+  serial_parte?: string | undefined;
+  tipo_parte_id: number;
+  modelo_id: number;
+  origen_id: number;
+  tono_acabado_id: number;
+  maniqui_id?: number | undefined;
+  costo: number;
+}
+
+export interface ICliente {
+  id?: number | undefined;
+  nombre: string;
+  cuit_cuil: string;
+  email?: string | undefined;
+  activo: boolean;
+}
+
+export type MetodoPago = 'Efectivo' | 'Transferencia' | 'Tarjeta' | 'Mercado Pago' | 'Otros';
+export type Moneda = 'ARS' | 'USD';
+
+export interface IVenta {
+  id?: number | undefined;
+  cliente_id: number;
+  fecha_venta?: Date | undefined;
+  total: number;
+  metodo_pago: MetodoPago;
+  nro_factura?: string | undefined;
+  cae?: string | undefined;
+  fecha_vencimiento_cae?: string | Date | undefined;
+  moneda: Moneda;
+}
+
+export interface IDetalleVenta {
+  id?: number | undefined;
+  venta_id: number;
+  maniqui_id: number;
+  precio_final: number;
+}
+
+export interface IOrdenCompra {
+  id?: number | undefined;
+  modelo_nombre: string;
+  tipo_parte: string;
+  fecha?: Date | undefined;
+  estado: 'pendiente' | 'completada';
+}
+
+export interface IModeloReceta {
+  modelo_id: number;
+  tipo_parte_id: number;
+}
+
+================
+File: src/types/services.ts
+================
+import { ICliente, IUsuario, IManiqui, IVenta } from './entities.js';
+
+export interface IAuthService {
+  register(userData: Partial<IUsuario> & { password?: string }): Promise<Partial<IUsuario>>;
+  login(username: string, password: string): Promise<{ token: string; usuario: Partial<IUsuario> & { nombre?: string | undefined } }>;
+}
+
+export interface IComercialService {
+  listarClientes(filters?: Record<string, unknown>): Promise<ICliente[]>;
+  registrarCliente(data: Partial<ICliente>): Promise<ICliente>;
+  listarVentas(filters?: Record<string, unknown>): Promise<IVenta[]>;
+  registrarVenta(data: { cliente_id: number; metodo_pago?: string; maniquies: any[]; moneda?: string }): Promise<IVenta>;
+  obtenerVenta(id: number): Promise<IVenta>;
+}
+
+export interface IProduccionService {
+  listarManiquies(filters?: Record<string, unknown>): Promise<IManiqui[]>;
+  obtenerManiqui(serie: string): Promise<IManiqui>;
+  ensamblarManiqui(modelo_id: number, numero_serie: string): Promise<unknown>;
+  obtenerStockPiezas(): Promise<any[]>;
+  ingresarPiezas(origen_codigo: string, tipo_parte_codigo: string, modelo_id: number, cantidad: number): Promise<void>;
+}
+
+export interface ISistemaService {
+  listarModelos(): Promise<any[]>;
+  crearModelo(data: { nombre: string; partes: string[]; sexo_id: number }): Promise<any>;
+  obtenerResumenProduccion(): Promise<any[]>;
+  obtenerRentabilidad(): Promise<any[]>;
+  obtenerStockCritico(): Promise<any[]>;
+  calcularDescuento(modeloId: number, porcentaje: number): Promise<unknown>;
+  listarProveedores(): Promise<any[]>;
+  crearProveedor(nombre: string, codigo: string): Promise<void>;
 }
 
 ================
@@ -3555,6 +3866,153 @@ bash tests/integration/test_senior.sh
 ---
 
 ##
+
+================
+File: src/services/ProduccionService.ts
+================
+/**
+ * @file ProduccionService.ts
+ * @description Servicio para la gestión de la cadena de producción.
+ */
+
+import { IManiquiRepository } from '../types/repositories.js';
+import { IProduccionService } from '../types/services.js';
+import { IManiqui } from '../types/entities.js';
+import { AppError } from '../utils/AppError.js';
+import { Pieza } from '../models/index.js';
+import sequelize from '../db.js';
+import { sseManager } from './sse/SSEManager.js';
+
+/**
+ * Servicio encargado de la lógica de ensamblaje y control de stock de maniquíes.
+ */
+export class ProduccionService implements IProduccionService {
+  constructor(private maniquiRepo: IManiquiRepository) {}
+
+  /**
+   * Obtiene la lista de maniquíes existentes.
+   */
+  async listarManiquies(filters?: Record<string, unknown>): Promise<IManiqui[]> {
+    return await this.maniquiRepo.findAll(filters);
+  }
+
+  /**
+   * Busca un maniquí por su código de serie.
+   */
+  async obtenerManiqui(serie: string): Promise<IManiqui> {
+    const maniqui = await this.maniquiRepo.findBySerie(serie);
+    if (!maniqui) {
+      throw new AppError('Maniquí no encontrado', 404);
+    }
+    return maniqui;
+  }
+
+  /**
+   * Inicia el proceso de ensamblaje de un nuevo producto.
+   */
+  async ensamblarManiqui(modelo_id: number, numero_serie: string): Promise<unknown> {
+    const existe = await this.maniquiRepo.findBySerie(numero_serie);
+    if (existe) {
+      throw new AppError('El número de serie ya existe', 400);
+    }
+
+    // VALIDACIÓN DE PIEZAS ANTES DE ENSAMBLAR
+    const [recetas]: any[] = await sequelize.query(`
+      SELECT mr.tipo_parte_id as id, tp.nombre
+      FROM Modelos_Recetas mr
+      JOIN Cat_TiposParte tp ON mr.tipo_parte_id = tp.id
+      WHERE mr.modelo_id = ?
+    `, { replacements: [modelo_id] });
+
+    const piezasRequeridas = recetas.length > 0 ? recetas : [
+      { id: 1, nombre: 'Cabeza' },
+      { id: 2, nombre: 'Torso' },
+      { id: 3, nombre: 'Brazo Derecho' },
+      { id: 4, nombre: 'Brazo Izquierdo' },
+      { id: 5, nombre: 'Pierna Derecha' },
+      { id: 6, nombre: 'Pierna Izquierda' }
+    ];
+
+    for (const piezaReq of piezasRequeridas) {
+      // Usamos cast to any para evitar errores de tipado estrictos de Sequelize en el conteo simple
+      const stock = await (Pieza as any).count({
+        where: {
+          modelo_id,
+          tipo_parte_id: piezaReq.id,
+          maniqui_id: null
+        }
+      });
+
+      if (stock === 0) {
+        throw new AppError(`Stock insuficiente: No hay ${piezaReq.nombre} disponible para este modelo.`, 400);
+      }
+    }
+
+    try {
+      const result = await this.maniquiRepo.assemble(modelo_id, numero_serie);
+      // Notificar a todos los clientes que el stock ha cambiado debido a un ensamblaje
+      sseManager.notificarStockActualizado();
+      return result;
+    } catch (error: any) {
+      console.error('❌ Error ejecutando EnsamblarManiqui SP:', error.message);
+      // Extraer mensaje del SIGNAL si existe
+      const msg = error.message.includes('ERROR:') 
+        ? error.message.split('ERROR:')[1].trim()
+        : error.message;
+      throw new AppError(`Error en el motor de ensamblaje: ${msg}`, 400);
+    }
+  }
+
+  /**
+   * Obtiene el listado de piezas individuales en stock (no ensambladas).
+   */
+  async obtenerStockPiezas(): Promise<any[]> {
+    // Piezas que no pertenecen a ningún maniquí (maniqui_id es null)
+    return await this.maniquiRepo.findAllPiezas({
+      maniqui_id: null
+    });
+  }
+
+  /**
+   * Ingresa nuevas piezas al stock desde un proveedor.
+   */
+  async ingresarPiezas(origen_codigo: string, tipo_parte_codigo: string, modelo_id: number, cantidad: number): Promise<void> {
+    if (cantidad <= 0) throw new AppError('La cantidad debe ser mayor a 0', 400);
+
+    // Obtener IDs
+    const [origenes]: any[] = await sequelize.query(`SELECT id FROM Origenes_Piezas WHERE codigo = ?`, { replacements: [origen_codigo] });
+    if (!origenes.length) throw new AppError('Proveedor/Origen no encontrado', 404);
+    const origen_id = origenes[0].id;
+
+    const [tipos]: any[] = await sequelize.query(`SELECT id, nombre FROM Cat_TiposParte WHERE codigo = ?`, { replacements: [tipo_parte_codigo] });
+    if (!tipos.length) throw new AppError('Tipo de pieza no encontrado', 404);
+    const tipo_parte_id = tipos[0].id;
+    const tipo_parte_nombre = tipos[0].nombre;
+
+    const [modelos]: any[] = await sequelize.query(`SELECT id, nombre FROM Modelos WHERE id = ?`, { replacements: [modelo_id] });
+    if (!modelos.length) throw new AppError('Modelo no encontrado', 404);
+    const modelo_nombre = modelos[0].nombre;
+
+    // Generar piezas con seriales únicos
+    const timestamp = Date.now().toString().slice(-6);
+    const piezas = [];
+    for (let i = 0; i < cantidad; i++) {
+      piezas.push({
+        serial_parte: `PZ-${tipo_parte_codigo}-${modelo_id}-${timestamp}-${i+1}`,
+        tipo_parte_id,
+        modelo_id,
+        origen_id,
+        tono_acabado_id: 1, // Por defecto
+        costo: 50.00 // Costo mock
+      });
+    }
+
+    await this.maniquiRepo.createPiezas(piezas);
+
+    // Notificar a SSE que se ha completado la orden para esta parte y modelo
+    await sseManager.completarOrden(tipo_parte_nombre, modelo_nombre);
+  }
+}
 
 ================
 File: openapi.yaml
@@ -3843,6 +4301,79 @@ components:
         nombre: { type: string }
         cuit_cuil: { type: string, pattern: '^[0-9]{2}-[0-9]{8}-[0-9]{1}$' }
         email: { type: string, format: email }
+
+================
+File: package.json
+================
+{
+  "name": "tp-maniqui-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "packageManager": "pnpm@11.2.2",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=11.2.2"
+  },
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "mock": "npx @stoplight/prism-cli mock openapi.yaml -p 8081 -d",
+    "preinstall": "npx only-allow pnpm",
+    "test": "pnpm run test:unit && pnpm run test:integration",
+    "test:unit": "node --test --import tsx tests/unit/*.test.ts",
+    "test:integration": "bash tests/integration/test_all.sh",
+    "doc:api": "npx @redocly/cli build-docs openapi.yaml -o docs/api/redoc.html",
+    "doc:ts": "typedoc",
+    "doc": "npm run doc:api && npm run doc:ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.22.3",
+    "pino": "^10.3.1",
+    "pino-pretty": "^13.1.3",
+    "sequelize": "^6.37.8",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2.31.4",
+    "@stoplight/prism-cli": "^5.15.10",
+    "@types/bcryptjs": "^3.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^25.9.1",
+    "@types/swagger-ui-express": "^4.1.8",
+    "@types/validator": "^13.15.10",
+    "@types/yamljs": "^0.2.34",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "jsdoc": "^4.0.4",
+    "prettier": "^3.8.3",
+    "tsx": "^4.22.3",
+    "typedoc": "^0.28.19",
+    "typescript": "^6.0.3"
+  }
+}
 
 ================
 File: README.md
