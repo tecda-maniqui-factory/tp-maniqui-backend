@@ -16,9 +16,7 @@ class SSEManager {
   private clients: Response[] = [];
   private ordenesActivas: OrdenCompra[] = [];
 
-  constructor() {
-    this.cargarOrdenesDesdeBD();
-  }
+  constructor() {}
 
   async cargarOrdenesDesdeBD() {
     try {

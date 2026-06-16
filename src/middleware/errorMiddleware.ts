@@ -11,20 +11,21 @@ import { AppError } from '../utils/AppError.js';
  * Middleware global para capturar y formatear errores.
  */
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
-  const statusCode = err instanceof AppError ? err.statusCode : (err.statusCode || 500);
-  const message = err.message || 'Error interno del servidor';
+  const isOperational = err instanceof AppError;
+  const statusCode = isOperational ? err.statusCode : 500;
+  const message = isOperational ? err.message : 'Error interno del servidor';
 
   logger.error({
     method: req.method,
     url: req.url,
     status: statusCode,
-    error: message,
-    stack: statusCode === 500 ? err.stack : undefined
+    error: err instanceof Error ? err.message : String(err),
+    stack: statusCode === 500 ? (err instanceof Error ? err.stack : undefined) : undefined
   });
 
   res.status(statusCode).json({
     error: message,
-    isOperational: err instanceof AppError ? err.isOperational : false
+    isOperational
   });
 };
 
