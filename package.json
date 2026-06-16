@@ -44,7 +44,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@redocly/cli": "^2.31.4",
+    "@redocly/cli": "^2.33.0",
     "@stoplight/prism-cli": "^5.15.10",
     "@types/bcryptjs": "^3.0.0",
     "@types/cors": "^2.8.19",
