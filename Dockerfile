@@ -16,7 +16,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json typedoc.json 
 COPY src ./src
 
 # Instalar dependencias e iniciar compilacion de TypeScript
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --ignore-scripts
 RUN pnpm build
 
 # --- Stage 2: Producción ---
@@ -38,7 +38,7 @@ COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=builder /app/openapi.yaml ./openapi.yaml
 
 # Instalar unicamente las dependencias de produccion
-RUN pnpm install --prod --frozen-lockfile
+RUN pnpm install --prod --frozen-lockfile --ignore-scripts
 
 EXPOSE 8081
 
