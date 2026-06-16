@@ -29,13 +29,19 @@ LABEL description="API REST construida con Express y TypeScript, corriendo sobre
 
 WORKDIR /app
 
+# Asegurar que el directorio /app pertenezca al usuario node
+RUN chown -R node:node /app
+
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Copiar el build compilado y archivos necesarios
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY --from=builder /app/openapi.yaml ./openapi.yaml
+# Copiar el build compilado y archivos necesarios asignándoles propiedad al usuario node
+COPY --from=builder --chown=node:node /app/dist ./dist
+COPY --from=builder --chown=node:node /app/package.json ./package.json
+COPY --from=builder --chown=node:node /app/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=builder --chown=node:node /app/openapi.yaml ./openapi.yaml
+
+# Cambiar al usuario node
+USER node
 
 # Instalar unicamente las dependencias de produccion
 RUN pnpm install --prod --frozen-lockfile --ignore-scripts
