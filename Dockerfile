@@ -12,7 +12,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 WORKDIR /app
 
 # Copiar archivos base de dependencias y workspace
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json typedoc.json ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json typedoc.json openapi.yaml ./
 COPY src ./src
 
 # Instalar dependencias e iniciar compilacion de TypeScript
