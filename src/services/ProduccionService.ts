@@ -61,16 +61,28 @@ export class ProduccionService implements IProduccionService {
       { id: 6, nombre: 'Pierna Izquierda' }
     ];
 
-    for (const piezaReq of piezasRequeridas) {
-      // Usamos cast to any para evitar errores de tipado estrictos de Sequelize en el conteo simple
-      const stock = await (Pieza as any).count({
-        where: {
-          modelo_id,
-          tipo_parte_id: piezaReq.id,
-          maniqui_id: null
-        }
-      });
+    const requiredPartIds = piezasRequeridas.map((p: any) => p.id);
+    const counts = await Pieza.findAll({
+      attributes: [
+        'tipo_parte_id',
+        [sequelize.fn('COUNT', sequelize.col('id')), 'count']
+      ],
+      where: {
+        modelo_id,
+        tipo_parte_id: requiredPartIds,
+        maniqui_id: null
+      } as any,
+      group: ['tipo_parte_id'],
+      raw: true
+    }) as unknown as Array<{ tipo_parte_id: number; count: string | number }>;
 
+    const stockMap = new Map<number, number>();
+    for (const row of counts) {
+      stockMap.set(Number(row.tipo_parte_id), Number(row.count));
+    }
+
+    for (const piezaReq of piezasRequeridas) {
+      const stock = stockMap.get(piezaReq.id) || 0;
       if (stock === 0) {
         throw new AppError(`Stock insuficiente: No hay ${piezaReq.nombre} disponible para este modelo.`, 400);
       }

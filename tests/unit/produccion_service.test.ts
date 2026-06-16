@@ -3,8 +3,8 @@ import assert from 'node:assert';
 import { ProduccionService } from '../../src/services/ProduccionService.js';
 import { Pieza } from '../../src/models/index.js';
 
-// Mock de Pieza.count para controlar el stock en los tests
-const originalCount = Pieza.count;
+// Mock de Pieza.findAll para controlar el stock en los tests
+const originalFindAll = Pieza.findAll;
 
 test('ProduccionService (Unitario)', async (t) => {
   
@@ -34,9 +34,15 @@ test('ProduccionService (Unitario)', async (t) => {
     };
 
     // Simular que no hay stock de Cabeza (tipo_parte_id: 1)
-    Pieza.count = (async (options: any) => {
-      if (options.where.tipo_parte_id === 1) return 0;
-      return 1;
+    Pieza.findAll = (async (options: any) => {
+      const requiredIds = options.where.tipo_parte_id || [];
+      const result = [];
+      for (const id of requiredIds) {
+        if (id !== 1) {
+          result.push({ tipo_parte_id: id, count: 1 });
+        }
+      }
+      return result;
     }) as any;
 
     const service = new ProduccionService(mockRepo);
@@ -60,7 +66,10 @@ test('ProduccionService (Unitario)', async (t) => {
     };
 
     // Simular que hay stock de todas las piezas
-    Pieza.count = (async () => 1) as any;
+    Pieza.findAll = (async (options: any) => {
+      const requiredIds = options.where.tipo_parte_id || [];
+      return requiredIds.map((id: number) => ({ tipo_parte_id: id, count: 1 }));
+    }) as any;
 
     const service = new ProduccionService(mockRepo);
     const result = await service.ensamblarManiqui(1, 'SERIE-OK');
@@ -69,6 +78,6 @@ test('ProduccionService (Unitario)', async (t) => {
     assert.deepStrictEqual(result, { success: true });
   });
 
-  // Restaurar originalCount al finalizar
-  Pieza.count = originalCount;
+  // Restaurar originalFindAll al finalizar
+  Pieza.findAll = originalFindAll;
 });

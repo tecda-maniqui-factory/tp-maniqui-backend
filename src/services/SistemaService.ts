@@ -85,16 +85,31 @@ export class SistemaService implements ISistemaService {
         precio_venta: 18500
       }, { transaction: t });
 
-      for (const codigo of partes) {
+      const uniquePartCodes = [...new Set(partes)];
+      if (uniquePartCodes.length > 0) {
         const [tipos]: any[] = await sequelize.query(
-          `SELECT id FROM Cat_TiposParte WHERE codigo = ?`,
-          { replacements: [codigo], transaction: t }
+          `SELECT id, codigo FROM Cat_TiposParte WHERE codigo IN (?)`,
+          { replacements: [uniquePartCodes], transaction: t }
         );
-        if (tipos.length > 0) {
-          await ModeloReceta.create({
-            modelo_id: nuevoModelo.id,
-            tipo_parte_id: tipos[0].id
-          }, { transaction: t });
+
+        const codeToIdMap = new Map<string, number>();
+        for (const row of tipos) {
+          codeToIdMap.set(row.codigo, row.id);
+        }
+
+        const recipeToCreate = [];
+        for (const codigo of partes) {
+          const typeId = codeToIdMap.get(codigo);
+          if (typeId !== undefined) {
+            recipeToCreate.push({
+              modelo_id: nuevoModelo.id,
+              tipo_parte_id: typeId
+            });
+          }
+        }
+
+        if (recipeToCreate.length > 0) {
+          await ModeloReceta.bulkCreate(recipeToCreate, { transaction: t });
         }
       }
 
