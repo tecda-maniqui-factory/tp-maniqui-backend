@@ -10,7 +10,22 @@ export interface OrdenCompra {
 
 /**
  * Gestor de Server-Sent Events (SSE)
- * Mantiene conexiones vivas para emitir actualizaciones en tiempo real a los clientes conectados.
+ * 
+ * Mantiene conexiones activas para emitir actualizaciones en tiempo real a los clientes conectados.
+ * Utiliza {@link OrdenCompra} para tipar las órdenes gestionadas.
+ *
+ * @example
+ * ```ts
+ * import { sseManager } from './SSEManager';
+ * 
+ * // Registrar un nuevo cliente
+ * app.get('/events', (req, res) => {
+ *   sseManager.addClient(res);
+ * });
+ * 
+ * // Crear una nueva orden y notificar a los clientes
+ * await sseManager.nuevaOrden('Maniquí Completo', 'Brazo');
+ * ```
  */
 class SSEManager {
   private clients: Response[] = [];
@@ -18,6 +33,12 @@ class SSEManager {
 
   constructor() {}
 
+  /**
+   * Carga todas las órdenes con estado 'pendiente' desde la base de datos MySQL
+   * y las inicializa en la caché local para su posterior transmisión.
+   *
+   * @returns Promesa que se resuelve cuando las órdenes se cargan con éxito.
+   */
   async cargarOrdenesDesdeBD() {
     try {
       const { OrdenesCompra } = await import('../../models/index.js');
@@ -36,7 +57,13 @@ class SSEManager {
   }
 
   /**
-   * Agrega un nuevo cliente al hub de notificaciones.
+   * Agrega un nuevo cliente al hub de notificaciones de Server-Sent Events.
+   * 
+   * Configura las cabeceras HTTP necesarias y envía el estado actual
+   * de las órdenes al cliente conectado. Cuando el cliente se desconecta,
+   * remueve automáticamente la conexión del listado.
+   * 
+   * @param res - Objeto de respuesta HTTP de Express.
    */
   addClient(res: Response) {
     this.clients.push(res);
@@ -50,7 +77,13 @@ class SSEManager {
   }
 
   /**
-   * Registra una nueva orden y notifica a todos los clientes.
+   * Registra una nueva orden de compra en la base de datos y la transmite
+   * en tiempo real a todos los clientes conectados a través del canal SSE.
+   * 
+   * @param modelo - Nombre del modelo de maniquí de la orden.
+   * @param parte - Tipo de parte física a fabricar.
+   * @returns Promesa que se resuelve con la {@link OrdenCompra} registrada.
+   * @throws {Error} Si ocurre un problema al guardar o reportar la orden.
    */
   async nuevaOrden(modelo: string, parte: string) {
     try {
@@ -89,7 +122,16 @@ class SSEManager {
   }
 
   /**
-   * Marca una orden como completada (cuando ingresa a stock).
+   * Marca una orden de compra como completada.
+   * 
+   * Actualiza el estado de la orden en la base de datos SQL y remueve
+   * la orden del caché local de órdenes pendientes. Finalmente, notifica a
+   * todos los clientes conectados de que la orden fue completada.
+   * 
+   * @param tipo_parte - Tipo de parte física completada.
+   * @param modelo_nombre - Nombre del modelo completado.
+   * @returns Promesa que se resuelve cuando finaliza la actualización.
+   * @throws {Error} Si falla la actualización en la base de datos.
    */
   async completarOrden(tipo_parte: string, modelo_nombre: string) {
     try {
@@ -137,19 +179,32 @@ class SSEManager {
   }
 
   /**
-   * Notifica a todos los clientes que el stock general ha cambiado (ej. por ensamblaje).
+   * Notifica a todos los clientes que el stock general ha cambiado.
+   * 
+   * Este evento es crítico para alertar sobre nuevas existencias,
+   * ensamblajes exitosos o modificaciones de suministros.
    */
   notificarStockActualizado() {
     this.broadcast('stock_actualizado', { timestamp: Date.now() });
   }
 
   /**
-   * Envía un evento a todos los clientes conectados.
+   * Envía un evento de difusión (broadcast) a todos los clientes conectados.
+   * 
+   * @param event - Nombre del evento SSE a emitir.
+   * @param data - Payload de datos a serializar como JSON.
    */
   private broadcast(event: string, data: any) {
     this.clients.forEach(client => this.sendToClient(client, event, data));
   }
 
+  /**
+   * Envía un mensaje estructurado de SSE a un cliente específico.
+   * 
+   * @param client - Conexión de respuesta Express del cliente.
+   * @param event - Nombre del evento.
+   * @param data - Datos a serializar y transmitir.
+   */
   private sendToClient(client: Response, event: string, data: any) {
     client.write(`event: ${event}\n`);
     client.write(`data: ${JSON.stringify(data)}\n\n`);

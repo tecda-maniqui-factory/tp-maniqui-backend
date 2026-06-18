@@ -11,7 +11,7 @@ import logger from './utils/logger.js';
 /**
  * Instancia centralizada de Sequelize configurada para la comunicación con MySQL.
  * 
- * Configura el pool de conexiones usando los valores limpios del entorno (`env`) y establece:
+ * Configura el pool de conexiones usando los valores limpios del entorno ({@link env}) y establece:
  * - El dialecto como MySQL.
  * - Habilitación de múltiples sentencias para consultas complejas.
  * - Registro de consultas SQL redirigidas al logger en nivel de depuración (debug).
@@ -47,8 +47,10 @@ const sequelize = new Sequelize(
  * 1. Intenta conectarse al servidor mediante `.authenticate()`.
  * 2. Sincroniza las definiciones de modelos en memoria con las tablas físicas de la base de datos mediante `.sync()`.
  * 
- * @returns {Promise<void>} Promesa que se resuelve cuando la base de datos se ha autenticado y sincronizado con éxito.
- * @throws {Error} Imprime un registro de error en consola si falla la autenticación o sincronización.
+ * Se conecta con los modelos importados dinámicamente y expone la conexión activa a través de {@link sequelize}.
+ * 
+ * @returns Promesa que se resuelve cuando la base de datos se ha autenticado y sincronizado con éxito.
+ * @throws {Error} Si la autenticación o sincronización con la base de datos MySQL falla.
  */
 export const conectarDB = async (): Promise<void> => {
   try {

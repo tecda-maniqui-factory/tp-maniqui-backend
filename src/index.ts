@@ -10,18 +10,19 @@ import { env } from './config/env.js';
 import logger from './utils/logger.js';
 import { sseManager } from './services/sse/SSEManager.js';
 
-/**
+ /**
  * Arranca la secuencia de inicialización del servidor backend.
  * 
  * Sigue el siguiente orden crítico de ejecución:
- * 1. Establece y valida la conexión física con la base de datos MySQL mediante Sequelize.
- * 2. Carga en memoria las órdenes de producción pendientes en el `sseManager` para la comunicación en tiempo real.
- * 3. Inicia la escucha de peticiones HTTP en el puerto configurado por entorno.
+ * 1. Establece y valida la conexión física con la base de datos MySQL mediante Sequelize utilizando {@link conectarDB}.
+ * 2. Carga en memoria las órdenes de producción pendientes en el {@link sseManager} para la comunicación en tiempo real.
+ * 3. Inicia la escucha de peticiones HTTP en el puerto configurado por entorno {@link env}.
  * 
  * Si ocurre cualquier error durante esta fase, se registrará el error y el proceso de Node.js finalizará de forma forzada.
  * 
  * @function startServer
- * @returns {Promise<void>} Promesa vacía cuando el servidor se inicializa correctamente.
+ * @returns Promesa vacía cuando el servidor se inicializa correctamente.
+ * @throws {Error} Si la inicialización de la base de datos o el gestor SSE fallan.
  */
 async function startServer(): Promise<void> {
   try {
