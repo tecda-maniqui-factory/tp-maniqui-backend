@@ -59,8 +59,8 @@ export class ProduccionController {
    * @route POST /piezas/ingreso
    */
   ingresarPiezas = asyncHandler(async (req: Request, res: Response) => {
-    const { origen_codigo, tipo_parte_codigo, modelo_id, cantidad } = req.body;
-    await this.produccionService.ingresarPiezas(origen_codigo, tipo_parte_codigo, modelo_id, cantidad);
+    const { origen_codigo, tipo_parte_codigo, modelo_id, cantidad, costo } = req.body;
+    await this.produccionService.ingresarPiezas(origen_codigo, tipo_parte_codigo, modelo_id, cantidad, costo);
     res.status(201).json({ success: true, message: `${cantidad} piezas ingresadas correctamente.` });
   });
 }

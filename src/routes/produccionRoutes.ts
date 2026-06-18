@@ -5,7 +5,7 @@
 
 import { Router } from 'express';
 import { produccionController } from '../container.js';
-import { reglasManiqui } from '../middleware/validatorMiddleware.js';
+import { reglasManiqui, reglasPieza } from '../middleware/validatorMiddleware.js';
 import { verifyToken, esGerente, esGerenteOOperario } from '../middleware/authMiddleware.js';
 
 const router: Router = Router();
@@ -23,7 +23,7 @@ router.post('/maniquies/ensamblar', esGerenteOOperario, reglasManiqui, produccio
  * Rutas de Piezas
  */
 router.get('/piezas/stock', produccionController.getPiezasStock);
-router.post('/piezas/ingreso', esGerente, produccionController.ingresarPiezas);
+router.post('/piezas/ingreso', esGerente, reglasPieza, produccionController.ingresarPiezas);
 
 /** Router de Express para este módulo */
 export default router;

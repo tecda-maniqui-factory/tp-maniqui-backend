@@ -18,12 +18,12 @@ export interface IProduccionService {
   obtenerManiqui(serie: string): Promise<IManiqui>;
   ensamblarManiqui(modelo_id: number, numero_serie: string): Promise<unknown>;
   obtenerStockPiezas(): Promise<any[]>;
-  ingresarPiezas(origen_codigo: string, tipo_parte_codigo: string, modelo_id: number, cantidad: number): Promise<void>;
+  ingresarPiezas(origen_codigo: string, tipo_parte_codigo: string, modelo_id: number, cantidad: number, costo: number): Promise<void>;
 }
 
 export interface ISistemaService {
   listarModelos(): Promise<any[]>;
-  crearModelo(data: { nombre: string; partes: string[]; sexo_id: number }): Promise<any>;
+  crearModelo(data: { nombre: string; partes: string[]; sexo_id: number; costo_unitario: number; precio_venta: number }): Promise<any>;
   obtenerResumenProduccion(): Promise<any[]>;
   obtenerRentabilidad(): Promise<any[]>;
   obtenerStockCritico(): Promise<any[]>;

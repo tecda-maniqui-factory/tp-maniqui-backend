@@ -27,8 +27,8 @@ export class SistemaController {
    * @route POST /sistema/modelos
    */
   createModelo = asyncHandler(async (req: Request, res: Response) => {
-    const { nombre, partes, sexo_id } = req.body;
-    const nuevo = await this.sistemaService.crearModelo({ nombre, partes, sexo_id });
+    const { nombre, partes, sexo_id, costo_unitario, precio_venta } = req.body;
+    const nuevo = await this.sistemaService.crearModelo({ nombre, partes, sexo_id, costo_unitario, precio_venta });
     res.status(201).json(nuevo);
   });
 

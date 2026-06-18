@@ -5,6 +5,7 @@
 
 import { Router } from 'express';
 import { sistemaController } from '../container.js';
+import { reglasModelo } from '../middleware/validatorMiddleware.js';
 import { verifyToken, esGerente } from '../middleware/authMiddleware.js';
 
 const router: Router = Router();
@@ -15,7 +16,7 @@ router.use(verifyToken);
  * Catálogos
  */
 router.get('/sistema/modelos', sistemaController.getModelos);
-router.post('/sistema/modelos', esGerente, sistemaController.createModelo);
+router.post('/sistema/modelos', esGerente, reglasModelo, sistemaController.createModelo);
 router.get('/sistema/modelos/:id/descuento', sistemaController.calcularDescuento);
 
 /**
@@ -29,7 +30,7 @@ router.post('/sistema/proveedores', esGerente, sistemaController.createProveedor
  */
 router.get('/sistema/reportes/produccion', esGerente, sistemaController.getProduccionResumen);
 router.get('/reportes/rentabilidad', esGerente, sistemaController.getRentabilidad);
-router.get('/reportes/stock-critico', esGerente, sistemaController.getStockCritico);
+router.get('/reportes/stock-critico', sistemaController.getStockCritico);
 
 /** Router de Express para este módulo */
 export default router;

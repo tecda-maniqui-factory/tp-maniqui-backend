@@ -12,7 +12,7 @@
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "mock": "npx @stoplight/prism-cli mock openapi.yaml -p 8081 -d",
+    "mock": "npx @stoplight/prism-cli mock openapi.yaml -p 8083 -d",
     "preinstall": "npx only-allow pnpm",
     "test": "pnpm run test:unit && pnpm run test:integration",
     "test:unit": "node --test --import tsx tests/unit/*.test.ts",

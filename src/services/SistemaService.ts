@@ -71,8 +71,11 @@ export class SistemaService implements ISistemaService {
   /**
    * Registra un nuevo modelo técnico y sus piezas requeridas (receta) de manera atómica.
    */
-  async crearModelo(data: { nombre: string; partes: string[]; sexo_id: number }): Promise<any> {
-    const { nombre, partes, sexo_id } = data;
+  async crearModelo(data: { nombre: string; partes: string[]; sexo_id: number; costo_unitario: number; precio_venta: number }): Promise<any> {
+    const { nombre, partes, sexo_id, costo_unitario, precio_venta } = data;
+
+    if (!costo_unitario || costo_unitario <= 0) throw new AppError('El costo unitario es obligatorio', 400);
+    if (!precio_venta || precio_venta <= 0) throw new AppError('El precio de venta es obligatorio', 400);
 
     const t = await sequelize.transaction();
     try {
@@ -81,8 +84,8 @@ export class SistemaService implements ISistemaService {
         sexo_id,
         estilo_id: 1, // Por defecto
         cuerpo_id: 1, // Por defecto
-        costo_unitario: 5000,
-        precio_venta: 18500
+        costo_unitario,
+        precio_venta
       }, { transaction: t });
 
       const uniquePartCodes = [...new Set(partes)];

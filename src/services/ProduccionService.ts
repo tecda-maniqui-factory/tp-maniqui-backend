@@ -116,8 +116,9 @@ export class ProduccionService implements IProduccionService {
   /**
    * Ingresa nuevas piezas al stock desde un proveedor.
    */
-  async ingresarPiezas(origen_codigo: string, tipo_parte_codigo: string, modelo_id: number, cantidad: number): Promise<void> {
+  async ingresarPiezas(origen_codigo: string, tipo_parte_codigo: string, modelo_id: number, cantidad: number, costo: number): Promise<void> {
     if (cantidad <= 0) throw new AppError('La cantidad debe ser mayor a 0', 400);
+    if (!costo || costo <= 0) throw new AppError('El costo de la pieza es obligatorio y debe ser mayor a 0', 400);
 
     // Obtener IDs
     const [origenes]: any[] = await sequelize.query(`SELECT id FROM Origenes_Piezas WHERE codigo = ?`, { replacements: [origen_codigo] });
@@ -143,7 +144,7 @@ export class ProduccionService implements IProduccionService {
         modelo_id,
         origen_id,
         tono_acabado_id: 1, // Por defecto
-        costo: 50.00 // Costo mock
+        costo: costo // Costo obligatorio
       });
     }
 

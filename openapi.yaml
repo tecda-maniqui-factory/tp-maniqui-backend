@@ -126,6 +126,28 @@ paths:
       responses:
         '200': { description: OK }
 
+  /piezas/ingreso:
+    post:
+      summary: Registrar ingreso de piezas en lote
+      description: Registra el ingreso de un lote de piezas del mismo tipo, origen y modelo. Requiere rol Gerente.
+      tags: [Producción]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [origen_codigo, tipo_parte_codigo, modelo_id, cantidad, costo]
+              properties:
+                origen_codigo: { type: string, example: "ARG" }
+                tipo_parte_codigo: { type: string, example: "CAB" }
+                modelo_id: { type: integer, example: 1 }
+                cantidad: { type: integer, minimum: 1, example: 5 }
+                costo: { type: number, minimum: 0.01, example: 120.50 }
+      responses:
+        '201':
+          description: Piezas ingresadas con éxito
+
   /clientes:
     get:
       summary: Listar clientes
@@ -199,6 +221,29 @@ paths:
       tags: [Sistema]
       responses:
         '200': { description: OK }
+    post:
+      summary: Crear nuevo modelo técnico
+      description: Da de alta un modelo técnico con sus partes especificadas. Requiere rol Gerente.
+      tags: [Sistema]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [nombre, partes, sexo_id, costo_unitario, precio_venta]
+              properties:
+                nombre: { type: string, minLength: 3, example: "Maniquí Costura Premium" }
+                partes:
+                  type: array
+                  items: { type: string }
+                  example: ["Cabeza", "Torso", "Brazos", "Piernas"]
+                sexo_id: { type: integer, example: 1 }
+                costo_unitario: { type: number, minimum: 0.01, example: 1500.00 }
+                precio_venta: { type: number, minimum: 0.01, example: 3500.00 }
+      responses:
+        '201':
+          description: Modelo creado exitosamente
 
   /sistema/modelos/{id}/descuento:
     get:
@@ -231,6 +276,24 @@ paths:
       responses:
         '200': { description: OK }
 
+  /reportes/rentabilidad:
+    get:
+      summary: Obtener reporte de rentabilidad
+      description: Retorna un listado consolidado de costos y precios con la rentabilidad asociada. Requiere rol Gerente.
+      tags: [Sistema]
+      responses:
+        '200':
+          description: OK
+
+  /reportes/stock-critico:
+    get:
+      summary: Obtener reporte de stock crítico
+      description: Retorna los tipos de parte que se encuentran por debajo del nivel de stock requerido. Requiere rol Gerente.
+      tags: [Sistema]
+      responses:
+        '200':
+          description: OK
+
   /sistema/proveedores:
     get:
       summary: Listar proveedores
@@ -252,6 +315,35 @@ paths:
                 codigo: { type: string }
       responses:
         '201': { description: Creado }
+
+  /notificaciones/stream:
+    get:
+      summary: Suscribirse al stream SSE de notificaciones
+      description: Canal de comunicación Server-Sent Events (SSE) para alertas en tiempo real.
+      tags: [Notificaciones]
+      responses:
+        '200':
+          description: Conexión SSE establecida con éxito.
+
+  /notificaciones/ordenes:
+    post:
+      summary: Registrar una nueva orden de compra interna
+      description: Genera una orden de compra y la emite a todos los clientes SSE conectados.
+      tags: [Notificaciones]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [modelo, parte]
+              properties:
+                modelo: { type: string, example: "Maniquí de Costura" }
+                parte: { type: string, example: "Cabeza" }
+      responses:
+        '201':
+          description: Orden de compra creada con éxito.
+
 
 components:
   securitySchemes:
