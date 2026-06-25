@@ -102,10 +102,10 @@ El backend expone control de acceso basado en roles (RBAC). Puedes autenticarte 
 
 | Rol / Nivel de Acceso | Usuario | Contraseña | Permisos / Alcance en la API |
 | :--- | :--- | :--- | :--- |
-| **Gerente de Producción** | `gerente` | `gerente` | Crear modelos, ver reportes analíticos de rentabilidad y stock. |
+| **Gerente de Producción** (Admin) | `gerente` | `gerente` | Acceso completo de administrador, creación de modelos, reportes analíticos de rentabilidad y stock. |
+| **Gerente de Producción** (Admin) | `admin_pablo` | `tecda2026` | Acceso completo de administrador (Usuario original de desarrollo, mismo rol que `gerente`). |
 | **Vendedor** | `vendedor` | `vendedor` | Registrar ventas y consultas generales de catálogo. |
 | **Operario** | `operario` | `operario` | Consulta básica y operaciones de planta. |
-| **Administrador General** | `admin_pablo` | `tecda2026` | Control y gestión total. |
 
 ---
 
