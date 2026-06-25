@@ -1,7 +1,7 @@
 # =============================================================================
 # 🔌 Tecda Maniquí - Suite de Pruebas v2.1.0
 # =============================================================================
-@baseUrl = http://localhost:8081
+@baseUrl = http://localhost:8082
 @contentType = application/json
 @token = {{login.response.body.token}}
 
@@ -11,8 +11,8 @@ POST {{baseUrl}}/auth/login
 Content-Type: {{contentType}}
 
 {
-  "username": "admin_pablo",
-  "password": "tecda2026"
+  "username": "gerente",
+  "password": "gerente"
 }
 
 ### 2. Registrar Ensamblaje de Maniquí (Vía SP EnsamblarManiqui)

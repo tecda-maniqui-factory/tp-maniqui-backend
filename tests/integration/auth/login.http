@@ -4,8 +4,8 @@ POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "admin_pablo",
-  "password": "tecda2026"
+  "username": "gerente",
+  "password": "gerente"
 }
 
 ### Extraer Token del Login

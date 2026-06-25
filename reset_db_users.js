@@ -52,14 +52,6 @@ const resetDB = async () => {
 
     console.log('👤 Creando administrador...');
     const salt = await bcrypt.genSalt(10);
-    const password_hash = await bcrypt.hash('tecda2026', salt);
-    await Usuario.create({
-      username: 'admin_pablo',
-      password_hash,
-      nombre_completo: 'Pablo Administrador',
-      email: 'admin@tecda.com',
-      rol: 'gerente_prod'
-    });
 
     console.log('👤 Creando usuarios simplificados...');
     await Usuario.create({

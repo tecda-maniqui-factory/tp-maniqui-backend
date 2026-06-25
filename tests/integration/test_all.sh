@@ -9,15 +9,15 @@ pnpm tsx reset_db_users.js
 echo "🚀 Iniciando pruebas de cobertura total..."
 
 # 1. Login y obtención de Token
-echo -n "Autenticando admin_pablo... "
+echo -n "Autenticando gerente... "
 LOGIN_RESPONSE=$(curl -o /dev/null -s -w "%{http_code}" -X POST "$BASE_URL/auth/login" \
   -H "Content-Type: application/json" \
-  -d '{"username":"admin_pablo","password":"tecda2026"}')
+  -d '{"username":"gerente","password":"gerente"}')
 
 # Realizamos login real para extraer token
 LOGIN_REAL=$(curl -s -X POST "$BASE_URL/auth/login" \
   -H "Content-Type: application/json" \
-  -d '{"username":"admin_pablo","password":"tecda2026"}')
+  -d '{"username":"gerente","password":"gerente"}')
 
 echo "DEBUG: Response: $LOGIN_REAL"
 

@@ -16,8 +16,8 @@ const crearAdminInicial = async () => {
   try {
     await conectarDB();
 
-    const username = 'admin_pablo';
-    const password = 'tecda2026';
+    const username = 'gerente';
+    const password = 'gerente';
     
     // Verificar si ya existe
     const existe = await Usuario.findOne({ where: { username } });
@@ -34,8 +34,8 @@ const crearAdminInicial = async () => {
       await Usuario.create({
         username,
         password_hash,
-        nombre_completo: 'Pablo Administrador',
-        email: 'admin@tecda.com',
+        nombre_completo: 'Gerente Administrador',
+        email: 'gerente@tecda.com',
         rol: 'gerente_prod'
       });
       console.log('✅ Usuario Administrador inicial creado con éxito.');

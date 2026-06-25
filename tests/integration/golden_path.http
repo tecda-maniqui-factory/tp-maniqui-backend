@@ -1,7 +1,7 @@
 # =============================================================================
 # 🏆 Golden Path - Lifecycle: Pieza -> Maniquí -> Venta
 # =============================================================================
-@baseUrl = http://localhost:8081
+@baseUrl = http://localhost:8082
 @contentType = application/json
 
 ### 1. LOGIN (Gerente de Producción)
@@ -10,8 +10,8 @@ POST {{baseUrl}}/auth/login
 Content-Type: {{contentType}}
 
 {
-  "username": "admin_pablo",
-  "password": "tecda2026"
+  "username": "gerente",
+  "password": "gerente"
 }
 
 @tokenGerente = {{loginGerente.response.body.token}}
