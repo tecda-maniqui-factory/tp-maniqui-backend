@@ -1,5 +1,5 @@
 allowBuilds:
-  '@scarf/scarf': set this to true or false
+  '@scarf/scarf': true
   core-js: true
   esbuild: true
   protobufjs: true
