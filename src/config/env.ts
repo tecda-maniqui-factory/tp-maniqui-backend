@@ -17,7 +17,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   
   /** Puerto en el cual el servidor Express escuchará las peticiones, transformado a número */
-  PORT: z.string().default('8081').transform(Number),
+  PORT: z.string().default('8082').transform(Number),
   
   /** Clave secreta para la firma y verificación de tokens JWT (mínimo 16 caracteres) */
   JWT_SECRET: z.string().min(16, "JWT_SECRET debe tener al menos 16 caracteres"),

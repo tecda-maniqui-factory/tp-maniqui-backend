@@ -9,7 +9,7 @@ info:
     * **Validación de Stock Técnica:** El ensamblaje ahora verifica la existencia de las 6 piezas (Cabeza, Torso, Brazos y Piernas).
     * **Captura de Errores SQL:** Errores del procedimiento almacenado se devuelven con descripción clara.
 servers:
-  - url: http://localhost:8081
+  - url: http://localhost:8082
     description: Servidor de Desarrollo
 
 security:
