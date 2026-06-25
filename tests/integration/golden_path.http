@@ -33,8 +33,8 @@ POST {{baseUrl}}/auth/login
 Content-Type: {{contentType}}
 
 {
-  "username": "vendedor_test",
-  "password": "password123"
+  "username": "vendedor",
+  "password": "vendedor"
 }
 
 @tokenVendedor = {{loginVendedor.response.body.token}}

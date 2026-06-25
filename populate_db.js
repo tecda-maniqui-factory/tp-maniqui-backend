@@ -29,15 +29,11 @@ const populate = async () => {
     
     // 1. Usuarios
     const salt = await bcrypt.genSalt(10);
-    const passwordHash = await bcrypt.hash('password123', salt);
     const hashGerente = await bcrypt.hash('gerente', salt);
     const hashVendedor = await bcrypt.hash('vendedor', salt);
     const hashOperario = await bcrypt.hash('operario', salt);
-    const hashAdmin = await bcrypt.hash('tecda2026', salt);
 
     await Usuario.bulkCreate([
-      { username: 'vendedor_test', password_hash: passwordHash, nombre_completo: 'Pablo Vendedor', rol: 'vendedor' },
-      { username: 'gerente_test', password_hash: passwordHash, nombre_completo: 'Ana Gerente', rol: 'gerente_prod' },
       { username: 'gerente', password_hash: hashGerente, nombre_completo: 'Gerente Simplificado', rol: 'gerente_prod' },
       { username: 'vendedor', password_hash: hashVendedor, nombre_completo: 'Vendedor Simplificado', rol: 'vendedor' },
       { username: 'operario', password_hash: hashOperario, nombre_completo: 'Operario Simplificado', rol: 'operario' }
