@@ -96,6 +96,19 @@ pnpm start
 
 ---
 
+## 🔑 Credenciales de Prueba para el Evaluador
+
+El backend expone control de acceso basado en roles (RBAC). Puedes autenticarte usando los siguientes usuarios precargados en el script de datos de prueba:
+
+| Rol / Nivel de Acceso | Usuario | Contraseña | Permisos / Alcance en la API |
+| :--- | :--- | :--- | :--- |
+| **Gerente de Producción** | `gerente` | `gerente` | Crear modelos, ver reportes analíticos de rentabilidad y stock. |
+| **Vendedor** | `vendedor` | `vendedor` | Registrar ventas y consultas generales de catálogo. |
+| **Operario** | `operario` | `operario` | Consulta básica y operaciones de planta. |
+| **Administrador General** | `admin_pablo` | `tecda2026` | Control y gestión total. |
+
+---
+
 ## 📂 Estructura del Proyecto
 
 *   `src/types/`: Definiciones de contratos e interfaces.
