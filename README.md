@@ -45,6 +45,7 @@ El backend ha sido diseñado siguiendo una arquitectura de capas desacoplada par
     DB_USER=root
     DB_PASS=password
     DB_HOST=127.0.0.1
+    DB_PORT=3307
     ```
 3.  **Levantar la base de datos:**
     Asegúrate de tener MySQL/MariaDB corriendo y aplicar los scripts de reforma de la base de datos.
@@ -73,13 +74,13 @@ pnpm start
     ```bash
     pnpm exec redocly build-docs openapi.yaml -o docs/api/redoc.html
     ```
-    Puedes consultar el archivo local: [docs/api/redoc.html](file:///home/jmro/Documentos/Proyectos/maniqui/tp-maniqui-backend/docs/api/redoc.html).
+    Puedes consultar el archivo local generado en: [docs/api/redoc.html](docs/api/redoc.html).
 *   **Referencia Técnica de Código (TypeDoc):**
     Genera el desglose completo de clases, tipos e inyección de dependencias:
     ```bash
     pnpm exec typedoc
     ```
-    Puedes abrir el archivo en tu navegador: [docs/api-ts/index.html](file:///home/jmro/Documentos/Proyectos/maniqui/tp-maniqui-backend/docs/api-ts/index.html).
+    Puedes abrir el archivo en tu navegador: [docs/api-ts/index.html](docs/api-ts/index.html).
 
 ---
 
