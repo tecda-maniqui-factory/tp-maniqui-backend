@@ -37,16 +37,11 @@ El backend ha sido diseñado siguiendo una arquitectura de capas desacoplada par
     pnpm install
     ```
 2.  **Configurar variables de entorno:**
-    Crea un archivo `.env` basado en `.env.example`:
+    Copia la plantilla preconfigurada para generar tu archivo `.env`:
     ```bash
-    PORT=8082
-    JWT_SECRET=tu_secreto_super_seguro
-    DB_NAME=tecda_maniqui
-    DB_USER=root
-    DB_PASS=password
-    DB_HOST=127.0.0.1
-    DB_PORT=3307
+    cp .env.example .env
     ```
+    *Nota: Ya viene configurado por defecto para apuntar al puerto `8082` del servidor y al puerto `3307` de la base de datos (Docker).*
 3.  **Levantar la base de datos:**
     Asegúrate de tener MySQL/MariaDB corriendo y aplicar los scripts de reforma de la base de datos.
 
