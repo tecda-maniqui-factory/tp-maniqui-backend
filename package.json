@@ -65,13 +65,5 @@
     "tsx": "^4.22.3",
     "typedoc": "^0.28.19",
     "typescript": "^6.0.3"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@scarf/scarf",
-      "core-js",
-      "protobufjs",
-      "esbuild"
-    ]
   }
 }
